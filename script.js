@@ -54,31 +54,32 @@ function pantallaIdiomas() {
 }
 
 function pantallaDatosHorno() {
-    document.body.innerHTML = ` <ul class="datoshorno">
-                                    <li>
-                                        <b>Fabricante:</b>
-                                        <p>Hornos Paco Sl</p>
-                                    </li>
-                                    <li>
-                                        <b>Modelo:</b>
-                                        <p>Paco5000</p>
-                                    </li>
-                                    <li>
-                                        <b>Origen:</b>
-                                        <p>Alicante, España</p>
-                                    </li>
-                                    <li>
-                                        <b>Etiquetado Energético:</b>
-                                        <p>A</p>
-                                    </li>
-                                    <li>
-                                        <b>Fecha de fabricación:</b>
-                                        <p>2022</p>
-                                    </li>
-                                </ul>
-                                <div class="SmallButton">
-                                    <p>Volver</p>
-                                </div>`;
+    document.body.innerHTML = ` 
+    <ul class="datoshorno">
+        <li>
+            <b>Fabricante:</b>
+            <p>Hornos Paco Sl</p>
+        </li>
+        <li>
+            <b>Modelo:</b>
+            <p>Paco5000</p>
+        </li>
+        <li>
+            <b>Origen:</b>
+            <p>Alicante, España</p>
+        </li>
+        <li>
+            <b>Etiquetado Energético:</b>
+            <p>A</p>
+        </li>
+        <li>
+            <b>Fecha de fabricación:</b>
+            <p>2022</p>
+        </li>
+    </ul>
+    <div class="SmallButton">
+        <p>Volver</p>
+    </div>`;
 }
 
 function cambiardown(element) {
@@ -119,4 +120,37 @@ function pantallaiddle() {
         <article onclick="cambiardown(this);" class="buttonhorno">g</article>
     </section>
 </section>`;
+}
+
+function pantalla_definir_volumen() {
+    document.body.innerHTML = ``;
+}
+
+function menosvol() {
+    valorvol = parseInt(document.getElementById("volumen").innerHTML);
+    if (valorvol != 0) {
+        valorvol -= 10;
+        document.getElementById("volumen").innerHTML = valorvol + "%";
+        document.getElementById("volumen_int").style.width = valorvol + "%";
+    }
+
+}
+
+function masvol() {
+    valorvol = parseInt(document.getElementById("volumen").innerHTML);
+    if (valorvol != 100) {
+        valorvol += 10;
+        document.getElementById("volumen").innerHTML = valorvol + "%";
+        document.getElementById("volumen_int").style.width = valorvol + "%";
+    }
+
+}
+
+function jaja() {
+    document.body.innerHTML += `<div id="jaja">jaja has mirao</div>`
+
+}
+
+function jajant() {
+    document.body.removeChild(document.getElementById("jaja"))
 }
