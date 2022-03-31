@@ -54,3 +54,17 @@ function pantallaDatosHorno() {
                                     <p>Volver</p>
                                 </div>`;
 }
+
+function cambiardown(element) {
+
+    content = element.innerHTML;
+
+    console.log("click\n");
+    console.log(content);
+
+    document.getElementById("down").innerHTML = content;
+    if (element.className == "Relojhorno") {
+        document.getElementById("down").innerHTML = "jaja has mirao";
+    }
+
+}
