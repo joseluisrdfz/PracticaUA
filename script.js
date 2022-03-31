@@ -36,9 +36,9 @@ function main(x) {
 }
 
 
-function pantallaIdiomas(){
-    document.body.innerHTML = `
-    <div class ="idiomas" id ="chino"><p>普通话</p></div>
+
+function pantallaIdiomas() {
+    document.body.innerHTML = `<div class ="idiomas" id ="chino"><p>普通话</p></div>
     <div class = "idiomas" id ="espanyol"><p>Español</p></div>
     <div class = "idiomas" id ="ingles"><p>English</p></div>
     <div class = "idiomas" id ="hindi"><p>भारतीय</p></div>
@@ -99,4 +99,44 @@ function pantallaDatosHorno() {
                                 <div class="SmallButton">
                                     <p>Volver</p>
                                 </div>`;
+}
+
+function cambiardown(element) {
+
+    content = element.innerHTML;
+
+    console.log("click\n");
+    console.log(content);
+
+    document.getElementById("down").innerHTML = content;
+    if (element.className == "Relojhorno") {
+        document.getElementById("down").innerHTML = "jaja has mirao";
+    }
+
+}
+
+
+function pantallaiddle() {
+    document.body.innerHTML = `<section class="hornoiddle">
+    <section class="lateral">
+        <article onclick="cambiardown(this);" class="buttonhorno">a</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">b</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">c</article>
+    </section>
+    <section class="centro">
+        <div id="up">
+            <article onclick="cambiardown(this);" class="buttonhorno">c</article>
+            <article onclick="cambiardown(this);" class="Relojhorno">12:00</article>
+            <article onclick="cambiardown(this);" class="buttonhorno">d</article>
+        </div>
+        <div id="down">
+
+        </div>
+    </section>
+    <section class="lateral">
+        <article onclick="cambiardown(this);" class="buttonhorno">e</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">f</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">g</article>
+    </section>
+</section>`;
 }
