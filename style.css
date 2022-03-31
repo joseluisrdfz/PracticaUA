@@ -1,6 +1,14 @@
 @import "./recursos/fontello/css/fontello.css";
 /* Nota : no he podido obtener el icono del ventilador ni de la puerta del horno en fontello*/
 
+/*Elementos comunes*/
+.SmallButton{
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+/*Pantalla inicial*/
 #logo {
     display: block;
     position: absolute;
@@ -26,10 +34,31 @@
 
 /*Pantalla conexion establecida*/
 
+/* Pantalla controles */
+.opcioncontroles{
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10%;
+}
+
 /* Pantalla ajustes*/
+.opcion{
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10%;
+    display: inline-block;
+    flex-wrap: wrap;
+}
 
+/* Pantalla de informacion*/
 
-
+.info>span{
+    border: 2px ;
+    border-style: solid;
+    border-color: black;
+}
 /* Pantalla de horno datos */
 
 .datoshorno>li {

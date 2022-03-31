@@ -61,16 +61,153 @@ function pantallaConexionEstablecida(){
 }
 
 function pantallaAjustes(){
-    document.body.innerHTML =  ` 
+    document.body.innerHTML =  `
     <div class="opcion">
         <p>WIFI</p>
         <span class="icon-wifi"></span>
     </div>
-    <div class="opcion"></div>
-    <div class="opcion"></div>
-    <div class="opcion"></div>
-    <div class="opcion"></div>
-    <div class="opcion"></div>  `;
+    <div class="opcion">
+        <p>VOLUMEN</p>
+        <span class="icon-convolumen"></span>
+    </div>
+    <div class="opcion">
+        <p>MICRÓFONO</p>
+        <span class="icon-desmuteado"></span>
+    </div>
+    <div class="opcion">
+        <p>ACERCA</p>
+        <span class="icon-informacion"></span>
+    </div>
+    <div class="opcion">
+        <p>IDOMA</p>
+        <span class="icon-idioma"></span>
+    </div>
+    <div class="opcion">
+        <p>CONTROLES</p>
+        <span class="icon-mano"></span>
+    </div> 
+    <div class="SmallButton">VOLVER</div>
+      `;
+}
+
+function pantallaControles(){
+    document.innerHTML = `
+    <div class="opcioncontroles">
+    <span class="icon-menos"></span>
+</div>
+<div class="opcioncontroles">
+    <span class="icon-menos"></span>
+</div>
+<div class="opcioncontroles">
+    <span class="icon-ola"></span>
+</div>
+<div class="opcioncontroles">
+    <span class="icon-ajustes"></span>
+</div>
+<div class="opcioncontroles">
+    <span class="icon-grados"></span>
+</div>
+<div class="opcioncontroles">
+    <span class="icon-bombilla"></span>
+</div>
+<div class="opcioncontroles">
+    <span class="icon-ventilador"></span>
+</div>
+<div class="opcioncontroles">
+    <span class="icon-reloj"></span>
+</div>
+<div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionLuz(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-bombilla"></span>
+        <p>La función seleccionada permite encender o apagar la luz del electrodoméstico.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionTemperatura(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-grados"></span>
+        <p>La función seleccionada permite seleccionar la temperatura de horneado deseada.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionResistenciaInferior(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-menos"></span>
+        <p>La función seleccionada activa la resistencia inferior del horno.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionResistenciaSuperior(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-menos"></span>
+        <p>La función seleccionada activa la resistencia superior del horno.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionGratinar(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-ola"></span>
+        <p>La función seleccionada activa el modo para gratinar del horno.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionGratinar(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-ola"></span>
+        <p>La función seleccionada activa el modo para gratinar del horno.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionVentilador(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-ventilador"></span>
+        <p>La función seleccionada activa enciende el ventilador interior del horno.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionAjustes(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-ajustes"></span>
+        <p>La función seleccionada seleccionada permite acceder a las opciones de configuración del horno.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
+}
+
+function pantallaInformacionReloj(){
+    document.body.innerHTML = `
+    <div class="info">
+        <span class="icon-reloj"></span>
+        <p>La función seleccionada permite establecer temporizadores para hornear.</p>
+    </div>
+    <div class="SmallButton">VOLVER</div>
+    `;
 }
 
 function pantallaDatosHorno() {
