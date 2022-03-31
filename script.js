@@ -49,8 +49,8 @@ function pantallaIdiomas(){
     <div class = "idiomas" id ="frances"><p>Français</p></div>
     <div class = "idiomas" id ="aleman"><p>Deutsch</p></div>
     <div class = "idiomas" id ="italiano"><p>Italiano</p></div>
-    <span class="icon-down-outline arrowdown"></span>
-    <span class="icon-up-outline arrowup"></span>` ;
+    <span class="icon-abajo arrowdown"></span>
+    <span class="icon-up-arriba arrowup"></span>` ;
 }
 
 function pantallaDatosHorno() {
