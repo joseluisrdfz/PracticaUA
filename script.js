@@ -13,12 +13,13 @@ var aleman = [];
 var italiano = [];
 //comprobar si es la primera vez que el usuario usa el horno usando cookies y localstorage
 
-function vaciarCuerpo(){
+function vaciarCuerpo() {
     document.body.innerHTML = '';
 }
-function main(x){
-    if(x == 0){
-        document.body.innerHTML=  '<img src="./recursos/logo.png" id="logo" alt="logo"></img>';
+
+function main(x) {
+    if (x == 0) {
+        document.body.innerHTML = '<img src="./recursos/logo.png" id="logo" alt="logo"></img>';
         setTimeout(() => {
             vaciarCuerpo();
         }, 3000);
@@ -26,8 +27,8 @@ function main(x){
         setTimeout(() => {
             pantallaIdiomas();
         }, 3500);
-         
-    }else{
+
+    } else {
         //el usuario ya ha utilizado el horno anteriormente
     }
 
@@ -50,4 +51,34 @@ function pantallaIdiomas(){
     <div class = "idiomas" id ="italiano"><p>Italiano</p></div>
     <span class="icon-down-outline arrowdown"></span>
     <span class="icon-up-outline arrowup"></span>` ;
+function pantallaIdiomas() {
+    document.body.innerHTML = '<div> <a>Jaja has mirao</a> </div>';
+}
+
+function pantallaDatosHorno() {
+    document.body.innerHTML = ` <ul class="datoshorno">
+                                    <li>
+                                        <b>Fabricante:</b>
+                                        <p>Hornos Paco Sl</p>
+                                    </li>
+                                    <li>
+                                        <b>Modelo:</b>
+                                        <p>Paco5000</p>
+                                    </li>
+                                    <li>
+                                        <b>Origen:</b>
+                                        <p>Alicante, España</p>
+                                    </li>
+                                    <li>
+                                        <b>Etiquetado Energético:</b>
+                                        <p>A</p>
+                                    </li>
+                                    <li>
+                                        <b>Fecha de fabricación:</b>
+                                        <p>2022</p>
+                                    </li>
+                                </ul>
+                                <div class="SmallButton">
+                                    <p>Volver</p>
+                                </div>`;
 }
