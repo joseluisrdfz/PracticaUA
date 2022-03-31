@@ -1,0 +1,23 @@
+
+.icon-abajo:before { content: '\e800'; } /* '' */
+.icon-arriba:before { content: '\e801'; } /* '' */
+.icon-convolumen:before { content: '\e802'; } /* '' */
+.icon-sinvolumen:before { content: '\e803'; } /* '' */
+.icon-qr:before { content: '\e804'; } /* '' */
+.icon-idioma:before { content: '\e805'; } /* '' */
+.icon-reloj:before { content: '\e806'; } /* '' */
+.icon-ajustes:before { content: '\e807'; } /* '' */
+.icon-grados:before { content: '\e808'; } /* '' */
+.icon-bombilla:before { content: '\e809'; } /* '' */
+.icon-resistencias:before { content: '\e80a'; } /* '' */
+.icon-hola:before { content: '\e80b'; } /* '' */
+.icon-mas:before { content: '\e80c'; } /* '' */
+.icon-menos:before { content: '\e80d'; } /* '' */
+.icon-izquierda:before { content: '\e80e'; } /* '' */
+.icon-derecha:before { content: '\e80f'; } /* '' */
+.icon-correcto:before { content: '\f06d'; } /* '' */
+.icon-informacion:before { content: '\f086'; } /* '' */
+.icon-desmuteado:before { content: '\f130'; } /* '' */
+.icon-muteado:before { content: '\f131'; } /* '' */
+.icon-wifi:before { content: '\f1eb'; } /* '' */
+.icon-mano:before { content: '\f25a'; } /* '' */

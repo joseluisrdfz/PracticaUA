@@ -1,3 +1,16 @@
+// Creacion de arrays globales a medida para la seleccion de distintos idiomas
+var chino = [];
+var espanyol = [];
+var ingles = [];
+var hindi = [];
+var arabe = [];
+var portugues = [];
+var ruso = [];
+var urdu = [];
+var bengali = [];
+var frances = [];
+var aleman = [];
+var italiano = [];
 //comprobar si es la primera vez que el usuario usa el horno usando cookies y localstorage
 
 function vaciarCuerpo() {
@@ -24,7 +37,20 @@ function main(x) {
 
 
 function pantallaIdiomas() {
-    document.body.innerHTML = '<div> <a>Jaja has mirao</a> </div>';
+    document.body.innerHTML = `<div class ="idiomas" id ="chino"><p>普通话</p></div>
+    <div class = "idiomas" id ="espanyol"><p>Español</p></div>
+    <div class = "idiomas" id ="ingles"><p>English</p></div>
+    <div class = "idiomas" id ="hindi"><p>भारतीय</p></div>
+    <div class = "idiomas" id ="arabe"><p>عرب</p></div>
+    <div class = "idiomas" id ="portugues"><p>Português</p></div>
+    <div class = "idiomas" id ="ruso"><p>pусский</p></div>
+    <div class = "idiomas" id ="urdu"><p>اردو</p></div>
+    <div class = "idiomas" id ="bengali"><p>বাংলা</p></div>
+    <div class = "idiomas" id ="frances"><p>Français</p></div>
+    <div class = "idiomas" id ="aleman"><p>Deutsch</p></div>
+    <div class = "idiomas" id ="italiano"><p>Italiano</p></div>
+    <span class="icon-abajo arrowdown"></span>
+    <span class="icon-up-arriba arrowup"></span>`;
 }
 
 function pantallaDatosHorno() {
@@ -67,4 +93,30 @@ function cambiardown(element) {
         document.getElementById("down").innerHTML = "jaja has mirao";
     }
 
+}
+
+
+function pantallaiddle() {
+    document.body.innerHTML = `<section class="hornoiddle">
+    <section class="lateral">
+        <article onclick="cambiardown(this);" class="buttonhorno">a</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">b</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">c</article>
+    </section>
+    <section class="centro">
+        <div id="up">
+            <article onclick="cambiardown(this);" class="buttonhorno">c</article>
+            <article onclick="cambiardown(this);" class="Relojhorno">12:00</article>
+            <article onclick="cambiardown(this);" class="buttonhorno">d</article>
+        </div>
+        <div id="down">
+
+        </div>
+    </section>
+    <section class="lateral">
+        <article onclick="cambiardown(this);" class="buttonhorno">e</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">f</article>
+        <article onclick="cambiardown(this);" class="buttonhorno">g</article>
+    </section>
+</section>`;
 }

@@ -1,0 +1,142 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "1d9b2bb0d0621cd616139c6a441ed442",
+      "css": "abajo",
+      "code": 59392,
+      "src": "typicons"
+    },
+    {
+      "uid": "abf264d54e3f10187167ebc0e833d12e",
+      "css": "arriba",
+      "code": 59393,
+      "src": "typicons"
+    },
+    {
+      "uid": "012ff5762ccb18c16bdfdd6baf187406",
+      "css": "convolumen",
+      "code": 59394,
+      "src": "elusive"
+    },
+    {
+      "uid": "8489d61496923b1159b01d8a0a7b2df0",
+      "css": "sinvolumen",
+      "code": 59395,
+      "src": "elusive"
+    },
+    {
+      "uid": "cd4bfdae4dc89b175ff49330ce29611a",
+      "css": "wifi",
+      "code": 61931,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "04f7e0bbd0bba658464ca2b49097f37f",
+      "css": "qr",
+      "code": 59396,
+      "src": "elusive"
+    },
+    {
+      "uid": "5e1ef647438e2204c15197c6efc4151e",
+      "css": "correcto",
+      "code": 61549,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "19c50c52858a81de58f9db488aba77bc",
+      "css": "desmuteado",
+      "code": 61744,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "43c629249e2cca7e73cd4ef410c9551f",
+      "css": "muteado",
+      "code": 61745,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "18e30ad120ce4b15d7e5c797e4bf0ee8",
+      "css": "mano",
+      "code": 62042,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "ddecf5ad7935e3fb1b70dac6ed00d06a",
+      "css": "idioma",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "15ba51cbb4d05e6fb88f03a31a7c711c",
+      "css": "informacion",
+      "code": 61574,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "6083c8aa5e3345476a24a28ac1afaa61",
+      "css": "ajustes",
+      "code": 59399,
+      "src": "elusive"
+    },
+    {
+      "uid": "d1fd686179920f26e0f1e83816fb40fe",
+      "css": "reloj",
+      "code": 59398,
+      "src": "elusive"
+    },
+    {
+      "uid": "39a24b1eb625a4a551585745107e8ef0",
+      "css": "grados",
+      "code": 59400,
+      "src": "meteocons"
+    },
+    {
+      "uid": "599d6c088f4a1c64611b989459d65f6b",
+      "css": "bombilla",
+      "code": 59401,
+      "src": "elusive"
+    },
+    {
+      "uid": "7b67ab93e2dd09f8884b574925ab9352",
+      "css": "resistencias",
+      "code": 59402,
+      "src": "typicons"
+    },
+    {
+      "uid": "fd8d9ae4422e55d3ca23f55d9cf4b20a",
+      "css": "hola",
+      "code": 59403,
+      "src": "typicons"
+    },
+    {
+      "uid": "70370693ada58ef0a60fa0984fe8d52a",
+      "css": "mas",
+      "code": 59404,
+      "src": "entypo"
+    },
+    {
+      "uid": "qab5uvjyoc3uu4d2pvt8soshtgkuvpak",
+      "css": "menos",
+      "code": 59405,
+      "src": "typicons"
+    },
+    {
+      "uid": "884cfc3e6e2d456dd2a2ca0dbb9e6337",
+      "css": "izquierda",
+      "code": 59406,
+      "src": "entypo"
+    },
+    {
+      "uid": "004882ab2d5c418c5b2060e80596279b",
+      "css": "derecha",
+      "code": 59407,
+      "src": "entypo"
+    }
+  ]
+}

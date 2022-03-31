@@ -1,3 +1,6 @@
+@import "./recursos/fontello/css/fontello.css";
+/* Nota : no he podido obtener el icono del ventilador ni de la puerta del horno en fontello*/
+
 #logo {
     display: block;
     position: absolute;
@@ -9,12 +12,23 @@
     margin-top: auto;
     margin-bottom: auto;
 }
+/*Pantalla idiomas*/
+.idiomas{
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+}
+
+.idiomas>p{
+    align-items: center;
+    text-align: center;
+}
+
 
 
 /* Pantalla de horno datos */
 
 .datoshorno>li {
-    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
