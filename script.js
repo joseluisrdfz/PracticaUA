@@ -36,6 +36,7 @@ function main(x) {
 }
 
 
+
 function pantallaIdiomas() {
     document.body.innerHTML = `<div class ="idiomas" id ="chino"><p>普通话</p></div>
     <div class = "idiomas" id ="espanyol"><p>Español</p></div>
@@ -50,7 +51,26 @@ function pantallaIdiomas() {
     <div class = "idiomas" id ="aleman"><p>Deutsch</p></div>
     <div class = "idiomas" id ="italiano"><p>Italiano</p></div>
     <span class="icon-abajo arrowdown"></span>
-    <span class="icon-up-arriba arrowup"></span>`;
+    <span class="icon-arriba arrowup"></span>`;
+}
+
+function pantallaConexionEstablecida() {
+    document.body.innerHTML = ` <h1>Red_Wifi_1</h1>
+    <h2>Conexión establecida</h2>
+    <span class="icon-correcto"></span>`;
+}
+
+function pantallaAjustes() {
+    document.body.innerHTML = ` 
+    <div class="opcion">
+        <p>WIFI</p>
+        <span class="icon-wifi"></span>
+    </div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>  `;
 }
 
 function pantallaDatosHorno() {
@@ -123,7 +143,29 @@ function pantallaiddle() {
 }
 
 function pantalla_definir_volumen() {
-    document.body.innerHTML = ``;
+    document.body.innerHTML = `
+    <section id="sec_vol1">
+        <div>
+            <p class="control_vol" onclick="menosvol();">[V-]</p>
+            <div id="volumen_ext">
+                <div id="volumen_int">
+                </div>
+            </div>
+            <p class="control_vol" onclick="masvol();">[V+]</p>
+        </div>
+        <div>
+            <p id="volumen">50%</p>
+        </div>
+    </section>
+    <section id="sec_vol2">
+        <div onclick="jajant();" class="SmallButton">
+            <p>Cancelar</p>
+        </div>
+        <div onclick="jaja();" class="SmallButton">
+            <p>Aceptar</p>
+        </div>
+    </section>
+    `;
 }
 
 function menosvol() {
