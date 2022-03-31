@@ -1,3 +1,5 @@
+@import "./recursos/fontello/css/fontello.css";
+
 #logo{
     display: block;
     position: absolute;
@@ -8,4 +10,16 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+/* Pantalla idiomas */
+.idiomas{
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+}
+
+.idiomas>p{
+    align-items: center;
+    text-align: center;
 }
