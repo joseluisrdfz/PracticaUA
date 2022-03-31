@@ -37,7 +37,8 @@ function main(x) {
 
 
 function pantallaIdiomas(){
-    document.body.innerHTML = `<div class ="idiomas" id ="chino"><p>普通话</p></div>
+    document.body.innerHTML = `
+    <div class ="idiomas" id ="chino"><p>普通话</p></div>
     <div class = "idiomas" id ="espanyol"><p>Español</p></div>
     <div class = "idiomas" id ="ingles"><p>English</p></div>
     <div class = "idiomas" id ="hindi"><p>भारतीय</p></div>
@@ -50,7 +51,26 @@ function pantallaIdiomas(){
     <div class = "idiomas" id ="aleman"><p>Deutsch</p></div>
     <div class = "idiomas" id ="italiano"><p>Italiano</p></div>
     <span class="icon-abajo arrowdown"></span>
-    <span class="icon-up-arriba arrowup"></span>` ;
+    <span class="icon-arriba arrowup"></span>` ;
+}
+
+function pantallaConexionEstablecida(){
+    document.body.innerHTML = ` <h1>Red_Wifi_1</h1>
+    <h2>Conexión establecida</h2>
+    <span class="icon-correcto"></span>`;
+}
+
+function pantallaAjustes(){
+    document.body.innerHTML =  ` 
+    <div class="opcion">
+        <p>WIFI</p>
+        <span class="icon-wifi"></span>
+    </div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>
+    <div class="opcion"></div>  `;
 }
 
 function pantallaDatosHorno() {
