@@ -52,9 +52,6 @@ function pantallaIdiomas(){
     <span class="icon-down-outline arrowdown"></span>
     <span class="icon-up-outline arrowup"></span>` ;
 }
-function pantallaIdiomas() {
-    document.body.innerHTML = '<div> <a>Jaja has mirao</a> </div>';
-}
 
 function pantallaDatosHorno() {
     document.body.innerHTML = ` <ul class="datoshorno">
