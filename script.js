@@ -51,6 +51,7 @@ function pantallaIdiomas(){
     <div class = "idiomas" id ="italiano"><p>Italiano</p></div>
     <span class="icon-down-outline arrowdown"></span>
     <span class="icon-up-outline arrowup"></span>` ;
+}
 function pantallaIdiomas() {
     document.body.innerHTML = '<div> <a>Jaja has mirao</a> </div>';
 }
