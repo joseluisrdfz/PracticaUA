@@ -44,7 +44,7 @@ function pantallaIdiomas() {
     <div class = "idiomas" id ="hindi"><p>भारतीय</p></div>
     <div class = "idiomas" id ="arabe"><p>عرب</p></div>
     <div class = "idiomas" id ="portugues"><p>Português</p></div>
-    <div class = "idiomas" id ="ruso"><p>pусский</p></div>
+    <div class = "idiomas" id ="ruso"><p>pyccкий</p></div>
     <div class = "idiomas" id ="urdu"><p>اردو</p></div>
     <div class = "idiomas" id ="bengali"><p>বাংলা</p></div>
     <div class = "idiomas" id ="frances"><p>Français</p></div>
@@ -60,8 +60,8 @@ function pantallaConexionEstablecida() {
     <span class="icon-correcto"></span>`;
 }
 
-function pantallaAjustes(){
-    document.body.innerHTML =  `
+function pantallaAjustes() {
+    document.body.innerHTML = `
     <div class="opcion">
         <p>WIFI</p>
         <span class="icon-wifi"></span>
@@ -90,7 +90,7 @@ function pantallaAjustes(){
       `;
 }
 
-function pantallaControles(){
+function pantallaControles() {
     document.innerHTML = `
     <div class="opcioncontroles">
     <span class="icon-menos"></span>
@@ -120,7 +120,7 @@ function pantallaControles(){
     `;
 }
 
-function pantallaInformacionLuz(){
+function pantallaInformacionLuz() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-bombilla"></span>
@@ -130,7 +130,7 @@ function pantallaInformacionLuz(){
     `;
 }
 
-function pantallaInformacionTemperatura(){
+function pantallaInformacionTemperatura() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-grados"></span>
@@ -140,7 +140,7 @@ function pantallaInformacionTemperatura(){
     `;
 }
 
-function pantallaInformacionResistenciaInferior(){
+function pantallaInformacionResistenciaInferior() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-menos"></span>
@@ -150,7 +150,7 @@ function pantallaInformacionResistenciaInferior(){
     `;
 }
 
-function pantallaInformacionResistenciaSuperior(){
+function pantallaInformacionResistenciaSuperior() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-menos"></span>
@@ -160,7 +160,7 @@ function pantallaInformacionResistenciaSuperior(){
     `;
 }
 
-function pantallaInformacionGratinar(){
+function pantallaInformacionGratinar() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-ola"></span>
@@ -170,7 +170,7 @@ function pantallaInformacionGratinar(){
     `;
 }
 
-function pantallaInformacionGratinar(){
+function pantallaInformacionGratinar() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-ola"></span>
@@ -180,7 +180,7 @@ function pantallaInformacionGratinar(){
     `;
 }
 
-function pantallaInformacionVentilador(){
+function pantallaInformacionVentilador() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-ventilador"></span>
@@ -190,7 +190,7 @@ function pantallaInformacionVentilador(){
     `;
 }
 
-function pantallaInformacionAjustes(){
+function pantallaInformacionAjustes() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-ajustes"></span>
@@ -200,7 +200,7 @@ function pantallaInformacionAjustes(){
     `;
 }
 
-function pantallaInformacionReloj(){
+function pantallaInformacionReloj() {
     document.body.innerHTML = `
     <div class="info">
         <span class="icon-reloj"></span>
