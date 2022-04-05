@@ -1,4 +1,4 @@
-// Creacion de arrays globales a medida para la seleccion de distintos idiomas
+// Creacion de arrays y variables globales a medida para la seleccion de distintos idiomas
 var chino = [];
 var espanyol = [];
 var ingles = [];
@@ -12,7 +12,8 @@ var frances = [];
 var aleman = [];
 var italiano = [];
 //comprobar si es la primera vez que el usuario usa el horno usando cookies y localstorage
-
+var idioma;
+var microfono = "icon-desmuteado";
 function vaciarCuerpo() {
     document.body.innerHTML = '';
 }
@@ -36,22 +37,32 @@ function main(x) {
 }
 
 
+function idiomaSeleccionado(idiomaSeleccionado){
+    idioma = idiomaSeleccionado;
+    console.log(idioma);
+}
 
-function pantallaIdiomas() {
-    document.body.innerHTML = `<div class ="idiomas" id ="chino"><p>普通话</p></div>
-    <div class = "idiomas" id ="espanyol"><p>Español</p></div>
-    <div class = "idiomas" id ="ingles"><p>English</p></div>
-    <div class = "idiomas" id ="hindi"><p>भारतीय</p></div>
-    <div class = "idiomas" id ="arabe"><p>عرب</p></div>
-    <div class = "idiomas" id ="portugues"><p>Português</p></div>
-    <div class = "idiomas" id ="ruso"><p>pyccкий</p></div>
-    <div class = "idiomas" id ="urdu"><p>اردو</p></div>
-    <div class = "idiomas" id ="bengali"><p>বাংলা</p></div>
-    <div class = "idiomas" id ="frances"><p>Français</p></div>
-    <div class = "idiomas" id ="aleman"><p>Deutsch</p></div>
-    <div class = "idiomas" id ="italiano"><p>Italiano</p></div>
-    <span class="icon-abajo arrowdown"></span>
-    <span class="icon-arriba arrowup"></span>`;
+
+function pantallaIdiomas(){
+    document.body.innerHTML = `
+    <div id="divIdiomas">
+        <span class="icon-abajo arrowdown"></span>
+        <div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(0)' class ="idiomas" id ="chino"><p>普通话</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(1)' class = "idiomas" id ="espanyol"><p>Español</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(2)' class = "idiomas" id ="ingles"><p>English</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(3)' class = "idiomas" id ="hindi"><p>भारतीय</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(4)' class = "idiomas" id ="arabe"><p>عرب</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(5)' class = "idiomas" id ="portugues"><p>Português</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(6)' class = "idiomas" id ="ruso"><p>pyccкий</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(7)' class = "idiomas" id ="urdu"><p>اردو</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(8)' class = "idiomas" id ="bengali"><p>বাংলা</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(9)' class = "idiomas" id ="frances"><p>Français</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(10)' class = "idiomas" id ="aleman"><p>Deutsch</p></div>
+            <div onclick = 'pantallaiddle(), idiomaSeleccionado(11)' class = "idiomas" id ="italiano"><p>Italiano</p></div>
+        </div>
+        <span class="icon-arriba arrowup"></span>
+    </div>`;
 }
 
 function pantallaConexionEstablecida() {
@@ -66,58 +77,58 @@ function pantallaAjustes() {
         <p>WIFI</p>
         <span class="icon-wifi"></span>
     </div>
-    <div class="opcion">
+    <div onclick = "pantalla_definir_volumen();" class="opcion">
         <p>VOLUMEN</p>
         <span class="icon-convolumen"></span>
     </div>
-    <div class="opcion">
+    <div onclick = "microfonoActivadoDesactivado(this);" class="opcion micro">
         <p>MICRÓFONO</p>
-        <span class="icon-desmuteado"></span>
+        <span id = "mic" class="`+microfono+`"></span>
     </div>
-    <div class="opcion">
+    <div onclick = "pantallaDatosHorno()"  class="opcion">
         <p>ACERCA</p>
         <span class="icon-informacion"></span>
     </div>
-    <div class="opcion">
+    <div onclick = "pantallaIdiomas();" class="opcion">
         <p>IDOMA</p>
         <span class="icon-idioma"></span>
     </div>
-    <div class="opcion">
+    <div onclick = "pantallaControles();" class="opcion">
         <p>CONTROLES</p>
         <span class="icon-mano"></span>
     </div> 
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaiddle()" class="SmallButton">VOLVER</div>
       `;
 }
 
 function pantallaControles() {
-    document.innerHTML = `
-    <div class="opcioncontroles">
-    <span class="icon-menos"></span>
-</div>
-<div class="opcioncontroles">
-    <span class="icon-menos"></span>
-</div>
-<div class="opcioncontroles">
-    <span class="icon-ola"></span>
-</div>
-<div class="opcioncontroles">
-    <span class="icon-ajustes"></span>
-</div>
-<div class="opcioncontroles">
-    <span class="icon-grados"></span>
-</div>
-<div class="opcioncontroles">
-    <span class="icon-bombilla"></span>
-</div>
-<div class="opcioncontroles">
-    <span class="icon-ventilador"></span>
-</div>
-<div class="opcioncontroles">
-    <span class="icon-reloj"></span>
-</div>
-<div class="SmallButton">VOLVER</div>
-    `;
+    document.body.innerHTML = `
+    <div onclick = "pantallaInformacionResistenciaSuperior();" class="opcioncontroles">
+        <span class="icon-menos"></span>
+    </div>
+    <div onclick = "pantallaInformacionResistenciaInferior();" class="opcioncontroles">
+        <span class="icon-menos"></span>
+    </div>
+    <div onclick = "pantallaInformacionGratinar();" class="opcioncontroles">
+        <span class="icon-ola"></span>
+    </div>
+    <div onclick = "pantallaInformacionAjustes();" class="opcioncontroles">
+        <span class="icon-ajustes"></span>
+    </div>
+    <div onclick = "pantallaInformacionTemperatura();" class="opcioncontroles">
+        <span class="icon-grados"></span>
+    </div>
+    <div onclick = "pantallaInformacionLuz();" class="opcioncontroles">
+        <span class="icon-bombilla"></span>
+    </div>
+    <div onclick = "pantallaInformacionVentilador();" class="opcioncontroles">
+        <span class="icon-ventilador"></span>
+    </div>
+    <div onclick = "pantallaInformacionReloj();" class="opcioncontroles">
+        <span class="icon-reloj"></span>
+    </div>
+    <div onclick = "pantallaAjustes();" class="SmallButton">VOLVER</div>
+        `;
 }
 
 function pantallaInformacionLuz() {
@@ -126,7 +137,7 @@ function pantallaInformacionLuz() {
         <span class="icon-bombilla"></span>
         <p>La función seleccionada permite encender o apagar la luz del electrodoméstico.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -136,7 +147,7 @@ function pantallaInformacionTemperatura() {
         <span class="icon-grados"></span>
         <p>La función seleccionada permite seleccionar la temperatura de horneado deseada.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -146,7 +157,7 @@ function pantallaInformacionResistenciaInferior() {
         <span class="icon-menos"></span>
         <p>La función seleccionada activa la resistencia inferior del horno.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -156,7 +167,7 @@ function pantallaInformacionResistenciaSuperior() {
         <span class="icon-menos"></span>
         <p>La función seleccionada activa la resistencia superior del horno.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -166,17 +177,7 @@ function pantallaInformacionGratinar() {
         <span class="icon-ola"></span>
         <p>La función seleccionada activa el modo para gratinar del horno.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
-    `;
-}
-
-function pantallaInformacionGratinar() {
-    document.body.innerHTML = `
-    <div class="info">
-        <span class="icon-ola"></span>
-        <p>La función seleccionada activa el modo para gratinar del horno.</p>
-    </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -186,7 +187,7 @@ function pantallaInformacionVentilador() {
         <span class="icon-ventilador"></span>
         <p>La función seleccionada activa enciende el ventilador interior del horno.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -196,7 +197,7 @@ function pantallaInformacionAjustes() {
         <span class="icon-ajustes"></span>
         <p>La función seleccionada seleccionada permite acceder a las opciones de configuración del horno.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -206,7 +207,7 @@ function pantallaInformacionReloj() {
         <span class="icon-reloj"></span>
         <p>La función seleccionada permite establecer temporizadores para hornear.</p>
     </div>
-    <div class="SmallButton">VOLVER</div>
+    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
@@ -234,7 +235,7 @@ function pantallaDatosHorno() {
             <p>2022</p>
         </li>
     </ul>
-    <div class="SmallButton">
+    <div onclick = "pantallaAjustes()" class="SmallButton">
         <p>Volver</p>
     </div>`;
 }
@@ -265,7 +266,7 @@ function pantallaiddle() {
         <div id="up">
             <article onclick="cambiardown(this);" class="buttonhorno">c</article>
             <article onclick="cambiardown(this);" class="Relojhorno">12:00</article>
-            <article onclick="cambiardown(this);" class="buttonhorno">d</article>
+            <article onclick="pantallaAjustes();" class="buttonhorno">d</article>
         </div>
         <div id="down">
 
@@ -283,22 +284,22 @@ function pantalla_definir_volumen() {
     document.body.innerHTML = `
     <section id="sec_vol1">
         <div>
-            <p class="control_vol" onclick="menosvol();">[V-]</p>
+            <span onclick = "menosvol();" class = "control_vol icon-sinvolumen"></span>
             <div id="volumen_ext">
                 <div id="volumen_int">
                 </div>
             </div>
-            <p class="control_vol" onclick="masvol();">[V+]</p>
+            <span onclick = "masvol();" class = "control_vol icon-convolumen"></span>
         </div>
         <div>
             <p id="volumen">50%</p>
         </div>
     </section>
     <section id="sec_vol2">
-        <div onclick="jajant();" class="SmallButton">
+        <div onclick="pantallaAjustes();" class="SmallButton">
             <p>Cancelar</p>
         </div>
-        <div onclick="jaja();" class="SmallButton">
+        <div onclick="pantallaAjustes();" class="SmallButton">
             <p>Aceptar</p>
         </div>
     </section>
@@ -325,11 +326,19 @@ function masvol() {
 
 }
 
-function jaja() {
-    document.body.innerHTML += `<div id="jaja">jaja has mirao</div>`
+function microfonoActivadoDesactivado(){
+    doc = document.getElementById("mic");
+    estado = doc.className;
+    localStorage.setItem("mic",estado);
+    if(mut = document.querySelector(".micro")){
+        if(mut.lastElementChild.className == "icon-desmuteado" && localStorage.getItem("mic") == "icon-desmuteado"){
+            mut.lastElementChild.className = "icon-muteado";
+            localStorage.setItem("mic","icon-muteado");
+        }else if(mut.lastElementChild.className == "icon-muteado" && localStorage.getItem("mic") == "icon-muteado"){
+            mut.lastElementChild.className = "icon-desmuteado";
+            localStorage.setItem("mic","icon-desmuteado");
+        }
+    }
+    microfono = localStorage.getItem("mic");
 
-}
-
-function jajant() {
-    document.body.removeChild(document.getElementById("jaja"))
 }
