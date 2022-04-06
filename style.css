@@ -2,6 +2,11 @@
 
 /* Nota : no he podido obtener el icono del ventilador ni de la puerta del horno en fontello*/
 
+:root {
+    --color_general: rgba(62, 121, 218, 255);
+    --color_secundario: rgba(119, 201, 233, 255);
+}
+
 
 /*Elementos comunes*/
 
@@ -10,13 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    height: 100vh;
-}
-
-.SmallButton {
-    border: 2px;
-    border-style: solid;
-    border-color: black;
+    height: 98vh;
 }
 
 
@@ -25,39 +24,51 @@ body {
 #logo {
     display: block;
     z-index: 1;
-    height: 100%;
-    width: 100%;
+    height: 70%;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-top: 7.5%;
+}
+
+#logo_div {
+    flex: 1;
+    border: 2px solid black;
+    background-color: var(--color_general);
+    height: 99%;
 }
 
 
 /*Pantalla idiomas*/
 
-#divIdiomas{
+#divIdiomas {
+    flex: 1;
+    background-color: var(--color_general);
     display: flex;
     flex-direction: row;
     width: 100%;
     align-items: center;
     justify-content: center;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
 }
 
-#divIdiomas>div{
+#divIdiomas>div {
     display: flex;
     flex-direction: column;
     width: 75%;
     overflow: visible;
 }
 
-#divIdiomas>span{
+#divIdiomas>span {
     font-size: 2.5em;
     width: 12.5%;
     text-align: center;
 }
 
 .idiomas {
+    background-color: var(--color_secundario);
     display: flex;
     align-items: center;
     text-align: center;
@@ -65,19 +76,23 @@ body {
     border: 2px;
     border-color: black;
     border-style: solid;
+    border-collapse: collapse;
 }
 
 .idiomas>p {
     align-items: center;
     text-align: center;
+    font-size: 1.1em;
 }
 
 
 /*Pantalla escaneo QR*/
 
-.icon-qr{
+.icon-qr {
     font-size: 10em;
 }
+
+
 /*Pantalla conexion establecida*/
 
 
@@ -93,13 +108,29 @@ body {
 
 /* Pantalla ajustes*/
 
+#divajustes {
+    flex: 1;
+    background-color: var(--color_general);
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .opcion {
+    margin: 2.3em;
+    background-color: var(--color_secundario);
+    width: 17%;
     border: 2px;
     border-color: black;
     border-style: solid;
     border-radius: 10%;
-    display: inline-block;
-    flex-wrap: wrap;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8em;
+    justify-content: center;
 }
 
 
@@ -128,7 +159,7 @@ body {
     display: flex;
     flex-direction: row;
     border: 1px solid black;
-    background-color: powderblue;
+    background-color: var(--color_general);
 }
 
 .lateral {
@@ -169,21 +200,39 @@ body {
 }
 
 .buttonhorno {
-    border: 1px solid black;
-    width: 3.5em;
-    height: 3.5em;
+    border: 2px solid black;
+    border-radius: 22px;
+    background-color: var(--color_secundario);
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.3em;
     text-align: center;
-    line-height: 3.5em;
-    font-size: 1.7em;
+    line-height: 1.5em;
+    font-size: 4em;
+}
+
+#calor_arriba {
+    line-height: 0.12em;
+}
+
+#calor_abajo {
+    line-height: 2.2em;
+}
+
+.buttonhorno>img {
+    width: 0.65em;
+    height: 0.65em;
 }
 
 .Relojhorno {
-    border: 1px solid black;
+    border: 2px solid black;
     width: 6.7em;
+    border-radius: 22px;
     height: 3.5em;
     text-align: center;
     line-height: 3.5em;
     font-size: 1.7em;
+    background-color: var(--color_secundario);
 }
 
 
@@ -224,7 +273,7 @@ body {
 .SmallButton {
     margin: 0 20px;
     padding: 10px 20px;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .SmallButton>p {
