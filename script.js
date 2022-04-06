@@ -22,7 +22,7 @@ function vaciarCuerpo() {
 
 function main(x) {
     if (x == 0) {
-        document.body.innerHTML = '<img src="./recursos/logo.png" id="logo" alt="logo"></img>';
+        document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo" alt="logo"></img></div>';
         setTimeout(() => {
             vaciarCuerpo();
         }, 3000);
@@ -39,13 +39,13 @@ function main(x) {
 }
 
 
-function idiomaSeleccionado(idiomaSeleccionado){
+function idiomaSeleccionado(idiomaSeleccionado) {
     idioma = idiomaSeleccionado;
     console.log(idioma);
 }
 
 
-function pantallaIdiomas(){
+function pantallaIdiomas() {
     document.body.innerHTML = `
     <div id="divIdiomas">
         <span class="icon-abajo arrowdown"></span>
@@ -67,12 +67,13 @@ function pantallaIdiomas(){
     </div>`;
 }
 
-function pantallaEscanearQr(){
+function pantallaEscanearQr() {
     document.body.innerHTML = `
     <p>Escanea el código QR y sigue los pasos en la App</p>
     <span onclick = "pantallaConexionEstablecida();" class="icon-qr"></span>
     <div onclick = "pantallaAjustes();" class="SmallButton">VOLVER</div>`;
 }
+
 function pantallaConexionEstablecida() {
     document.body.innerHTML = ` <h1>Red_Wifi_1</h1>
     <h2>Conexión establecida</h2>
@@ -84,6 +85,7 @@ function pantallaConexionEstablecida() {
 
 function pantallaAjustes() {
     document.body.innerHTML = `
+    <div id="divajustes">
     <div onclick = "pantallaEscanearQr();" class="opcion">
         <p>WIFI</p>
         <span class="icon-wifi"></span>
@@ -94,7 +96,7 @@ function pantallaAjustes() {
     </div>
     <div onclick = "microfonoActivadoDesactivado(this);" class="opcion micro">
         <p>MICRÓFONO</p>
-        <span id = "mic" class="`+microfono+`"></span>
+        <span id = "mic" class="` + microfono + `"></span>
     </div>
     <div onclick = "pantallaDatosHorno()"  class="opcion">
         <p>ACERCA</p>
@@ -107,6 +109,7 @@ function pantallaAjustes() {
     <div onclick = "pantallaControles();" class="opcion">
         <p>CONTROLES</p>
         <span class="icon-mano"></span>
+    </div>
     </div> 
     <div onclick = "pantallaiddle()" class="SmallButton">VOLVER</div>
       `;
@@ -269,24 +272,24 @@ function cambiardown(element) {
 function pantallaiddle() {
     document.body.innerHTML = `<section class="hornoiddle">
     <section class="lateral">
-        <article onclick="cambiardown(this);" class="buttonhorno">a</article>
-        <article onclick="cambiardown(this);" class="buttonhorno">b</article>
-        <article onclick="cambiardown(this);" class="buttonhorno">c</article>
+        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-grados"></span></article>
+        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-bombilla"></span></article>
+        <article onclick="cambiardown(this);" class="buttonhorno"><img src = "./recursos/ventilador.png"></article>
     </section>
     <section class="centro">
         <div id="up">
-            <article onclick="cambiardown(this);" class="buttonhorno">c</article>
+            <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-reloj"></span></article>
             <article onclick="cambiardown(this);" class="Relojhorno">12:00</article>
-            <article onclick="pantallaAjustes();" class="buttonhorno">d</article>
+            <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
 
         </div>
     </section>
     <section class="lateral">
-        <article onclick="cambiardown(this);" class="buttonhorno">e</article>
-        <article onclick="cambiardown(this);" class="buttonhorno">f</article>
-        <article onclick="cambiardown(this);" class="buttonhorno">g</article>
+        <article onclick="cambiardown(this);" class="buttonhorno" id="calor_arriba"><span class="icon-menos"></article>
+        <article onclick="cambiardown(this);" class="buttonhorno" id="calor_abajo"><span class="icon-menos"></article>
+        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-hola"></article>
     </section>
 </section>`;
 }
@@ -297,13 +300,13 @@ function pantalla_definir_volumen() {
         <div>
             <span onclick = "menosvol();" class = "control_vol icon-sinvolumen"></span>
             <div id="volumen_ext">
-                <div id="volumen_int" style = "width : `+volumen+`;">
+                <div id="volumen_int" style = "width : ` + volumen + `;">
                 </div>
             </div>
             <span onclick = "masvol();" class = "control_vol icon-convolumen"></span>
         </div>
         <div>
-            <p id="volumen">`+volumen+`</p>
+            <p id="volumen">` + volumen + `</p>
         </div>
     </section>
     <section id="sec_vol2">
@@ -339,17 +342,17 @@ function masvol() {
     volumen = localStorage.getItem("vol");
 }
 
-function microfonoActivadoDesactivado(){
+function microfonoActivadoDesactivado() {
     doc = document.getElementById("mic");
     estado = doc.className;
-    localStorage.setItem("mic",estado);
-    if(mut = document.querySelector(".micro")){
-        if(mut.lastElementChild.className == "icon-desmuteado" && localStorage.getItem("mic") == "icon-desmuteado"){
+    localStorage.setItem("mic", estado);
+    if (mut = document.querySelector(".micro")) {
+        if (mut.lastElementChild.className == "icon-desmuteado" && localStorage.getItem("mic") == "icon-desmuteado") {
             mut.lastElementChild.className = "icon-muteado";
-            localStorage.setItem("mic","icon-muteado");
-        }else if(mut.lastElementChild.className == "icon-muteado" && localStorage.getItem("mic") == "icon-muteado"){
+            localStorage.setItem("mic", "icon-muteado");
+        } else if (mut.lastElementChild.className == "icon-muteado" && localStorage.getItem("mic") == "icon-muteado") {
             mut.lastElementChild.className = "icon-desmuteado";
-            localStorage.setItem("mic","icon-desmuteado");
+            localStorage.setItem("mic", "icon-desmuteado");
         }
     }
     microfono = localStorage.getItem("mic");
