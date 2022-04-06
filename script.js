@@ -14,6 +14,8 @@ var italiano = [];
 //comprobar si es la primera vez que el usuario usa el horno usando cookies y localstorage
 var idioma;
 var microfono = "icon-desmuteado";
+var volumen = "50" + "%";
+
 function vaciarCuerpo() {
     document.body.innerHTML = '';
 }
@@ -65,15 +67,24 @@ function pantallaIdiomas(){
     </div>`;
 }
 
+function pantallaEscanearQr(){
+    document.body.innerHTML = `
+    <p>Escanea el código QR y sigue los pasos en la App</p>
+    <span onclick = "pantallaConexionEstablecida();" class="icon-qr"></span>
+    <div onclick = "pantallaAjustes();" class="SmallButton">VOLVER</div>`;
+}
 function pantallaConexionEstablecida() {
     document.body.innerHTML = ` <h1>Red_Wifi_1</h1>
     <h2>Conexión establecida</h2>
     <span class="icon-correcto"></span>`;
+    setTimeout(() => {
+        pantallaAjustes();
+    }, 3500);
 }
 
 function pantallaAjustes() {
     document.body.innerHTML = `
-    <div class="opcion">
+    <div onclick = "pantallaEscanearQr();" class="opcion">
         <p>WIFI</p>
         <span class="icon-wifi"></span>
     </div>
@@ -110,7 +121,7 @@ function pantallaControles() {
         <span class="icon-menos"></span>
     </div>
     <div onclick = "pantallaInformacionGratinar();" class="opcioncontroles">
-        <span class="icon-ola"></span>
+        <span class="icon-hola"></span>
     </div>
     <div onclick = "pantallaInformacionAjustes();" class="opcioncontroles">
         <span class="icon-ajustes"></span>
@@ -122,10 +133,10 @@ function pantallaControles() {
         <span class="icon-bombilla"></span>
     </div>
     <div onclick = "pantallaInformacionVentilador();" class="opcioncontroles">
-        <span class="icon-ventilador"></span>
+        <img src = "./recursos/ventilador.png">
     </div>
     <div onclick = "pantallaInformacionReloj();" class="opcioncontroles">
-        <span class="icon-reloj"></span>
+    <span class="icon-reloj"></span>
     </div>
     <div onclick = "pantallaAjustes();" class="SmallButton">VOLVER</div>
         `;
@@ -174,7 +185,7 @@ function pantallaInformacionResistenciaSuperior() {
 function pantallaInformacionGratinar() {
     document.body.innerHTML = `
     <div class="info">
-        <span class="icon-ola"></span>
+        <span class="icon-hola"></span>
         <p>La función seleccionada activa el modo para gratinar del horno.</p>
     </div>
     <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
@@ -184,7 +195,7 @@ function pantallaInformacionGratinar() {
 function pantallaInformacionVentilador() {
     document.body.innerHTML = `
     <div class="info">
-        <span class="icon-ventilador"></span>
+        <img src = "./recursos/ventilador.png">
         <p>La función seleccionada activa enciende el ventilador interior del horno.</p>
     </div>
     <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
@@ -286,13 +297,13 @@ function pantalla_definir_volumen() {
         <div>
             <span onclick = "menosvol();" class = "control_vol icon-sinvolumen"></span>
             <div id="volumen_ext">
-                <div id="volumen_int">
+                <div id="volumen_int" style = "width : `+volumen+`;">
                 </div>
             </div>
             <span onclick = "masvol();" class = "control_vol icon-convolumen"></span>
         </div>
         <div>
-            <p id="volumen">50%</p>
+            <p id="volumen">`+volumen+`</p>
         </div>
     </section>
     <section id="sec_vol2">
@@ -312,8 +323,9 @@ function menosvol() {
         valorvol -= 10;
         document.getElementById("volumen").innerHTML = valorvol + "%";
         document.getElementById("volumen_int").style.width = valorvol + "%";
+        localStorage.setItem("vol", valorvol + "%");
     }
-
+    volumen = localStorage.getItem("vol");
 }
 
 function masvol() {
@@ -322,8 +334,9 @@ function masvol() {
         valorvol += 10;
         document.getElementById("volumen").innerHTML = valorvol + "%";
         document.getElementById("volumen_int").style.width = valorvol + "%";
+        localStorage.setItem("vol", valorvol + "%");
     }
-
+    volumen = localStorage.getItem("vol");
 }
 
 function microfonoActivadoDesactivado(){

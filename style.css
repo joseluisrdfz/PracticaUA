@@ -73,8 +73,11 @@ body {
 }
 
 
+/*Pantalla escaneo QR*/
 
-
+.icon-qr{
+    font-size: 10em;
+}
 /*Pantalla conexion establecida*/
 
 
