@@ -15,6 +15,7 @@
 .icon-menos:before { content: '\e80d'; } /* '' */
 .icon-izquierda:before { content: '\e80e'; } /* '' */
 .icon-derecha:before { content: '\e80f'; } /* '' */
+.icon-ventilador:before { content: '\e810'; } /* '' */
 .icon-correcto:before { content: '\f06d'; } /* '' */
 .icon-informacion:before { content: '\f086'; } /* '' */
 .icon-desmuteado:before { content: '\f130'; } /* '' */
