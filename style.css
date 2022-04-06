@@ -98,13 +98,48 @@ body {
 
 /* Pantalla controles */
 
+#divcontroles{
+    flex: 1;
+    background-color: var(--color_general);
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .opcioncontroles {
+    margin: 2.3em;
+    background-color: var(--color_secundario);
+    width: 17%;
     border: 2px;
     border-color: black;
     border-style: solid;
     border-radius: 10%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8em;
+    justify-content: center;
 }
 
+.opcioncontroles>span{
+    background-color: var(--color_secundario);
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.3em;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 2.5em;
+}
+
+#res_sup {
+    line-height: 0em;
+}
+
+#res_inf {
+    line-height: 4em;
+}
 
 /* Pantalla ajustes*/
 

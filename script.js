@@ -117,29 +117,31 @@ function pantallaAjustes() {
 
 function pantallaControles() {
     document.body.innerHTML = `
-    <div onclick = "pantallaInformacionResistenciaSuperior();" class="opcioncontroles">
-        <span class="icon-menos"></span>
-    </div>
-    <div onclick = "pantallaInformacionResistenciaInferior();" class="opcioncontroles">
-        <span class="icon-menos"></span>
-    </div>
-    <div onclick = "pantallaInformacionGratinar();" class="opcioncontroles">
-        <span class="icon-hola"></span>
-    </div>
-    <div onclick = "pantallaInformacionAjustes();" class="opcioncontroles">
-        <span class="icon-ajustes"></span>
-    </div>
-    <div onclick = "pantallaInformacionTemperatura();" class="opcioncontroles">
-        <span class="icon-grados"></span>
-    </div>
-    <div onclick = "pantallaInformacionLuz();" class="opcioncontroles">
-        <span class="icon-bombilla"></span>
-    </div>
-    <div onclick = "pantallaInformacionVentilador();" class="opcioncontroles">
-        <img src = "./recursos/ventilador.png">
-    </div>
-    <div onclick = "pantallaInformacionReloj();" class="opcioncontroles">
-    <span class="icon-reloj"></span>
+    <div id = "divcontroles">
+        <div onclick = "pantallaInformacionResistenciaSuperior();" class="opcioncontroles">
+            <span id = "res_sup" class="icon-menos"></span>
+        </div>
+        <div onclick = "pantallaInformacionResistenciaInferior();" class="opcioncontroles">
+            <span id = "res_inf" class="icon-menos"></span>
+        </div>
+        <div onclick = "pantallaInformacionGratinar();" class="opcioncontroles">
+            <span class="icon-hola"></span>
+        </div>
+        <div onclick = "pantallaInformacionAjustes();" class="opcioncontroles">
+            <span class="icon-ajustes"></span>
+        </div>
+        <div onclick = "pantallaInformacionTemperatura();" class="opcioncontroles">
+            <span class="icon-grados"></span>
+        </div>
+        <div onclick = "pantallaInformacionLuz();" class="opcioncontroles">
+            <span class="icon-bombilla"></span>
+        </div>
+        <div onclick = "pantallaInformacionVentilador();" class="opcioncontroles">
+            <span class="icon-ventilador"></span>
+        </div>
+        <div onclick = "pantallaInformacionReloj();" class="opcioncontroles">
+        <span class="icon-reloj"></span>
+        </div>
     </div>
     <div onclick = "pantallaAjustes();" class="SmallButton">VOLVER</div>
         `;
@@ -198,7 +200,7 @@ function pantallaInformacionGratinar() {
 function pantallaInformacionVentilador() {
     document.body.innerHTML = `
     <div class="info">
-        <img src = "./recursos/ventilador.png">
+    <span class="icon-ventilador"></span>
         <p>La función seleccionada activa enciende el ventilador interior del horno.</p>
     </div>
     <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
@@ -274,7 +276,7 @@ function pantallaiddle() {
     <section class="lateral">
         <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-grados"></span></article>
         <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-bombilla"></span></article>
-        <article onclick="cambiardown(this);" class="buttonhorno"><img src = "./recursos/ventilador.png"></article>
+        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-ventilador"></span></article>
     </section>
     <section class="centro">
         <div id="up">
