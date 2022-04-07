@@ -11,7 +11,7 @@
 /*Elementos comunes*/
 
 body {
-    background-color: white;
+    background-color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -244,6 +244,58 @@ ul.datoshorno>li {
 }
 
 
+/* Pantalla wifi */
+
+#wifi {
+    flex: 1;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+#wifi>div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 50%;
+    margin-left: 5%;
+}
+
+#wifi>div:first-child>p {
+    font-size: 2.5em;
+}
+
+#wifi>div:first-child>span {
+    font-size: 15em;
+}
+
+#wifi2 {
+    flex: 1;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--color_general);
+    border: 2px solid black;
+    font-size: 2em;
+    padding-top: 4em;
+    padding-left: 2em;
+}
+
+#wifi2>span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#wifi2>span>h2 {
+    margin-right: 10px;
+}
+
+
 /* Pantalla de horno general */
 
 .hornoiddle {
@@ -330,7 +382,7 @@ ul.datoshorno>li {
 
 /* Pantalla volumen */
 
-div#volumen {
+div#volumen_d {
     flex: 1;
     height: 98%;
     background-color: var(--color_general);
@@ -349,13 +401,13 @@ div#volumen {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 4.2em;
 }
 
 #volumen_ext {
     width: 50%;
     margin: 0 10px;
-    border: 1px solid black;
+    border: 2px solid black;
     height: 80px;
 }
 
@@ -372,9 +424,15 @@ div#volumen {
     justify-content: space-between;
 }
 
+#sec_vol2>.SmallButton {
+    font-size: 2em;
+    margin: 0 2.5em;
+    background: var(--color_secundario)
+}
+
 .SmallButton {
     margin: 0 20px;
-    padding: 10px 20px;
+    padding: 20px;
     border: 2px solid black;
 }
 

@@ -29,7 +29,7 @@ function main(x) {
 
         setTimeout(() => {
             pantallaIdiomas();
-        }, 3500);
+        }, 3020);
 
     } else {
         //el usuario ya ha utilizado el horno anteriormente
@@ -69,15 +69,21 @@ function pantallaIdiomas() {
 
 function pantallaEscanearQr() {
     document.body.innerHTML = `
+    <div id="wifi">
+    <div>
     <p>Escanea el código QR y sigue los pasos en la App</p>
     <span onclick = "pantallaConexionEstablecida();" class="icon-qr"></span>
-    <div onclick = "pantallaAjustes();" class="SmallButton">VOLVER</div>`;
+    </div>
+    
+    <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>VOLVER</span></div>
+    </div>`;
 }
 
 function pantallaConexionEstablecida() {
-    document.body.innerHTML = ` <h1>Red_Wifi_1</h1>
-    <h2>Conexión establecida</h2>
-    <span class="icon-correcto"></span>`;
+
+    document.body.innerHTML = ` <div id="wifi2"><h1>Red_Wifi_1</h1>
+    <span><h2>Conexión establecida</h2>
+    <span class="icon-correcto"></span></span></div>`;
     setTimeout(() => {
         pantallaAjustes();
     }, 3500);
@@ -291,8 +297,7 @@ function cambiardown(element) {
     console.log(content);
 
     document.getElementById("down").innerHTML = content;
-    if (element.className == "Relojhorno") {
-    }
+    if (element.className == "Relojhorno") {}
 
 }
 
@@ -307,7 +312,7 @@ function pantallaiddle() {
     <section class="centro">
         <div id="up">
             <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-reloj"></span></article>
-            <article id = "hora"  onload = "`+setInterval(muestraReloj, 10)+`" class="Relojhorno"></article>
+            <article id = "hora"  onload = "` + setInterval(muestraReloj, 10) + `" class="Relojhorno"></article>
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
@@ -324,7 +329,7 @@ function pantallaiddle() {
 
 function pantalla_definir_volumen() {
     document.body.innerHTML = `
-    <div id="volumen">
+    <div id="volumen_d">
     <section id="sec_vol1">
         <div>
             <span onclick = "menosvol();" class = "control_vol icon-sinvolumen"></span>
@@ -393,9 +398,8 @@ function muestraReloj() {
     var fechaHora = new Date();
     var horas = fechaHora.getHours();
     var minutos = fechaHora.getMinutes();
-  
-    if(horas < 10) { horas = '0' + horas; }
-    if(minutos < 10) { minutos = '0' + minutos; }
-    document.getElementById("hora").innerHTML = horas+':'+minutos;
-  }
-  
+
+    if (horas < 10) { horas = '0' + horas; }
+    if (minutos < 10) { minutos = '0' + minutos; }
+    document.getElementById("hora").innerHTML = horas + ':' + minutos;
+}
