@@ -265,7 +265,6 @@ function cambiardown(element) {
 
     document.getElementById("down").innerHTML = content;
     if (element.className == "Relojhorno") {
-        document.getElementById("down").innerHTML = "jaja has mirao";
     }
 
 }
@@ -281,7 +280,7 @@ function pantallaiddle() {
     <section class="centro">
         <div id="up">
             <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-reloj"></span></article>
-            <article onclick="cambiardown(this);" class="Relojhorno">12:00</article>
+            <article id = "hora"  onload = "`+setInterval(muestraReloj, 10)+`" class="Relojhorno"></article>
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
@@ -360,3 +359,14 @@ function microfonoActivadoDesactivado() {
     microfono = localStorage.getItem("mic");
 
 }
+
+function muestraReloj() {
+    var fechaHora = new Date();
+    var horas = fechaHora.getHours();
+    var minutos = fechaHora.getMinutes();
+  
+    if(horas < 10) { horas = '0' + horas; }
+    if(minutos < 10) { minutos = '0' + minutos; }
+    document.getElementById("hora").innerHTML = horas+':'+minutos;
+  }
+  
