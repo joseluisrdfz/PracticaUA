@@ -21,6 +21,7 @@ function vaciarCuerpo() {
 }
 
 function main(x) {
+    //document.cookie = "visitado=si" ;
     if (x == 0) {
         document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo" alt="logo"></img></div>';
         setTimeout(() => {
@@ -31,8 +32,16 @@ function main(x) {
             pantallaIdiomas();
         }, 3500);
 
-    } else {
+    } else if (x == 1) {
         //el usuario ya ha utilizado el horno anteriormente
+        document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo" alt="logo"></img></div>';
+        setTimeout(() => {
+            vaciarCuerpo();
+        }, 3000);
+
+        setTimeout(() => {
+            pantallaiddle();
+        }, 3500);
     }
 
     //resto de codigo para una ejecucion normal
@@ -307,7 +316,7 @@ function pantallaiddle() {
     <section class="centro">
         <div id="up">
             <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-reloj"></span></article>
-            <article id = "hora"  onload = "`+setInterval(muestraReloj, 10)+`" class="Relojhorno"></article>
+            <article id = "hora"  onload = "`+setInterval(muestraReloj, 20)+`" class="Relojhorno"></article>
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
@@ -397,5 +406,6 @@ function muestraReloj() {
     if(horas < 10) { horas = '0' + horas; }
     if(minutos < 10) { minutos = '0' + minutos; }
     document.getElementById("hora").innerHTML = horas+':'+minutos;
-  }
+}
+
   
