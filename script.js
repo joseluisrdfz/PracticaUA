@@ -110,8 +110,9 @@ function pantallaAjustes() {
         <p>CONTROLES</p>
         <span class="icon-mano"></span>
     </div>
+    <div onclick = "pantallaiddle()" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div> 
-    <div onclick = "pantallaiddle()" class="SmallButton">VOLVER</div>
+    
       `;
 }
 
@@ -142,93 +143,118 @@ function pantallaControles() {
         <div onclick = "pantallaInformacionReloj();" class="opcioncontroles">
         <span class="icon-reloj"></span>
         </div>
+        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaAjustes();" class="SmallButton">VOLVER</div>
+   
         `;
 }
 
 function pantallaInformacionLuz() {
     document.body.innerHTML = `
     <div class="info">
+        <div>
         <span class="icon-bombilla"></span>
         <p>La función seleccionada permite encender o apagar la luz del electrodoméstico.</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
+    
     `;
 }
 
 function pantallaInformacionTemperatura() {
     document.body.innerHTML = `
     <div class="info">
+        <div>
         <span class="icon-grados"></span>
         <p>La función seleccionada permite seleccionar la temperatura de horneado deseada.</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
+    
     `;
 }
 
 function pantallaInformacionResistenciaInferior() {
     document.body.innerHTML = `
     <div class="info">
-        <span class="icon-menos"></span>
-        <p>La función seleccionada activa la resistencia inferior del horno.</p>
+       <div>
+       <span class="icon-menos"></span>
+       <p>La función seleccionada activa la resistencia inferior del horno.</p>
+       </div>
+       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
+    
     `;
 }
 
 function pantallaInformacionResistenciaSuperior() {
     document.body.innerHTML = `
     <div class="info">
-        <span class="icon-menos"></span>
-        <p>La función seleccionada activa la resistencia superior del horno.</p>
+       <div>
+       <span class="icon-menos"></span>
+       <p>La función seleccionada activa la resistencia superior del horno.</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
+   
     `;
 }
 
 function pantallaInformacionGratinar() {
     document.body.innerHTML = `
     <div class="info">
+        <div>
         <span class="icon-hola"></span>
         <p>La función seleccionada activa el modo para gratinar del horno.</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
+   
     `;
 }
 
 function pantallaInformacionVentilador() {
     document.body.innerHTML = `
     <div class="info">
-    <span class="icon-ventilador"></span>
-        <p>La función seleccionada activa enciende el ventilador interior del horno.</p>
+       <div>
+       <span class="icon-ventilador"></span>
+       <p>La función seleccionada activa enciende el ventilador interior del horno.</p>
+       </div>
+       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
+   
     `;
 }
 
 function pantallaInformacionAjustes() {
     document.body.innerHTML = `
     <div class="info">
+        <div>
         <span class="icon-ajustes"></span>
         <p>La función seleccionada seleccionada permite acceder a las opciones de configuración del horno.</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
     `;
 }
 
 function pantallaInformacionReloj() {
     document.body.innerHTML = `
     <div class="info">
+        <div>
         <span class="icon-reloj"></span>
         <p>La función seleccionada permite establecer temporizadores para hornear.</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
-    <div onclick = "pantallaControles();" class="SmallButton">VOLVER</div>
+   
     `;
 }
 
 function pantallaDatosHorno() {
-    document.body.innerHTML = ` 
+    document.body.innerHTML = `
+    <div id="datoshorno"> 
     <ul class="datoshorno">
         <li>
             <b>Fabricante:</b>
@@ -251,8 +277,9 @@ function pantallaDatosHorno() {
             <p>2022</p>
         </li>
     </ul>
-    <div onclick = "pantallaAjustes()" class="SmallButton">
-        <p>Volver</p>
+    <div onclick = "pantallaAjustes()" id="width100" class="SmallButton">
+        <span>VOLVER</span>
+    </div>
     </div>`;
 }
 
@@ -298,6 +325,7 @@ function pantallaiddle() {
 
 function pantalla_definir_volumen() {
     document.body.innerHTML = `
+    <div id="volumen">
     <section id="sec_vol1">
         <div>
             <span onclick = "menosvol();" class = "control_vol icon-sinvolumen"></span>
@@ -319,6 +347,7 @@ function pantalla_definir_volumen() {
             <p>Aceptar</p>
         </div>
     </section>
+    </div>
     `;
 }
 
