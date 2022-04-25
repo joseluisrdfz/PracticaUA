@@ -321,7 +321,7 @@ function pantallaiddle() {
     <section class="centro">
         <div id="up">
             <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-reloj"></span></article>
-            <article id = "hora"  onload = "`+setInterval(muestraReloj, 20)+`" class="Relojhorno"></article>
+            <article id = "hora"  onload = "` + setInterval(muestraReloj, 20) + `" class="Relojhorno"></article>
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
@@ -407,10 +407,9 @@ function muestraReloj() {
     var fechaHora = new Date();
     var horas = fechaHora.getHours();
     var minutos = fechaHora.getMinutes();
-  
-    if(horas < 10) { horas = '0' + horas; }
-    if(minutos < 10) { minutos = '0' + minutos; }
-    document.getElementById("hora").innerHTML = horas+':'+minutos;
-}
 
-  
+    if (horas < 10) { horas = '0' + horas; }
+    if (minutos < 10) { minutos = '0' + minutos; }
+    if (document.getElementById("hora"))
+        document.getElementById("hora").innerHTML = horas + ':' + minutos;
+}
