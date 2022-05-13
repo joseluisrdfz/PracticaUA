@@ -18,6 +18,23 @@ body {
     height: 98vh;
     font-family: sans-serif;
 }
+.circulo{
+    width: 25px;
+    height: 25px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: white;
+}
+
+#circulo-grados{
+    width: 25px;
+    height: 25px;
+    /*-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;*/
+    /*border-radius: 50%;*/
+    background: white;
+}
 
 
 /*Pantalla inicial*/
@@ -379,6 +396,138 @@ ul.datoshorno>li {
     background-color: var(--color_secundario);
 }
 
+/* Pantalla Hora*/
+
+div#hora_d {
+    flex: 1;
+    height: 98%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+/* Pantalla Temporizador*/
+div#temporizador{
+    flex: 1;
+    height: 98%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+
+div#borde_temp{
+    width: 50%;
+    margin: auto;
+    margin-top: 0.5em;
+    border: 2px solid black;
+    height: 25em;
+    border-radius: 20%;
+    display: flex;
+}
+
+div#temp_masmenos{
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: 3em;
+    display: flex;
+}
+
+p.hora {
+    font-size: 4em;
+    margin-left: 4em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+p.p_temp{
+
+    font-size: 5em;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 10%;
+    display: inline;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-right: 0.7em;
+    padding-left: 0.7em;
+}
+
+p#pmenos{ 
+}
+p#pmas{ 
+    float: right;
+}
+
+#temp_valor{
+    margin: auto;
+    font-size: 8em;
+}
+
+/*Pantalla temperatura*/
+
+div#temperatura{
+    flex: 1;
+    height: 98%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+div#temperatura_div{
+    width: 50%;
+    margin: auto;
+    margin-top: 0.5em;
+    height: 25em;
+    display: flex;
+}
+
+div#temperatura_masmenos{
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: 3em;
+    display: flex;
+}
+
+section#sec_sonda{
+    margin: auto;
+    margin-top: 2em;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin-left: 8em;
+    margin-top: 1.5em;
+
+    
+}
+
+p.sonda {
+    font-size: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+
+}
+
+p.p_temperatura{
+
+    font-size: 5em;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 10%;
+    display: inline;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-right: 0.7em;
+    padding-left: 0.7em;
+}
+
+p#ptempmenos{ 
+}
+p#tempmas{ 
+    float: right;
+}
+
+#temperatura_valor{
+    margin: auto;
+    font-size: 14em;
+}
 
 /* Pantalla volumen */
 

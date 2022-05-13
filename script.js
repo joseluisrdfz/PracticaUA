@@ -15,6 +15,15 @@ var italiano = [];
 var idioma;
 var microfono = "icon-desmuteado";
 var volumen = "50" + "%";
+var horastemp = 00;
+var minutostemp = 00;
+var temperatura = "0" + 'º';
+var sonda = "Activar Sonda";
+
+//Variables de comprobacion de activaciones del horno
+var temperaturaActivada = false;
+var sondaActivada = false;
+var temporizadorActivado = false;
 
 function vaciarCuerpo() {
     document.body.innerHTML = '';
@@ -182,7 +191,7 @@ function pantallaInformacionTemperatura() {
     <div class="info">
         <div>
         <span class="icon-grados"></span>
-        <p>La función seleccionada permite seleccionar la temperatura de horneado deseada.</p>
+        <p>La función seleccionada permite escoger la temperatura de horneado deseada.</p>
         </div>
         <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
@@ -234,7 +243,7 @@ function pantallaInformacionVentilador() {
     <div class="info">
        <div>
        <span class="icon-ventilador"></span>
-       <p>La función seleccionada activa enciende el ventilador interior del horno.</p>
+       <p>La función seleccionada activa el ventilador interior del horno.</p>
        </div>
        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
@@ -247,7 +256,7 @@ function pantallaInformacionAjustes() {
     <div class="info">
         <div>
         <span class="icon-ajustes"></span>
-        <p>La función seleccionada seleccionada permite acceder a las opciones de configuración del horno.</p>
+        <p>La función seleccionada permite acceder a las opciones de configuración del horno.</p>
         </div>
         <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
@@ -298,7 +307,7 @@ function pantallaDatosHorno() {
     </div>`;
 }
 
-function cambiardown(element) {
+function cambiardown(element,idcirculo) {
 
     content = element.innerHTML;
 
@@ -308,20 +317,31 @@ function cambiardown(element) {
     document.getElementById("down").innerHTML = content;
     if (element.className == "Relojhorno") {}
 
+    if(idcirculo != 'a'){
+        if(document.getElementById(idcirculo).style.background == "" || document.getElementById(idcirculo).style.background.includes('white')){
+            document.getElementById(idcirculo).style.background = 'green';  
+        }else{
+            document.getElementById(idcirculo).style.background = 'white';
+        }
+    }
+   
 }
 
 
 function pantallaiddle() {
     document.body.innerHTML = `<section class="hornoiddle">
     <section class="lateral">
-        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-grados"></span></article>
-        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-bombilla"></span></article>
-        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-ventilador"></span></article>
+        <div id="circulo-grados" class="circulo"></div>
+        <article onclick="cambiardown(this,'circulo-grados'), pantallaCambioTemperatura();" class="buttonhorno"><span class="icon-grados"></span></article>
+        <div id="circulo-luz" class = "circulo"></div>
+        <article onclick="cambiardown(this,'circulo-luz');" class="buttonhorno"><span class="icon-bombilla"></span></article>
+        <div id="circulo-ventilador" class = "circulo"></div>
+        <article onclick="cambiardown(this,'circulo-ventilador');" class="buttonhorno"><span class="icon-ventilador"></span></article>
     </section>
     <section class="centro">
         <div id="up">
-            <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-reloj"></span></article>
-            <article id = "hora"  onload = "` + setInterval(muestraReloj, 20) + `" class="Relojhorno"></article>
+            <article onclick="cambiardown(this,'a'), pantallaCambioHora();" class="buttonhorno"><span class="icon-reloj"></span></article>
+            <article id = "hora"  onload = "` + setInterval(muestraReloj, 20) + `" class="Relojhorno hora"></article>
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
@@ -329,14 +349,21 @@ function pantallaiddle() {
         </div>
     </section>
     <section class="lateral">
-        <article onclick="cambiardown(this);" class="buttonhorno" id="calor_arriba"><span class="icon-menos"></article>
-        <article onclick="cambiardown(this);" class="buttonhorno" id="calor_abajo"><span class="icon-menos"></article>
-        <article onclick="cambiardown(this);" class="buttonhorno"><span class="icon-hola"></article>
+    <div id="circulo-supres" class = "circulo"></div>
+        <article onclick="cambiardown(this,'circulo-supres');" class="buttonhorno" id="calor_arriba"><span class="icon-menos"></article>
+        <div id="circulo-infres" class = "circulo"></div>
+        <article onclick="cambiardown(this,'circulo-infres');" class="buttonhorno" id="calor_abajo"><span class="icon-menos"></article>
+        <div id="circulo-gratinar" class = "circulo"></div>
+        <article onclick="cambiardown(this,'circulo-gratinar');" class="buttonhorno"><span class="icon-hola"></article>
     </section>
 </section>`;
 }
 
 function pantalla_definir_volumen() {
+    /*     <div onclick="pantallaAjustes();" class="SmallButton">
+    <p>Aceptar</p>
+    </div>*/
+
     document.body.innerHTML = `
     <div id="volumen_d">
     <section id="sec_vol1">
@@ -354,14 +381,69 @@ function pantalla_definir_volumen() {
     </section>
     <section id="sec_vol2">
         <div onclick="pantallaAjustes();" class="SmallButton">
-            <p>Cancelar</p>
-        </div>
-        <div onclick="pantallaAjustes();" class="SmallButton">
-            <p>Aceptar</p>
+            <p>Volver</p>
         </div>
     </section>
     </div>
     `;
+}
+
+function pantallaCambioHora(){
+    document.body.innerHTML= `
+    <div id = "temporizador">
+        <section>
+        <p class = "hora" id = "hora" onload = "` + setInterval(muestraReloj, 20) + `"></p>
+        </section>
+        <section>
+            <div id = "borde_temp">
+                <p id = "temp_valor">` + horastemp + ":" + minutostemp + `</p>      
+            </div>
+            
+        </section>
+        <div id = "temp_masmenos">
+            <p id = "pmenos" class = "p_temp" onclick = "establecerTemporizador(0);" >-</p>
+            <p id = "pmas" class = "p_temp" onclick = "establecerTemporizador(1);" >+</p>
+        </div>
+        <section id = "sec_vol2">
+            <div onclick="temporizadorActivadoDesactivado(0);" class = "SmallButton">
+                <p>Cancelar</p>
+            </div>
+            <div onclick="temporizadorActivadoDesactivado(1), cuentaRegresiva(), pantallaiddle();" class = "SmallButton">
+                <p>Aceptar</p>
+            </div>
+        </section>    
+    </div>
+    `;
+}
+
+function pantallaCambioTemperatura(){
+    document.body.innerHTML= `
+    <div id = "temperatura">
+        <section id = "sec_sonda" onclick = "activarDesactivarSonda(), sondaActivadaDesactivada();">
+        <p class = "sonda" id = "sonda" >`+ sonda +`</p>
+        </section>
+        <section>
+            <div id = "temperatura_div">
+                <p id = "temperatura_valor"> ` + temperatura + `</p>      
+            </div>
+            
+        </section>
+        <div id = "temperatura_masmenos">
+            <p id = "ptempmenos" class = "p_temperatura" onclick = "establecerTemperatura(0);" >-</p>
+            <p id = "ptempmas" class = "p_temperatura" onclick = "establecerTemperatura(1);" >+</p>
+        </div>
+        <section id = "sec_vol2">
+            <div onclick=" temperaturaActivadaDesactivada(0);" class = "SmallButton">
+                <p>Cancelar</p>
+            </div>
+            <div onclick="temperaturaActivadaDesactivada(1), pantallaiddle();" class = "SmallButton">
+                <p>Aceptar</p>
+            </div>
+        </section>    
+    </div>
+    `;
+
+
 }
 
 function menosvol() {
@@ -412,4 +494,119 @@ function muestraReloj() {
     if (minutos < 10) { minutos = '0' + minutos; }
     if (document.getElementById("hora"))
         document.getElementById("hora").innerHTML = horas + ':' + minutos;
+}
+
+function establecerTemporizador(entrada){
+//Hay que guardar los valores en el localStorage para cuando se vuelva a mter el usuario o cuando se reinicie desde la funcion temporizadorActivadoDesactivado (IMPORTANTE)
+    if(entrada == 0 && horastemp != -1){
+        
+        if(minutostemp <= 0){
+            minutostemp = 60;
+            horastemp -= 1;
+        }
+        minutostemp -= 5;
+        }else if(entrada == 1){
+            minutostemp += 5;
+            if(minutostemp >= 60){
+                horastemp += 1;
+                minutostemp = 0;
+            }
+        }
+        
+        if(horastemp == -1){
+            minutostemp = 0;
+            horastemp = 0;
+            document.getElementById("temp_valor").innerHTML = '0' + minutostemp + ':' + '0' + horastemp;
+        }else{
+        if(horastemp < 10 && minutostemp < 10){
+            document.getElementById("temp_valor").innerHTML = '0' + horastemp + ':' + '0' + minutostemp;
+        }else if(horastemp <10){
+            document.getElementById("temp_valor").innerHTML = '0' + horastemp + ':' + minutostemp;
+        }else if(minutostemp){
+            document.getElementById("temp_valor").innerHTML = horastemp + ':' + '0' + minutostemp;
+        }else{
+            document.getElementById("temp_valor").innerHTML =  horastemp + ':' +  minutostemp;
+        }
+    }
+
+}
+
+function temporizadorActivadoDesactivado(entrada){
+    if(entrada == 0){
+        document.getElementById("temp_valor").innerHTML =  '0' + 0 + ':' +  '0' + 0;
+        temporizadorActivado = false;
+        localStorage.setItem("temporizadorActivado", temporizadorActivado);
+    }else if(entrada == 1 && minutostemp > 0){
+        temporizadorActivado = true;
+        localStorage.setItem("temporizadorActivado", temporizadorActivado);
+    }
+    temporizadorActivado = localStorage.getItem("temporizadorActivado");
+}
+
+//FALTA POR HACER!!!
+function cuentaRegresiva(){
+    let aux = document.getElementById("temp_valor").innerHTML;
+ }
+
+function establecerTemperatura(entrada){
+
+    valortemp = parseInt(document.getElementById("temperatura_valor").innerHTML);
+    if (valortemp > 0 && entrada == 0 ) {
+        valortemp -= 25;
+        document.getElementById("temperatura_valor").innerHTML = valortemp + "º";
+        localStorage.setItem("temperatura", valortemp + "º");
+    }else if(valortemp < 500 && entrada == 1){
+        valortemp += 25;
+        document.getElementById("temperatura_valor").innerHTML = valortemp + "º";
+        localStorage.setItem("temperatura", valortemp + "º");
+    }
+    temperatura = localStorage.getItem("temperatura");
+ 
+}
+
+function activarDesactivarSonda(){
+
+    let des = "Desactivar Sonda";
+    let act = "Activar Sonda"; 
+
+    son = document.getElementById("sonda").innerHTML;
+    if(son == act){
+        document.getElementById("sonda").innerHTML = des;
+        localStorage.setItem("sonda", des);
+    }else if(son == des){
+        document.getElementById("sonda").innerHTML = act;
+        localStorage.setItem("sonda", act);
+    }
+    sonda = localStorage.getItem("sonda");
+}
+
+function temperaturaActivadaDesactivada(entrada){
+    valortemp = parseInt(document.getElementById("temperatura_valor").innerHTML);
+    if(entrada == 0){
+        temperaturaActivada = false;
+        document.getElementById("temperatura_valor").innerHTML = 0 + "º";
+        localStorage.setItem("temperaturaActivada", temperaturaActivada);
+        localStorage.setItem("temperatura", 0 + "º");
+    }else if(entrada == 1 && valortemp > 0){
+        temperaturaActivada = true;
+        localStorage.setItem("temperaturaActivada", temperaturaActivada);
+    }
+    temperatura = localStorage.getItem("temperatura");
+    temperaturaActivada = localStorage.getItem("temperaturaActivada");
+
+}
+
+function sondaActivadaDesactivada(){
+
+    let des = "Desactivar Sonda";
+    let act = "Activar Sonda"; 
+    son = document.getElementById("sonda").innerHTML;
+    if(son == act){
+        sondaActivada = false;
+        localStorage.setItem("sondaActivada", sondaActivada);
+    }else if(son == des){
+        sondaActivada = true;
+        localStorage.setItem("sondaActivada", sondaActivada);
+    } 
+    sondaActivada = localStorage.getItem("sondaActivada");
 }
