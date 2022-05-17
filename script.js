@@ -24,6 +24,11 @@ var sonda = "Activar Sonda";
 var temperaturaActivada = false;
 var sondaActivada = false;
 var temporizadorActivado = false;
+var ventiladorActivado = false;
+var resistenciaSuperiorActivada = false;
+var resistenciaInferiorActivada = false;
+var luzInteriorActivada = false;
+var gratinadorActivado = false;
 
 function vaciarCuerpo() {
     document.body.innerHTML = '';
@@ -329,14 +334,15 @@ function cambiardown(element,idcirculo) {
 
 
 function pantallaiddle() {
+    document.body.onload = resistenciaSuperiorAlCargar;
     document.body.innerHTML = `<section class="hornoiddle">
     <section class="lateral">
         <div id="circulo-grados" class="circulo"></div>
         <article onclick="cambiardown(this,'circulo-grados'), pantallaCambioTemperatura();" class="buttonhorno"><span class="icon-grados"></span></article>
         <div id="circulo-luz" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-luz');" class="buttonhorno"><span class="icon-bombilla"></span></article>
+        <article onclick="cambiardown(this,'circulo-luz'), luzInteriorActivadaDesactivada();" class="buttonhorno"><span class="icon-bombilla"></span></article>
         <div id="circulo-ventilador" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-ventilador');" class="buttonhorno"><span class="icon-ventilador"></span></article>
+        <article onclick="cambiardown(this,'circulo-ventilador'), ventiladorActivadoDesactivado();" class="buttonhorno"><span class="icon-ventilador"></span></article>
     </section>
     <section class="centro">
         <div id="up">
@@ -350,13 +356,15 @@ function pantallaiddle() {
     </section>
     <section class="lateral">
     <div id="circulo-supres" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-supres');" class="buttonhorno" id="calor_arriba"><span class="icon-menos"></article>
+        <article onclick="cambiardown(this,'circulo-supres') , resistenciaSuperiorActivadaDesactivada();" class="buttonhorno" id="calor_arriba"><span class="icon-menos"></article>
         <div id="circulo-infres" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-infres');" class="buttonhorno" id="calor_abajo"><span class="icon-menos"></article>
+        <article onclick="cambiardown(this,'circulo-infres'), resistenciaInferiorActivadaDesactivada();" class="buttonhorno" id="calor_abajo"><span class="icon-menos"></article>
         <div id="circulo-gratinar" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-gratinar');" class="buttonhorno"><span class="icon-hola"></article>
+        <article onclick="cambiardown(this,'circulo-gratinar'), gratinadorActivadoDesactivado();" class="buttonhorno"><span class="icon-hola"></article>
     </section>
 </section>`;
+
+window.onload = resistenciaSuperiorAlCargar;
 }
 
 function pantalla_definir_volumen() {
@@ -609,4 +617,88 @@ function sondaActivadaDesactivada(){
         localStorage.setItem("sondaActivada", sondaActivada);
     } 
     sondaActivada = localStorage.getItem("sondaActivada");
+}
+
+function resistenciaSuperiorActivadaDesactivada(){
+   let res = document.getElementById("circulo-supres").style.background;
+    if(res.includes('white')){
+        resistenciaSuperiorActivada = false;
+        localStorage.setItem("resistenciaSuperiorActivada", resistenciaSuperiorActivada);
+    }else if(res.includes('green')){
+        resistenciaSuperiorActivada = true;
+        localStorage.setItem("resistenciaSuperiorActivada", resistenciaSuperiorActivada);
+
+    }
+    resistenciaSuperiorActivada = localStorage.getItem("resistenciaSuperiorActivada");
+}
+
+function resistenciaInferiorActivadaDesactivada(){
+    let res = document.getElementById("circulo-infres").style.background;
+     if(res.includes('white')){
+         resistenciaInferiorActivada = false;
+         localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
+     }else if(res.includes('green')){
+         resistenciaInferiorActivada = true;
+         localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
+ 
+     }
+     resistenciaInferiorActivada = localStorage.getItem("resistenciaInferiorActivada");
+     console.log(res);
+}
+
+function luzInteriorActivadaDesactivada(){
+    let res = document.getElementById("circulo-luz").style.background;
+     if(res.includes('white')){
+         luzInteriorActivada = false;
+         localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
+     }else if(res.includes('green')){
+         luzInteriorActivada = true;
+         localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
+ 
+     }
+     luzInteriorActivada = localStorage.getItem("luzInteriorActivada");
+     console.log(res);
+}
+
+function gratinadorActivadoDesactivado(){
+    let res = document.getElementById("circulo-gratinar").style.background;
+     if(res.includes('white')){
+         gratinadorActivado = false;
+         localStorage.setItem("gratinadorActivado", gratinadorActivado);
+     }else if(res.includes('green')){
+         gratinadorActivado = true;
+         localStorage.setItem("gratinadorActivado", gratinadorActivado);
+ 
+     }
+     gratinadorActivado = localStorage.getItem("gratinadorActivado");
+     console.log(res);
+}
+
+function ventiladorActivadoDesactivado(){
+    let res = document.getElementById("circulo-ventilador").style.background;
+     if(res.includes('white')){
+         ventiladorActivado = false;
+         localStorage.setItem("ventiladorActivado", ventiladorActivado);
+     }else if(res.includes('green')){
+         ventiladorActivado = true;
+         localStorage.setItem("ventiladorActivado", ventiladorActivado);
+ 
+     }
+     ventiladorActivado = localStorage.getItem("ventiladorActivado");
+     console.log(res);
+}
+
+
+
+
+ function resistenciaSuperiorAlCargar(){
+        if(resistenciaSuperiorActivada == true){
+            document.getElementById('circulo-supres').style.background = 'green';
+           }else{
+            document.getElementById('circulo-supres').style.background = 'white';
+           }
+}
+
+function resistenciaInferiorActivadaDesactivada(){
+
 }
