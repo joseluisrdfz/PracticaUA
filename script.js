@@ -1,3 +1,15 @@
+$(document).ready(function() {
+    aaa()
+});
+
+function aaa() {
+    $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+    });
+}
+
 // Creacion de arrays y variables globales a medida para la seleccion de distintos idiomas
 var chino = [];
 var espanyol = [];
@@ -312,7 +324,7 @@ function pantallaDatosHorno() {
     </div>`;
 }
 
-function cambiardown(element,idcirculo) {
+function cambiardown(element, idcirculo) {
 
     content = element.innerHTML;
 
@@ -322,20 +334,20 @@ function cambiardown(element,idcirculo) {
     document.getElementById("down").innerHTML = content;
     if (element.className == "Relojhorno") {}
 
-    if(idcirculo != 'a'){
-        if(document.getElementById(idcirculo).style.background == "" || document.getElementById(idcirculo).style.background.includes('white')){
-            document.getElementById(idcirculo).style.background = 'green';  
-        }else{
+    if (idcirculo != 'a') {
+        if (document.getElementById(idcirculo).style.background == "" || document.getElementById(idcirculo).style.background.includes('white')) {
+            document.getElementById(idcirculo).style.background = 'green';
+        } else {
             document.getElementById(idcirculo).style.background = 'white';
         }
     }
-   
+
 }
 
 
 function pantallaiddle() {
-    document.body.onload = resistenciaSuperiorAlCargar;
-    document.body.innerHTML = `<section class="hornoiddle">
+    document.body.innerHTML = `
+    <section class="hornoiddle">
     <section class="lateral">
         <div id="circulo-grados" class="circulo"></div>
         <article onclick="cambiardown(this,'circulo-grados'), pantallaCambioTemperatura();" class="buttonhorno"><span class="icon-grados"></span></article>
@@ -351,7 +363,19 @@ function pantallaiddle() {
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
-
+        <div class="owl-carousel owl-theme owl-loaded">
+        <div class="owl-stage-outer">
+            <div class="owl-stage">
+                <div class="owl-item">aaaaaaaaaaaaaaaa1</div>
+                <div class="owl-item">aaaaaaaaaaaaaa2</div>
+                <div class="owl-item">aaaaaaaaaaaaaaaaaaa3</div>
+                <div class="owl-item">aaaaaaaaaaaaaaaaaaa3</div>
+                <div class="owl-item">aaaaaaaaaaaaaaaaaaa4</div>
+                <div class="owl-item">aaaaaaaaaaaaaaaaaaa5</div>
+            </div>
+            </div>
+            
+    </div>
         </div>
     </section>
     <section class="lateral">
@@ -364,7 +388,7 @@ function pantallaiddle() {
     </section>
 </section>`;
 
-window.onload = resistenciaSuperiorAlCargar;
+    window.onload = resistenciaSuperiorAlCargar;
 }
 
 function pantalla_definir_volumen() {
@@ -396,8 +420,8 @@ function pantalla_definir_volumen() {
     `;
 }
 
-function pantallaCambioHora(){
-    document.body.innerHTML= `
+function pantallaCambioHora() {
+    document.body.innerHTML = `
     <div id = "temporizador">
         <section>
         <p class = "hora" id = "hora" onload = "` + setInterval(muestraReloj, 20) + `"></p>
@@ -424,11 +448,11 @@ function pantallaCambioHora(){
     `;
 }
 
-function pantallaCambioTemperatura(){
-    document.body.innerHTML= `
+function pantallaCambioTemperatura() {
+    document.body.innerHTML = `
     <div id = "temperatura">
         <section id = "sec_sonda" onclick = "activarDesactivarSonda(), sondaActivadaDesactivada();">
-        <p class = "sonda" id = "sonda" >`+ sonda +`</p>
+        <p class = "sonda" id = "sonda" >` + sonda + `</p>
         </section>
         <section>
             <div id = "temperatura_div">
@@ -494,6 +518,8 @@ function microfonoActivadoDesactivado() {
 }
 
 function muestraReloj() {
+
+    aaa();
     var fechaHora = new Date();
     var horas = fechaHora.getHours();
     var minutos = fechaHora.getMinutes();
@@ -504,47 +530,47 @@ function muestraReloj() {
         document.getElementById("hora").innerHTML = horas + ':' + minutos;
 }
 
-function establecerTemporizador(entrada){
-//Hay que guardar los valores en el localStorage para cuando se vuelva a mter el usuario o cuando se reinicie desde la funcion temporizadorActivadoDesactivado (IMPORTANTE)
-    if(entrada == 0 && horastemp != -1){
-        
-        if(minutostemp <= 0){
+function establecerTemporizador(entrada) {
+    //Hay que guardar los valores en el localStorage para cuando se vuelva a mter el usuario o cuando se reinicie desde la funcion temporizadorActivadoDesactivado (IMPORTANTE)
+    if (entrada == 0 && horastemp != -1) {
+
+        if (minutostemp <= 0) {
             minutostemp = 60;
             horastemp -= 1;
         }
         minutostemp -= 5;
-        }else if(entrada == 1){
-            minutostemp += 5;
-            if(minutostemp >= 60){
-                horastemp += 1;
-                minutostemp = 0;
-            }
-        }
-        
-        if(horastemp == -1){
+    } else if (entrada == 1) {
+        minutostemp += 5;
+        if (minutostemp >= 60) {
+            horastemp += 1;
             minutostemp = 0;
-            horastemp = 0;
-            document.getElementById("temp_valor").innerHTML = '0' + minutostemp + ':' + '0' + horastemp;
-        }else{
-        if(horastemp < 10 && minutostemp < 10){
+        }
+    }
+
+    if (horastemp == -1) {
+        minutostemp = 0;
+        horastemp = 0;
+        document.getElementById("temp_valor").innerHTML = '0' + minutostemp + ':' + '0' + horastemp;
+    } else {
+        if (horastemp < 10 && minutostemp < 10) {
             document.getElementById("temp_valor").innerHTML = '0' + horastemp + ':' + '0' + minutostemp;
-        }else if(horastemp <10){
+        } else if (horastemp < 10) {
             document.getElementById("temp_valor").innerHTML = '0' + horastemp + ':' + minutostemp;
-        }else if(minutostemp){
+        } else if (minutostemp) {
             document.getElementById("temp_valor").innerHTML = horastemp + ':' + '0' + minutostemp;
-        }else{
-            document.getElementById("temp_valor").innerHTML =  horastemp + ':' +  minutostemp;
+        } else {
+            document.getElementById("temp_valor").innerHTML = horastemp + ':' + minutostemp;
         }
     }
 
 }
 
-function temporizadorActivadoDesactivado(entrada){
-    if(entrada == 0){
-        document.getElementById("temp_valor").innerHTML =  '0' + 0 + ':' +  '0' + 0;
+function temporizadorActivadoDesactivado(entrada) {
+    if (entrada == 0) {
+        document.getElementById("temp_valor").innerHTML = '0' + 0 + ':' + '0' + 0;
         temporizadorActivado = false;
         localStorage.setItem("temporizadorActivado", temporizadorActivado);
-    }else if(entrada == 1 && minutostemp > 0){
+    } else if (entrada == 1 && minutostemp > 0) {
         temporizadorActivado = true;
         localStorage.setItem("temporizadorActivado", temporizadorActivado);
     }
@@ -552,50 +578,50 @@ function temporizadorActivadoDesactivado(entrada){
 }
 
 //FALTA POR HACER!!!
-function cuentaRegresiva(){
+function cuentaRegresiva() {
     let aux = document.getElementById("temp_valor").innerHTML;
- }
+}
 
-function establecerTemperatura(entrada){
+function establecerTemperatura(entrada) {
 
     valortemp = parseInt(document.getElementById("temperatura_valor").innerHTML);
-    if (valortemp > 0 && entrada == 0 ) {
+    if (valortemp > 0 && entrada == 0) {
         valortemp -= 25;
         document.getElementById("temperatura_valor").innerHTML = valortemp + "º";
         localStorage.setItem("temperatura", valortemp + "º");
-    }else if(valortemp < 500 && entrada == 1){
+    } else if (valortemp < 500 && entrada == 1) {
         valortemp += 25;
         document.getElementById("temperatura_valor").innerHTML = valortemp + "º";
         localStorage.setItem("temperatura", valortemp + "º");
     }
     temperatura = localStorage.getItem("temperatura");
- 
+
 }
 
-function activarDesactivarSonda(){
+function activarDesactivarSonda() {
 
     let des = "Desactivar Sonda";
-    let act = "Activar Sonda"; 
+    let act = "Activar Sonda";
 
     son = document.getElementById("sonda").innerHTML;
-    if(son == act){
+    if (son == act) {
         document.getElementById("sonda").innerHTML = des;
         localStorage.setItem("sonda", des);
-    }else if(son == des){
+    } else if (son == des) {
         document.getElementById("sonda").innerHTML = act;
         localStorage.setItem("sonda", act);
     }
     sonda = localStorage.getItem("sonda");
 }
 
-function temperaturaActivadaDesactivada(entrada){
+function temperaturaActivadaDesactivada(entrada) {
     valortemp = parseInt(document.getElementById("temperatura_valor").innerHTML);
-    if(entrada == 0){
+    if (entrada == 0) {
         temperaturaActivada = false;
         document.getElementById("temperatura_valor").innerHTML = 0 + "º";
         localStorage.setItem("temperaturaActivada", temperaturaActivada);
         localStorage.setItem("temperatura", 0 + "º");
-    }else if(entrada == 1 && valortemp > 0){
+    } else if (entrada == 1 && valortemp > 0) {
         temperaturaActivada = true;
         localStorage.setItem("temperaturaActivada", temperaturaActivada);
     }
@@ -604,27 +630,27 @@ function temperaturaActivadaDesactivada(entrada){
 
 }
 
-function sondaActivadaDesactivada(){
+function sondaActivadaDesactivada() {
 
     let des = "Desactivar Sonda";
-    let act = "Activar Sonda"; 
+    let act = "Activar Sonda";
     son = document.getElementById("sonda").innerHTML;
-    if(son == act){
+    if (son == act) {
         sondaActivada = false;
         localStorage.setItem("sondaActivada", sondaActivada);
-    }else if(son == des){
+    } else if (son == des) {
         sondaActivada = true;
         localStorage.setItem("sondaActivada", sondaActivada);
-    } 
+    }
     sondaActivada = localStorage.getItem("sondaActivada");
 }
 
-function resistenciaSuperiorActivadaDesactivada(){
-   let res = document.getElementById("circulo-supres").style.background;
-    if(res.includes('white')){
+function resistenciaSuperiorActivadaDesactivada() {
+    let res = document.getElementById("circulo-supres").style.background;
+    if (res.includes('white')) {
         resistenciaSuperiorActivada = false;
         localStorage.setItem("resistenciaSuperiorActivada", resistenciaSuperiorActivada);
-    }else if(res.includes('green')){
+    } else if (res.includes('green')) {
         resistenciaSuperiorActivada = true;
         localStorage.setItem("resistenciaSuperiorActivada", resistenciaSuperiorActivada);
 
@@ -632,73 +658,73 @@ function resistenciaSuperiorActivadaDesactivada(){
     resistenciaSuperiorActivada = localStorage.getItem("resistenciaSuperiorActivada");
 }
 
-function resistenciaInferiorActivadaDesactivada(){
+function resistenciaInferiorActivadaDesactivada() {
     let res = document.getElementById("circulo-infres").style.background;
-     if(res.includes('white')){
-         resistenciaInferiorActivada = false;
-         localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
-     }else if(res.includes('green')){
-         resistenciaInferiorActivada = true;
-         localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
- 
-     }
-     resistenciaInferiorActivada = localStorage.getItem("resistenciaInferiorActivada");
-     console.log(res);
+    if (res.includes('white')) {
+        resistenciaInferiorActivada = false;
+        localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
+    } else if (res.includes('green')) {
+        resistenciaInferiorActivada = true;
+        localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
+
+    }
+    resistenciaInferiorActivada = localStorage.getItem("resistenciaInferiorActivada");
+    console.log(res);
 }
 
-function luzInteriorActivadaDesactivada(){
+function luzInteriorActivadaDesactivada() {
     let res = document.getElementById("circulo-luz").style.background;
-     if(res.includes('white')){
-         luzInteriorActivada = false;
-         localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
-     }else if(res.includes('green')){
-         luzInteriorActivada = true;
-         localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
- 
-     }
-     luzInteriorActivada = localStorage.getItem("luzInteriorActivada");
-     console.log(res);
+    if (res.includes('white')) {
+        luzInteriorActivada = false;
+        localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
+    } else if (res.includes('green')) {
+        luzInteriorActivada = true;
+        localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
+
+    }
+    luzInteriorActivada = localStorage.getItem("luzInteriorActivada");
+    console.log(res);
 }
 
-function gratinadorActivadoDesactivado(){
+function gratinadorActivadoDesactivado() {
     let res = document.getElementById("circulo-gratinar").style.background;
-     if(res.includes('white')){
-         gratinadorActivado = false;
-         localStorage.setItem("gratinadorActivado", gratinadorActivado);
-     }else if(res.includes('green')){
-         gratinadorActivado = true;
-         localStorage.setItem("gratinadorActivado", gratinadorActivado);
- 
-     }
-     gratinadorActivado = localStorage.getItem("gratinadorActivado");
-     console.log(res);
+    if (res.includes('white')) {
+        gratinadorActivado = false;
+        localStorage.setItem("gratinadorActivado", gratinadorActivado);
+    } else if (res.includes('green')) {
+        gratinadorActivado = true;
+        localStorage.setItem("gratinadorActivado", gratinadorActivado);
+
+    }
+    gratinadorActivado = localStorage.getItem("gratinadorActivado");
+    console.log(res);
 }
 
-function ventiladorActivadoDesactivado(){
+function ventiladorActivadoDesactivado() {
     let res = document.getElementById("circulo-ventilador").style.background;
-     if(res.includes('white')){
-         ventiladorActivado = false;
-         localStorage.setItem("ventiladorActivado", ventiladorActivado);
-     }else if(res.includes('green')){
-         ventiladorActivado = true;
-         localStorage.setItem("ventiladorActivado", ventiladorActivado);
- 
-     }
-     ventiladorActivado = localStorage.getItem("ventiladorActivado");
-     console.log(res);
+    if (res.includes('white')) {
+        ventiladorActivado = false;
+        localStorage.setItem("ventiladorActivado", ventiladorActivado);
+    } else if (res.includes('green')) {
+        ventiladorActivado = true;
+        localStorage.setItem("ventiladorActivado", ventiladorActivado);
+
+    }
+    ventiladorActivado = localStorage.getItem("ventiladorActivado");
+    console.log(res);
 }
 
 
 
 
- function resistenciaSuperiorAlCargar(){
-        if(resistenciaSuperiorActivada == true){
-            document.getElementById('circulo-supres').style.background = 'green';
-           }else{
-            document.getElementById('circulo-supres').style.background = 'white';
-           }
+function resistenciaSuperiorAlCargar() {
+    if (resistenciaSuperiorActivada == true) {
+        document.getElementById('circulo-supres').style.background = 'green';
+    } else {
+        document.getElementById('circulo-supres').style.background = 'white';
+    }
 }
 
-function resistenciaInferiorActivadaDesactivada(){
+function resistenciaInferiorActivadaDesactivada() {
 
 }
