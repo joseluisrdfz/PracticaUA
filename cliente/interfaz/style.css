@@ -1,0 +1,632 @@
+@import "./recursos/fontello/css/fontello.css";
+
+/* Nota : no he podido obtener el icono del ventilador ni de la puerta del horno en fontello*/
+
+:root {
+    --color_general: rgba(62, 121, 218, 255);
+    --color_secundario: rgba(119, 201, 233, 255);
+}
+
+
+/*Elementos comunes*/
+
+body {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 98vh;
+    font-family: sans-serif;
+}
+
+.circulo {
+    width: 25px;
+    height: 25px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: white;
+}
+
+#circulo-grados {
+    width: 25px;
+    height: 25px;
+    /*-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;*/
+    /*border-radius: 50%;*/
+    background: white;
+}
+
+
+/*Pantalla inicial*/
+
+#logo {
+    display: block;
+    z-index: 1;
+    height: 70%;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7.5%;
+}
+
+#logo_div {
+    flex: 1;
+    border: 2px solid black;
+    background-color: var(--color_general);
+    height: 99%;
+}
+
+
+/*Pantalla idiomas*/
+
+#divIdiomas {
+    flex: 1;
+    background-color: var(--color_general);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+}
+
+#divIdiomas>div {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    overflow: visible;
+}
+
+#divIdiomas>span {
+    font-size: 2.5em;
+    width: 12.5%;
+    text-align: center;
+}
+
+.idiomas {
+    background-color: var(--color_secundario);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+.idiomas>p {
+    align-items: center;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+
+/*Pantalla escaneo QR*/
+
+.icon-qr {
+    font-size: 10em;
+}
+
+
+/*Pantalla conexion establecida*/
+
+
+/* Pantalla controles */
+
+#divcontroles {
+    flex: 1;
+    height: 99%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.opcioncontroles {
+    height: 25%;
+    margin: 2.3em;
+    background-color: var(--color_secundario);
+    width: 15%;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8em;
+    justify-content: center;
+}
+
+.opcioncontroles>span {
+    background-color: var(--color_secundario);
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.3em;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 2.5em;
+}
+
+#res_sup {
+    line-height: 0em;
+}
+
+#res_inf {
+    line-height: 2.2em;
+}
+
+#width100 {
+    width: 100%;
+    justify-content: left;
+    border: none;
+    align-items: center;
+    display: flex;
+}
+
+#width100>span {
+    height: min-content;
+    padding: 2em;
+    border: 2px solid black;
+    background-color: var(--color_secundario)
+}
+
+
+/* Pantalla ajustes*/
+
+#divajustes {
+    height: 99%;
+    flex: 1;
+    background-color: var(--color_general);
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.opcion {
+    margin: 2.3em;
+    background-color: var(--color_secundario);
+    height: 25%;
+    width: 17%;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8em;
+    justify-content: center;
+}
+
+
+/* Pantalla de informacion*/
+
+.info {
+    flex: 1;
+    height: 99%;
+    border: 2px solid black;
+    background-color: var(--color_general);
+}
+
+.info>div:first-of-type {
+    height: 87%;
+    font-size: 2.5em;
+    box-sizing: border-box;
+    padding: 2.5em 1.3em;
+}
+
+.info>div:first-of-type>p {
+    margin-top: 100px;
+}
+
+.info>div:first-of-type>span {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 0.1em;
+    font-size: 3em;
+    background-color: var(--color_secundario);
+}
+
+
+/* Pantalla de horno datos */
+
+div#datoshorno {
+    flex: 1;
+    height: 99%;
+    background-color: var(--color_general);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+ul.datoshorno {
+    margin: 1em;
+}
+
+ul.datoshorno>li {
+    font-size: 1.8em;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Pantalla wifi */
+
+#wifi {
+    flex: 1;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+#wifi>div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 50%;
+    margin-left: 5%;
+}
+
+#wifi>div:first-child>p {
+    font-size: 2.5em;
+}
+
+#wifi>div:first-child>span {
+    font-size: 15em;
+}
+
+#wifi2 {
+    flex: 1;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--color_general);
+    border: 2px solid black;
+    font-size: 2em;
+    padding-top: 4em;
+    padding-left: 2em;
+}
+
+#wifi2>span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#wifi2>span>h2 {
+    margin-right: 10px;
+}
+
+
+/* Pantalla de horno general */
+
+.hornoiddle {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    background-color: var(--color_general);
+}
+
+.lateral {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 17%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.centro {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 66%;
+    border: 1px solid black;
+}
+
+.centro>#up {
+    display: flex;
+    flex-direction: row;
+    height: 24%;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.centro>#down {
+    display: flex;
+    flex-direction: column;
+    height: 76%;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+}
+
+.buttonhorno {
+    border: 2px solid black;
+    border-radius: 22px;
+    background-color: var(--color_secundario);
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.3em;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 4em;
+}
+
+#calor_arriba {
+    line-height: 0.12em;
+}
+
+#calor_abajo {
+    line-height: 2.2em;
+}
+
+.buttonhorno>img {
+    width: 0.65em;
+    height: 0.65em;
+}
+
+.Relojhorno {
+    border: 2px solid black;
+    width: 6.7em;
+    border-radius: 22px;
+    height: 3.5em;
+    text-align: center;
+    line-height: 3.5em;
+    font-size: 1.7em;
+    background-color: var(--color_secundario);
+}
+
+
+/* Pantalla Hora*/
+
+div#hora_d {
+    flex: 1;
+    height: 98%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+
+/* Pantalla Temporizador*/
+
+div#temporizador {
+    flex: 1;
+    height: 98%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+div#borde_temp {
+    width: 50%;
+    margin: auto;
+    margin-top: 0.5em;
+    border: 2px solid black;
+    height: 25em;
+    border-radius: 20%;
+    display: flex;
+}
+
+div#temp_masmenos {
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: 3em;
+    display: flex;
+}
+
+p.hora {
+    font-size: 4em;
+    margin-left: 4em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+p.p_temp {
+    font-size: 5em;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 10%;
+    display: inline;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-right: 0.7em;
+    padding-left: 0.7em;
+}
+
+p#pmenos {}
+
+p#pmas {
+    float: right;
+}
+
+#temp_valor {
+    margin: auto;
+    font-size: 8em;
+}
+
+
+/*Pantalla temperatura*/
+
+div#temperatura {
+    flex: 1;
+    height: 98%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+div#temperatura_div {
+    width: 50%;
+    margin: auto;
+    margin-top: 0.5em;
+    height: 25em;
+    display: flex;
+}
+
+div#temperatura_masmenos {
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: 3em;
+    display: flex;
+}
+
+section#sec_sonda {
+    margin: auto;
+    margin-top: 2em;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin-left: 8em;
+    margin-top: 1.5em;
+}
+
+p.sonda {
+    font-size: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+p.p_temperatura {
+    font-size: 5em;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 10%;
+    display: inline;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-right: 0.7em;
+    padding-left: 0.7em;
+}
+
+p#ptempmenos {}
+
+p#tempmas {
+    float: right;
+}
+
+#temperatura_valor {
+    margin: auto;
+    font-size: 14em;
+}
+
+
+/* Pantalla volumen */
+
+div#volumen_d {
+    flex: 1;
+    height: 98%;
+    background-color: var(--color_general);
+    border: 2px solid black;
+}
+
+#sec_vol1 {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#sec_vol1>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.2em;
+}
+
+#volumen_ext {
+    width: 50%;
+    margin: 0 10px;
+    border: 2px solid black;
+    height: 80px;
+}
+
+#volumen_int {
+    background-color: black;
+    width: 50%;
+    height: 100%;
+}
+
+#sec_vol2 {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#sec_vol2>.SmallButton {
+    font-size: 2em;
+    margin: 0 2.5em;
+    background: var(--color_secundario)
+}
+
+.SmallButton {
+    margin: 0 20px;
+    padding: 20px;
+    border: 2px solid black;
+}
+
+.SmallButton>p {
+    margin: 0;
+}
+
+
+/* jaja */
+
+#jaja {
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    background-color: rgb(252, 95, 95);
+    position: relative;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    0% {
+        background-color: rgb(252, 95, 95);
+        left: 0px;
+        top: 0px;
+    }
+    25% {
+        background-color: rgb(255, 255, 110);
+        left: 350px;
+        top: 0px;
+    }
+    50% {
+        background-color: rgb(105, 105, 255);
+        left: 350px;
+        top: 200px;
+    }
+    75% {
+        background-color: rgb(116, 224, 116);
+        left: 0px;
+        top: 200px;
+    }
+    100% {
+        background-color: rgb(252, 95, 95);
+        left: 0px;
+        top: 0px;
+    }
+}

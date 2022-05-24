@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf8">
+	<title>Interfaz de Horno</title>
+	<script src="../electro.js"></script>
+	<script src="main.js"></script>
+</head>
+
+<body>
+	<div id="interfaz">
+		<div>Hora: <span id="hora">???</span></div>
+		<hr>
+		<div id="controles">
+			<div><label><input id="resistenciaSuperior" type="checkbox"> Resistencia Superior</label></div>
+			<div><label><input id="resistenciaInferior" type="checkbox"> Resistencia Inferior</label></div>
+			<div><label><input id="gratinador" type="checkbox"> Gratinador</label></div>
+			<div><label><input id="ventilador" type="checkbox"> Ventilador</label></div>
+			<div><label>Temperatura: <input id="temperatura" type="number" value="120" /></label></div>
+			<div><label>Tiempo: <input id="tiempo" type="number" value="30" /></label></div>
+			<div><button id="cocinar">Cocinar</button></div>
+		</div>
+	</div>
+</body>
+
+</html>
