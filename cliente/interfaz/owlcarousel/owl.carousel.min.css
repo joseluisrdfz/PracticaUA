@@ -4,17 +4,34 @@
  * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
  */
 
+.owl-item {
+    font-size: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.owl-item#resisAbajo {
+    font-size: 4em;
+    align-items: flex-start;
+}
+
+.owl-item#resisAlto {
+    font-size: 4em;
+    line-height: 20%;
+    align-items: flex-end;
+}
+
 .owl-carousel,
 .owl-carousel .owl-item {
     -webkit-tap-highlight-color: transparent;
-    position: relative
+    position: relative;
 }
 
 .owl-carousel {
     display: none;
-    width: 70%;
+    width: 85%;
     z-index: 1;
-    margin: 1.5em;
 }
 
 .owl-carousel .owl-stage {
@@ -50,6 +67,7 @@
 }
 
 .owl-carousel .owl-item {
+    border-radius: 40px;
     background-color: rgb(96, 209, 212);
     text-align: center;
     height: 100px;

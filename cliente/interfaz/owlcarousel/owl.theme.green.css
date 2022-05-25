@@ -10,10 +10,10 @@
  */
 
 .owl-nav {
-    font-size: 4em;
+    font-size: 6em;
     display: flex;
     justify-content: space-between;
-    margin: 0em -0.7em -0.7em -0.7em;
+    margin: 0em 0em -0.7em 0em;
 }
 
 .owl-theme .owl-nav {
