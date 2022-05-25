@@ -20,7 +20,9 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
     //var cocinar = document.getElementById("cocinar");
     setTimeout(function(){
-        var cocinar = document.getElementById("cocinar");
+            var cocinar = document.getElementById("cocinar");
+
+        
         //var tiempo = document.getElementById("tiempo");
     
     
@@ -32,6 +34,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
         cocinar.addEventListener("click", function() {
             //console.log("Comienzo a cocinar. Tiempo:", tiempo.value);
             // Bloquear controles
+            console.log("yep");
             cocinar.disabled = true;
             opcioneshabilitadas = false;
 
@@ -40,10 +43,9 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             if (luzInteriorActivada == "true") electro.luz = true;
             // Termostato del horno
             function termostato(t) {
-                var auxtemp = temperatura.substring(temperatura.length - 2);
+                var auxtemp = temperatura.replace(/º/g,'');
                 var intemp = parseInt(auxtemp);
-                console.log(temperatura);
-                console.log(intemp);
+
                 if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
                     if (resistenciaSuperiorActivada == "true") electro.resistenciaSuperior = true;
                     if (resistenciaInferiorActivada == "true") electro.resistenciaInferior = true;
@@ -92,8 +94,8 @@ var italiano = [];
 var idioma;
 var microfono = "icon-desmuteado";
 var volumen = "50" + "%";
-var horastemp = 00;
-var minutostemp = 00;
+var horastemp = 0;
+var minutostemp = 0;
 var temperatura = "0" + "º";
 var sonda = "Activar Sonda";
 
@@ -109,6 +111,7 @@ var gratinadorActivado = false;
 var opcioneshabilitadas = true;
 
 //Variables para distribución y conexión con el emulador
+var controliddle = 0;
 
 
 
@@ -200,36 +203,38 @@ function pantallaConexionEstablecida() {
 }
 
 function pantallaAjustes() {
-    document.body.innerHTML = `
-    <div id="divajustes">
-    <div onclick = "pantallaEscanearQr();" class="opcion">
-        <p>WIFI</p>
-        <span class="icon-wifi"></span>
-    </div>
-    <div onclick = "pantalla_definir_volumen();" class="opcion">
-        <p>VOLUMEN</p>
-        <span class="icon-convolumen"></span>
-    </div>
-    <div onclick = "microfonoActivadoDesactivado(this);" class="opcion micro">
-        <p>MICRÓFONO</p>
-        <span id = "mic" class="` + microfono + `"></span>
-    </div>
-    <div onclick = "pantallaDatosHorno()"  class="opcion">
-        <p>ACERCA</p>
-        <span class="icon-informacion"></span>
-    </div>
-    <div onclick = "pantallaIdiomas();" class="opcion">
-        <p>IDOMA</p>
-        <span class="icon-idioma"></span>
-    </div>
-    <div onclick = "pantallaControles();" class="opcion">
-        <p>CONTROLES</p>
-        <span class="icon-mano"></span>
-    </div>
-    <div onclick = "pantallaiddle()" id="width100" class="SmallButton"><span>VOLVER</span></div>
-    </div> 
+    if(opcioneshabilitadas == true){
+        document.body.innerHTML = `
+            <div id="divajustes">
+            <div onclick = "pantallaEscanearQr();" class="opcion">
+                <p>WIFI</p>
+                <span class="icon-wifi"></span>
+            </div>
+            <div onclick = "pantalla_definir_volumen();" class="opcion">
+                <p>VOLUMEN</p>
+                <span class="icon-convolumen"></span>
+            </div>
+            <div onclick = "microfonoActivadoDesactivado(this);" class="opcion micro">
+                <p>MICRÓFONO</p>
+                <span id = "mic" class="` + microfono + `"></span>
+            </div>
+            <div onclick = "pantallaDatosHorno()"  class="opcion">
+                <p>ACERCA</p>
+                <span class="icon-informacion"></span>
+            </div>
+            <div onclick = "pantallaIdiomas();" class="opcion">
+                <p>IDOMA</p>
+                <span class="icon-idioma"></span>
+            </div>
+            <div onclick = "pantallaControles();" class="opcion">
+                <p>CONTROLES</p>
+                <span class="icon-mano"></span>
+            </div>
+            <div onclick = "pantallaiddle()" id="width100" class="SmallButton"><span>VOLVER</span></div>
+            </div> 
+         `;
+    }
     
-      `;
 }
 
 function pantallaControles() {
@@ -411,7 +416,6 @@ function cambiardown(element, idcirculo) {
 
     if(opcioneshabilitadas == true){
 
-
         if (idcirculo != 'a') {
             if (document.getElementById(idcirculo).style.background == "" || document.getElementById(idcirculo).style.background.includes('white')) {
                 document.getElementById(idcirculo).style.background = 'green';
@@ -428,6 +432,7 @@ function cambiardown(element, idcirculo) {
 function pantallaiddle() {
 
     //añadir un funcion que recoja todas lasvariables del horno true, luz puerta y tal y añadir a una variable, quiza array que construya el carousel
+    
 
     document.body.innerHTML = `<section class="hornoiddle">
     <section class="lateral">
@@ -472,7 +477,6 @@ function pantallaiddle() {
     </section>
 </section>`;
 
-
 }
 
 function pantalla_definir_volumen() {
@@ -502,31 +506,35 @@ function pantalla_definir_volumen() {
 }
 
 function pantallaCambioHora() {
-    document.body.innerHTML = `
-    <div id = "temporizador">
-        <section>
-        <p class = "hora" id = "hora" onload = "` + setInterval(muestraReloj, 20) + `"></p>
-        </section>
-        <section>
-            <div id = "borde_temp">
-                <p id = "temp_valor">` + horastemp + ":" + minutostemp + `</p>      
+    if(opcioneshabilitadas == true){
+
+     
+        document.body.innerHTML = `
+        <div id = "temporizador">
+            <section>
+            <p class = "hora" id = "hora" onload = "` + setInterval(muestraReloj, 20) + `"></p>
+            </section>
+            <section>
+                <div id = "borde_temp">
+                    <p id = "temp_valor">` + horastemp + "0" + ":" + minutostemp + "0" +`</p>      
+                </div>
+                
+            </section>
+            <div id = "temp_masmenos">
+                <p id = "pmenos" class = "p_temp" onclick = "establecerTemporizador(0);" >-</p>
+                <p id = "pmas" class = "p_temp" onclick = "establecerTemporizador(1);" >+</p>
             </div>
-            
-        </section>
-        <div id = "temp_masmenos">
-            <p id = "pmenos" class = "p_temp" onclick = "establecerTemporizador(0);" >-</p>
-            <p id = "pmas" class = "p_temp" onclick = "establecerTemporizador(1);" >+</p>
+            <section id = "sec_vol2">
+                <div onclick="temporizadorActivadoDesactivado(0);" class = "SmallButton">
+                    <p>Cancelar</p>
+                </div>
+                <div onclick="temporizadorActivadoDesactivado(1), cuentaRegresiva(), pantallaiddle();" class = "SmallButton">
+                    <p>Aceptar</p>
+                </div>
+            </section>    
         </div>
-        <section id = "sec_vol2">
-            <div onclick="temporizadorActivadoDesactivado(0);" class = "SmallButton">
-                <p>Cancelar</p>
-            </div>
-            <div onclick="temporizadorActivadoDesactivado(1), cuentaRegresiva(), pantallaiddle();" class = "SmallButton">
-                <p>Aceptar</p>
-            </div>
-        </section>    
-    </div>
-    `;
+        `;
+    }
 }
 
 function pantallaCambioTemperatura() {
