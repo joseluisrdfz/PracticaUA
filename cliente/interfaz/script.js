@@ -45,7 +45,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             function termostato(t) {
                 var auxtemp = temperatura.replace(/º/g, '');
                 var intemp = parseInt(auxtemp);
-
+                console.log(intemp)
                 if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
                     if (resistenciaSuperiorActivada == "true") electro.resistenciaSuperior = true;
                     if (resistenciaInferiorActivada == "true") electro.resistenciaInferior = true;
@@ -607,7 +607,7 @@ function muestraReloj() {
         var auxc = `<div class="owl-carousel owl-theme owl-loaded"><div class="owl-stage-outer"><div class="owl-stage">`;
 
         if (temperaturaActivada == 'true')
-            auxc += '<div class="owl-item">temperaturaActivada</div>';
+            auxc += '<div class="owl-item">Temperatura: ' + temperatura + '</div>';
 
         if (sondaActivada == 'true')
             auxc += '<div class="owl-item">sondaActivada</div>';
@@ -616,13 +616,13 @@ function muestraReloj() {
             auxc += '<div class="owl-item">temporizadorActivado</div>';
 
         if (ventiladorActivado == 'true')
-            auxc += '<div class="owl-item"><span class="icon-ventilador"></span></div>';
+            auxc += '<div class="owl-item" ><span class="icon-ventilador"></span></div>';
 
         if (resistenciaSuperiorActivada == 'true')
-            auxc += '<div class="owl-item"><span class="icon-menos"></div>';
+            auxc += '<div class="owl-item" id="resisAbajo"><span class="icon-menos"></div>';
 
         if (resistenciaInferiorActivada == 'true')
-            auxc += '<div class="owl-item"><span class="icon-menos"></div>';
+            auxc += '<div class="owl-item" id="resisAlto"><span class="icon-menos"></div>';
 
         if (luzInteriorActivada == 'true')
             auxc += '<div class="owl-item"><span class="icon-bombilla"></span></div>';
@@ -638,9 +638,10 @@ function muestraReloj() {
 
 
         $(".owl-carousel").owlCarousel({
+            stagePadding: 20,
             items: 1,
             loop: true,
-            margin: 10,
+            margin: 50,
             autoplay: true,
             autoplayTimeout: 2300,
             autoplayHoverPause: true,

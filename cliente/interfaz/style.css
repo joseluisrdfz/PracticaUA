@@ -598,6 +598,11 @@ div#volumen_d {
     justify-content: center;
 }
 
+#cocinar {
+    margin-bottom: 2em;
+    font-size: 1.2em;
+}
+
 #jaja {
     width: 130px;
     height: 30px;
