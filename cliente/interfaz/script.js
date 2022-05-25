@@ -529,32 +529,34 @@ function pantallaCambioHora() {
 }
 
 function pantallaCambioTemperatura() {
-    document.body.innerHTML = `
-    <div id = "temperatura">
-        <section id = "sec_sonda" onclick = "activarDesactivarSonda(), sondaActivadaDesactivada();">
-        <p class = "sonda" id = "sonda" >` + sonda + `</p>
-        </section>
-        <section>
-            <div id = "temperatura_div">
-                <p id = "temperatura_valor"> ` + temperatura + `</p>      
-            </div>
-            
-        </section>
-        <div id = "temperatura_masmenos">
-            <p id = "ptempmenos" class = "p_temperatura" onclick = "establecerTemperatura(0);" >-</p>
-            <p id = "ptempmas" class = "p_temperatura" onclick = "establecerTemperatura(1);" >+</p>
-        </div>
-        <section id = "sec_vol2">
-            <div onclick=" temperaturaActivadaDesactivada(0);" class = "SmallButton">
-                <p>Cancelar</p>
-            </div>
-            <div onclick="temperaturaActivadaDesactivada(1), pantallaiddle();" class = "SmallButton">
-                <p>Aceptar</p>
-            </div>
-        </section>    
-    </div>
-    `;
+    if(opcioneshabilitadas == true){
 
+        document.body.innerHTML = `
+        <div id = "temperatura">
+            <section id = "sec_sonda" onclick = "activarDesactivarSonda(), sondaActivadaDesactivada();">
+            <p class = "sonda" id = "sonda" >` + sonda + `</p>
+            </section>
+            <section>
+                <div id = "temperatura_div">
+                    <p id = "temperatura_valor"> ` + temperatura + `</p>      
+                </div>
+                
+            </section>
+            <div id = "temperatura_masmenos">
+                <p id = "ptempmenos" class = "p_temperatura" onclick = "establecerTemperatura(0);" >-</p>
+                <p id = "ptempmas" class = "p_temperatura" onclick = "establecerTemperatura(1);" >+</p>
+            </div>
+            <section id = "sec_vol2">
+                <div onclick=" temperaturaActivadaDesactivada(0);" class = "SmallButton">
+                    <p>Cancelar</p>
+                </div>
+                <div onclick="temperaturaActivadaDesactivada(1), pantallaiddle();" class = "SmallButton">
+                    <p>Aceptar</p>
+                </div>
+            </section>    
+        </div>
+        `;
+    }
 
 }
 
