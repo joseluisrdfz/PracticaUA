@@ -19,68 +19,71 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
     });
 
     //var cocinar = document.getElementById("cocinar");
-    setTimeout(function(){
+    setTimeout(function() {
         var cocinar = document.getElementById("cocinar");
         /*var tiempo = document.getElementById("tiempo");
         var resistenciaSuperior = document.getElementById("resistenciaSuperior");
         var resistenciaInferior = document.getElementById("resistenciaInferior");
         var gratinador = document.getElementById("gratinador");
         var ventilador = document.getElementById("ventilador");*/
-    
-    
+
+
         electro.on("puertaAbierta", function(abierta) {
             cocinar.disabled = abierta;
         });
-        
+
         // Cocinar
-        cocinar.addEventListener("click", function() {
-            //console.log("Comienzo a cocinar. Tiempo:", tiempo.value);
-            // Bloquear controles
-            cocinar.disabled = true;
-            /*tiempo.disabled = true;
-            temperatura.disabled = true;
-            resistenciaSuperior.disabled = true;
-            resistenciaInferior.disabled = true;
-            gratinador.disabled = true;
-            ventilador.disabled = true;*/
-    
-            // Ventilador?
-            //if (ventilador.checked) electro.ventilador = true;
-            if (ventiladorActivado == "true") electro.ventilador = true;
-            // Termostato del horno
-            function termostato(t) {
-                if (t < temperatura.value) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
-                    if (resistenciaSuperior.checked) electro.resistenciaSuperior = true;
-                    if (resistenciaInferior.checked) electro.resistenciaInferior = true;
-                    if (gratinador.checked) electro.gratinador = true;
-                } else { // si ya tengo la temperatura objetivo apagar las resistencias
-                    electro.resistenciaSuperior = false;
-                    electro.resistenciaInferior = false;
-                    electro.gratinador = false;
+        if (cocinar != null) {
+            cocinar.addEventListener("click", function() {
+                //console.log("Comienzo a cocinar. Tiempo:", tiempo.value);
+                // Bloquear controles
+                cocinar.disabled = true;
+                /*tiempo.disabled = true;
+                temperatura.disabled = true;
+                resistenciaSuperior.disabled = true;
+                resistenciaInferior.disabled = true;
+                gratinador.disabled = true;
+                ventilador.disabled = true;*/
+
+                // Ventilador?
+                //if (ventilador.checked) electro.ventilador = true;
+                if (ventiladorActivado == "true") electro.ventilador = true;
+                // Termostato del horno
+                function termostato(t) {
+                    if (t < temperatura.value) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
+                        if (resistenciaSuperior.checked) electro.resistenciaSuperior = true;
+                        if (resistenciaInferior.checked) electro.resistenciaInferior = true;
+                        if (gratinador.checked) electro.gratinador = true;
+                    } else { // si ya tengo la temperatura objetivo apagar las resistencias
+                        electro.resistenciaSuperior = false;
+                        electro.resistenciaInferior = false;
+                        electro.gratinador = false;
+                    }
                 }
-            }
-            electro.on("temperaturaInterior", termostato);
-    
-            setTimeout(function() {
-                console.log("Fin del cocinado (tiempo cumplido)")
-    
-                electro.off("temperaturaInterior", termostato);
-    
-                // Desbloquear los controles
-               /* cocinar.disabled = false;
-                tiempo.disabled = false;
-                temperatura.disabled = false;
-                resistenciaSuperior.disabled = false;
-                resistenciaInferior.disabled = false;
-                gratinador.disabled = false;
-                ventilador.disabled = false;*/
-    
-                // Apagar elementos
-                //electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
-            }, /*tiempo.value * 1000*/);
-        });
-    },1000 );
-  
+                electro.on("temperaturaInterior", termostato);
+
+                setTimeout(function() {
+                    console.log("Fin del cocinado (tiempo cumplido)")
+
+                    electro.off("temperaturaInterior", termostato);
+
+                    // Desbloquear los controles
+                    /* cocinar.disabled = false;
+                     tiempo.disabled = false;
+                     temperatura.disabled = false;
+                     resistenciaSuperior.disabled = false;
+                     resistenciaInferior.disabled = false;
+                     gratinador.disabled = false;
+                     ventilador.disabled = false;*/
+
+                    // Apagar elementos
+                    //electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
+                }, /*tiempo.value * 1000*/ );
+            });
+        }
+
+    }, 1000);
+
 });
 
 
@@ -119,6 +122,10 @@ var gratinadorActivado = false;
 
 //Variables para distribución y conexión con el emulador
 
+
+// jaja has mirao
+var una_ves_hecho_cambio = false;
+var una_carga_localstorage = false;
 
 
 
@@ -430,7 +437,7 @@ function cambiardown(element, idcirculo) {
 
 
 function pantallaiddle() {
-
+    una_ves_hecho_cambio = false;
     //añadir un funcion que recoja todas lasvariables del horno true, luz puerta y tal y añadir a una variable, quiza array que construya el carousel
 
     document.body.innerHTML = `<section class="hornoiddle">
@@ -450,20 +457,7 @@ function pantallaiddle() {
         </div>
         <div id="down">
 
-            <div class="owl-carousel owl-theme owl-loaded">
-                <div class="owl-stage-outer">
-                    <div class="owl-stage">
-                        <div class="owl-item">evento1</div>
-                        <div class="owl-item">evento2</div>
-                        <div class="owl-item">evento3</div>
-                        <div class="owl-item">evento4</div>
-                        <div class="owl-item">evento5</div>
-                    </div>
-                </div>
-            </div>
-
-            <button id = "cocinar" >Iniciar cocinado</button>
-            
+           
         </div>
     </section>
     <section class="lateral">
@@ -604,6 +598,57 @@ function microfonoActivadoDesactivado() {
 
 function muestraReloj() {
     caracteristicasAlCargar();
+
+    if (document.getElementById('down') && !una_ves_hecho_cambio) {
+
+        var auxc = `<div class="owl-carousel owl-theme owl-loaded"><div class="owl-stage-outer"><div class="owl-stage">`;
+
+        if (temperaturaActivada == 'true')
+            auxc += '<div class="owl-item">temperaturaActivada</div>';
+
+        if (sondaActivada == 'true')
+            auxc += '<div class="owl-item">sondaActivada</div>';
+
+        if (temporizadorActivado == 'true')
+            auxc += '<div class="owl-item">temporizadorActivado</div>';
+
+        if (ventiladorActivado == 'true')
+            auxc += '<div class="owl-item"><span class="icon-ventilador"></span></div>';
+
+        if (resistenciaSuperiorActivada == 'true')
+            auxc += '<div class="owl-item"><span class="icon-menos"></div>';
+
+        if (resistenciaInferiorActivada == 'true')
+            auxc += '<div class="owl-item"><span class="icon-menos"></div>';
+
+        if (luzInteriorActivada == 'true')
+            auxc += '<div class="owl-item"><span class="icon-bombilla"></span></div>';
+
+
+        if (gratinadorActivado == 'true')
+            auxc += `<div class="owl-item" id='grat'><span class="icon-hola"></div>`;
+
+
+
+        auxc += `</div></div></div><button id = "cocinar" > Iniciar cocinado </button>`;
+        document.getElementById('down').innerHTML = auxc;
+
+
+        $(".owl-carousel").owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 2300,
+            autoplayHoverPause: true,
+            nav: true,
+        });
+
+        una_ves_hecho_cambio = true;
+
+    }
+
+
     var fechaHora = new Date();
     var horas = fechaHora.getHours();
     var minutos = fechaHora.getMinutes();
@@ -732,9 +777,11 @@ function sondaActivadaDesactivada() {
 function resistenciaSuperiorActivadaDesactivada() {
     let res = document.getElementById("circulo-supres").style.background;
     if (res.includes('white')) {
+        una_ves_hecho_cambio = false;
         resistenciaSuperiorActivada = false;
         localStorage.setItem("resistenciaSuperiorActivada", resistenciaSuperiorActivada);
     } else if (res.includes('green')) {
+        una_ves_hecho_cambio = false;
         resistenciaSuperiorActivada = true;
         localStorage.setItem("resistenciaSuperiorActivada", resistenciaSuperiorActivada);
 
@@ -745,9 +792,11 @@ function resistenciaSuperiorActivadaDesactivada() {
 function resistenciaInferiorActivadaDesactivada() {
     let res = document.getElementById("circulo-infres").style.background;
     if (res.includes('white')) {
+        una_ves_hecho_cambio = false;
         resistenciaInferiorActivada = false;
         localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
     } else if (res.includes('green')) {
+        una_ves_hecho_cambio = false;
         resistenciaInferiorActivada = true;
         localStorage.setItem("resistenciaInferiorActivada", resistenciaInferiorActivada);
 
@@ -760,9 +809,11 @@ function luzInteriorActivadaDesactivada() {
     let res = document.getElementById("circulo-luz").style.background;
     if (res.includes('white')) {
         luzInteriorActivada = false;
+        una_ves_hecho_cambio = false;
         localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
     } else if (res.includes('green')) {
         luzInteriorActivada = true;
+        una_ves_hecho_cambio = false;
         localStorage.setItem("luzInteriorActivada", luzInteriorActivada);
 
     }
@@ -774,8 +825,10 @@ function gratinadorActivadoDesactivado() {
     let res = document.getElementById("circulo-gratinar").style.background;
     if (res.includes('white')) {
         gratinadorActivado = false;
+        una_ves_hecho_cambio = false;
         localStorage.setItem("gratinadorActivado", gratinadorActivado);
     } else if (res.includes('green')) {
+        una_ves_hecho_cambio = false;
         gratinadorActivado = true;
         localStorage.setItem("gratinadorActivado", gratinadorActivado);
 
@@ -788,8 +841,10 @@ function ventiladorActivadoDesactivado() {
     let res = document.getElementById("circulo-ventilador").style.background;
     if (res.includes('white')) {
         ventiladorActivado = false;
+        una_ves_hecho_cambio = false;
         localStorage.setItem("ventiladorActivado", ventiladorActivado);
     } else if (res.includes('green')) {
+        una_ves_hecho_cambio = false;
         ventiladorActivado = true;
         localStorage.setItem("ventiladorActivado", ventiladorActivado);
 
@@ -802,14 +857,7 @@ function ventiladorActivadoDesactivado() {
 
 
 function caracteristicasAlCargar() {
-    $(".owl-carousel").owlCarousel({
-        items: 1,
-        loop: true,
-        margin: 10,
-        autoplay: true,
-        autoplayTimeout: 1500,
-        autoplayHoverPause: true,
-    });
+
 
     if (document.getElementById('circulo-supres') != null) {
         if (localStorage.getItem("resistenciaSuperiorActivada") == "true") {
@@ -846,6 +894,7 @@ function caracteristicasAlCargar() {
     if (document.getElementById('circulo-gratinar') != null) {
         if (localStorage.getItem("gratinadorActivado") == "true") {
             document.getElementById('circulo-gratinar').style.background = 'green';
+
         } else {
             document.getElementById('circulo-gratinar').style.background = 'white';
         }
