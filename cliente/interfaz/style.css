@@ -592,6 +592,12 @@ div#volumen_d {
 
 /* jaja */
 
+#carsousel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 #jaja {
     width: 130px;
     height: 30px;

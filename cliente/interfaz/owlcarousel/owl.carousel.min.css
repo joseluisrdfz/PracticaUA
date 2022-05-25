@@ -12,9 +12,8 @@
 
 .owl-carousel {
     display: none;
-    width: 70%;
+    width: 85%;
     z-index: 1;
-    margin: 1.5em;
 }
 
 .owl-carousel .owl-stage {

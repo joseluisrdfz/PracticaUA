@@ -19,17 +19,17 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
     });
 
     //var cocinar = document.getElementById("cocinar");
-    setTimeout(function(){
-            var cocinar = document.getElementById("cocinar");
+    setTimeout(function() {
+        var cocinar = document.getElementById("cocinar");
 
-        
+
         //var tiempo = document.getElementById("tiempo");
 
 
         electro.on("puertaAbierta", function(abierta) {
             cocinar.disabled = abierta;
         });
-        
+
         // Cocinar
         cocinar.addEventListener("click", function() {
             //console.log("Comienzo a cocinar. Tiempo:", tiempo.value);
@@ -43,7 +43,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             if (luzInteriorActivada == "true") electro.luz = true;
             // Termostato del horno
             function termostato(t) {
-                var auxtemp = temperatura.replace(/º/g,'');
+                var auxtemp = temperatura.replace(/º/g, '');
                 var intemp = parseInt(auxtemp);
 
                 if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
@@ -56,21 +56,21 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                     electro.gratinador = false;
                 }
             }
-                electro.on("temperaturaInterior", termostato);
+            electro.on("temperaturaInterior", termostato);
 
-                setTimeout(function() {
-                    console.log("Fin del cocinado (tiempo cumplido)")
+            setTimeout(function() {
+                console.log("Fin del cocinado (tiempo cumplido)")
 
-                    electro.off("temperaturaInterior", termostato);
+                electro.off("temperaturaInterior", termostato);
 
-                    // Desbloquear los controles
-                    cocinar.disabled = false;
-                    opcioneshabilitadas = true;
+                // Desbloquear los controles
+                cocinar.disabled = false;
+                opcioneshabilitadas = true;
 
-                    // Apagar elementos
-                    electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
-                }, /*tiempo.value * 1000*/ 5000); // Tiempo de cocinado establecido (cambiar)
-            });
+                // Apagar elementos
+                electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
+            }, /*tiempo.value * 1000*/ 5000); // Tiempo de cocinado establecido (cambiar)
+        });
     }, 1000);
 });
 
@@ -207,7 +207,7 @@ function pantallaConexionEstablecida() {
 }
 
 function pantallaAjustes() {
-    if(opcioneshabilitadas == true){
+    if (opcioneshabilitadas == true) {
         document.body.innerHTML = `
             <div id="divajustes">
             <div onclick = "pantallaEscanearQr();" class="opcion">
@@ -238,7 +238,7 @@ function pantallaAjustes() {
             </div> 
          `;
     }
-    
+
 }
 
 function pantallaControles() {
@@ -436,7 +436,7 @@ function cambiardown(element, idcirculo) {
 function pantallaiddle() {
     una_ves_hecho_cambio = false;
     //añadir un funcion que recoja todas lasvariables del horno true, luz puerta y tal y añadir a una variable, quiza array que construya el carousel
-    
+
 
     document.body.innerHTML = `<section class="hornoiddle">
     <section class="lateral">
@@ -454,7 +454,9 @@ function pantallaiddle() {
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
-
+        <button id = "cocinar" > Iniciar cocinado </button>
+        <div id="carsousel">
+        </div>
            
         </div>
     </section>
@@ -497,9 +499,9 @@ function pantalla_definir_volumen() {
 }
 
 function pantallaCambioHora() {
-    if(opcioneshabilitadas == true){
+    if (opcioneshabilitadas == true) {
 
-     
+
         document.body.innerHTML = `
         <div id = "temporizador">
             <section>
@@ -507,7 +509,7 @@ function pantallaCambioHora() {
             </section>
             <section>
                 <div id = "borde_temp">
-                    <p id = "temp_valor">` + horastemp + "0" + ":" + minutostemp + "0" +`</p>      
+                    <p id = "temp_valor">` + horastemp + "0" + ":" + minutostemp + "0" + `</p>      
                 </div>
                 
             </section>
@@ -600,7 +602,7 @@ function microfonoActivadoDesactivado() {
 function muestraReloj() {
     caracteristicasAlCargar();
 
-    if (document.getElementById('down') && !una_ves_hecho_cambio) {
+    if (document.getElementById('carsousel') && !una_ves_hecho_cambio) {
 
         var auxc = `<div class="owl-carousel owl-theme owl-loaded"><div class="owl-stage-outer"><div class="owl-stage">`;
 
@@ -631,8 +633,8 @@ function muestraReloj() {
 
 
 
-        auxc += `</div></div></div><button id = "cocinar" > Iniciar cocinado </button>`;
-        document.getElementById('down').innerHTML = auxc;
+        auxc += `</div></div></div>`;
+        document.getElementById('carsousel').innerHTML = auxc;
 
 
         $(".owl-carousel").owlCarousel({
