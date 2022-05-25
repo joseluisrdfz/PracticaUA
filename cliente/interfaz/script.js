@@ -21,11 +21,12 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
     //var cocinar = document.getElementById("cocinar");
     setTimeout(function() {
         var cocinar = document.getElementById("cocinar");
-        /*var tiempo = document.getElementById("tiempo");
-        var resistenciaSuperior = document.getElementById("resistenciaSuperior");
-        var resistenciaInferior = document.getElementById("resistenciaInferior");
-        var gratinador = document.getElementById("gratinador");
-        var ventilador = document.getElementById("ventilador");*/
+
+
+
+
+
+        //var tiempo = document.getElementById("tiempo");
 
 
         electro.on("puertaAbierta", function(abierta) {
@@ -33,27 +34,29 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
         });
 
         // Cocinar
+
+
+
         if (cocinar != null) {
             cocinar.addEventListener("click", function() {
                 //console.log("Comienzo a cocinar. Tiempo:", tiempo.value);
                 // Bloquear controles
                 cocinar.disabled = true;
-                /*tiempo.disabled = true;
-                temperatura.disabled = true;
-                resistenciaSuperior.disabled = true;
-                resistenciaInferior.disabled = true;
-                gratinador.disabled = true;
-                ventilador.disabled = true;*/
+                opcioneshabilitadas = false;
 
                 // Ventilador?
-                //if (ventilador.checked) electro.ventilador = true;
                 if (ventiladorActivado == "true") electro.ventilador = true;
+                if (luzInteriorActivada == "true") electro.luz = true;
                 // Termostato del horno
                 function termostato(t) {
-                    if (t < temperatura.value) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
-                        if (resistenciaSuperior.checked) electro.resistenciaSuperior = true;
-                        if (resistenciaInferior.checked) electro.resistenciaInferior = true;
-                        if (gratinador.checked) electro.gratinador = true;
+                    var auxtemp = temperatura.substring(temperatura.length - 2);
+                    var intemp = parseInt(auxtemp);
+                    console.log(temperatura);
+                    console.log(intemp);
+                    if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
+                        if (resistenciaSuperiorActivada == "true") electro.resistenciaSuperior = true;
+                        if (resistenciaInferiorActivada == "true") electro.resistenciaInferior = true;
+                        if (gratinadorActivado == "true") electro.gratinador = true;
                     } else { // si ya tengo la temperatura objetivo apagar las resistencias
                         electro.resistenciaSuperior = false;
                         electro.resistenciaInferior = false;
@@ -68,23 +71,17 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                     electro.off("temperaturaInterior", termostato);
 
                     // Desbloquear los controles
-                    /* cocinar.disabled = false;
-                     tiempo.disabled = false;
-                     temperatura.disabled = false;
-                     resistenciaSuperior.disabled = false;
-                     resistenciaInferior.disabled = false;
-                     gratinador.disabled = false;
-                     ventilador.disabled = false;*/
+                    cocinar.disabled = false;
+                    opcioneshabilitadas = true;
 
                     // Apagar elementos
-                    //electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
-                }, /*tiempo.value * 1000*/ );
+                    electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
+                }, /*tiempo.value * 1000*/ 5000); // Tiempo de cocinado establecido (cambiar)
             });
         }
-
     }, 1000);
-
 });
+
 
 
 // Creacion de arrays y variables globales a medida para la seleccion de distintos idiomas
@@ -107,7 +104,7 @@ var microfono = "icon-desmuteado";
 var volumen = "50" + "%";
 var horastemp = 00;
 var minutostemp = 00;
-var temperatura = "0" + 'º';
+var temperatura = "0" + "º";
 var sonda = "Activar Sonda";
 
 //Variables de comprobacion de activaciones del horno
@@ -119,6 +116,7 @@ var resistenciaSuperiorActivada = false;
 var resistenciaInferiorActivada = false;
 var luzInteriorActivada = false;
 var gratinadorActivado = false;
+var opcioneshabilitadas = true;
 
 //Variables para distribución y conexión con el emulador
 
@@ -425,12 +423,17 @@ function cambiardown(element, idcirculo) {
     //document.getElementById("down").innerHTML = content;
     if (element.className == "Relojhorno") {}
 
-    if (idcirculo != 'a') {
-        if (document.getElementById(idcirculo).style.background == "" || document.getElementById(idcirculo).style.background.includes('white')) {
-            document.getElementById(idcirculo).style.background = 'green';
-        } else {
-            document.getElementById(idcirculo).style.background = 'white';
+    if (opcioneshabilitadas == true) {
+
+
+        if (idcirculo != 'a') {
+            if (document.getElementById(idcirculo).style.background == "" || document.getElementById(idcirculo).style.background.includes('white')) {
+                document.getElementById(idcirculo).style.background = 'green';
+            } else {
+                document.getElementById(idcirculo).style.background = 'white';
+            }
         }
+
     }
 
 }
@@ -447,7 +450,7 @@ function pantallaiddle() {
         <div id="circulo-luz" class = "circulo"></div>
         <article onclick="cambiardown(this,'circulo-luz'), luzInteriorActivadaDesactivada();" class="buttonhorno"><span class="icon-bombilla"></span></article>
         <div id="circulo-ventilador" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-ventilador'), ventiladorActivadoDesactivado();" class="buttonhorno"><span class="icon-ventilador"></span></article>
+        <article id = "ventilador" onclick="cambiardown(this,'circulo-ventilador'), ventiladorActivadoDesactivado();" class="buttonhorno"><span class="icon-ventilador"></span></article>
     </section>
     <section class="centro">
         <div id="up">
