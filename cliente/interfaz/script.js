@@ -32,7 +32,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
         // Cocinar
         cocinar.addEventListener("click", function() {
-            //console.log("Comienzo a cocinar. Tiempo:", tiempo.value);
+            console.log("Comienzo a cocinar. Tiempo:", horas + "(minutos) " + minutos + "(segundos)");
             // Bloquear controles
             console.log("yep");
             cocinar.disabled = true;
@@ -66,10 +66,11 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 // Desbloquear los controles
                 cocinar.disabled = false;
                 opcioneshabilitadas = true;
+                (parseInt(horas) * 60 * 1000) + (parseInt(minutos) * 1000);
 
                 // Apagar elementos
                 electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
-            }, /*tiempo.value * 1000*/ 5000); // Tiempo de cocinado establecido (cambiar)
+            }, /* (parseInt(horas) * 60 * 1000) + (parseInt(minutos) * 1000)*/ 5000); // Tiempo de cocinado establecido (cambiar)
         });
     }, 1000);
 });
@@ -98,6 +99,8 @@ var horastemp = 0;
 var minutostemp = 0;
 var temperatura = "0" + "º";
 var sonda = "Activar Sonda";
+var minutos = 0;
+var horas = 0;
 
 //Variables de comprobacion de activaciones del horno
 var temperaturaActivada = false;
@@ -509,7 +512,7 @@ function pantallaCambioHora() {
             </section>
             <section>
                 <div id = "borde_temp">
-                    <p id = "temp_valor">` + horastemp + "0" + ":" + minutostemp + "0" + `</p>      
+                    <p id = "temp_valor">` + horastemp + ":" + minutostemp + `</p>      
                 </div>
                 
             </section>
@@ -708,7 +711,14 @@ function temporizadorActivadoDesactivado(entrada) {
     } else if (entrada == 1 && minutostemp > 0) {
         temporizadorActivado = true;
         localStorage.setItem("temporizadorActivado", temporizadorActivado);
+
+        localStorage.setItem("minutos", minutostemp);
+        localStorage.setItem("horas",horastemp);
+        minutos = localStorage.getItem("minutos");
+        horas = localStorage.getItem("horas");
     }
+
+
     temporizadorActivado = localStorage.getItem("temporizadorActivado");
 }
 
