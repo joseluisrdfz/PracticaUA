@@ -21,9 +21,11 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
     electro.on("sondaConectada", function(lasonda){
         if(lasonda){
             localStorage.setItem("sonda","Desactivar Sonda");
+            if(document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
             document.getElementById("sonda").innerHTML = "Desactivar Sonda";
         }else{
             localStorage.setItem("sonda", "Activar Sonda");
+            if(document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
             document.getElementById("sonda").innerHTML = "Activar Sonda";
         }
 
