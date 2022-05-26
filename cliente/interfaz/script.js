@@ -93,6 +93,8 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 localStorage.setItem("gratinadorActivado","false");
                 localStorage.setItem("temperaturaActivada","false");
                 localStorage.setItem("temperatura","0º");
+                localStorage.setItem("horas","0");
+                localStorage.setItem("minutos","0");
                 temperatura = localStorage.getItem("temperatura");
                 electro.luz = false; 
 
