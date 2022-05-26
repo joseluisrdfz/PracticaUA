@@ -18,6 +18,17 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
         }
     });
 
+    electro.on("sondaConectada", function(lasonda){
+        if(lasonda){
+            localStorage.setItem("sonda","Desactivar Sonda");
+            document.getElementById("sonda").innerHTML = "Desactivar Sonda";
+        }else{
+            localStorage.setItem("sonda", "Activar Sonda");
+            document.getElementById("sonda").innerHTML = "Activar Sonda";
+        }
+
+    });
+
     //var cocinar = document.getElementById("cocinar");
     setTimeout(function() {
         var cocinar = document.getElementById("cocinar");
