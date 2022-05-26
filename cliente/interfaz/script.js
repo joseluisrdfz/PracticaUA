@@ -24,6 +24,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
 
         //var tiempo = document.getElementById("tiempo");
+  
 
 
         electro.on("puertaAbierta", function(abierta) {
@@ -41,11 +42,15 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             // Ventilador?
             if (ventiladorActivado == "true") electro.ventilador = true;
             if (luzInteriorActivada == "true") electro.luz = true;
+
+            //Sonda
+            if(localStorage.getItem("sondaActivada") == "true") electro.sondaConectada = true;
+
             // Termostato del horno
             function termostato(t) {
                 var auxtemp = temperatura.replace(/º/g, '');
                 var intemp = parseInt(auxtemp);
-                console.log(intemp)
+
                 if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
                     if (resistenciaSuperiorActivada == "true") electro.resistenciaSuperior = true;
                     if (resistenciaInferiorActivada == "true") electro.resistenciaInferior = true;
@@ -66,7 +71,6 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 // Desbloquear los controles
                 cocinar.disabled = false;
                 opcioneshabilitadas = true;
-                (parseInt(horas_reloj) * 60 * 1000) + (parseInt(minutos_reloj) * 1000);
 
                 // Apagar elementos
                 electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
@@ -528,7 +532,7 @@ function pantallaCambioHora() {
                 <p id = "pmas" class = "p_temp" onclick = "establecerTemporizador(1);" >+</p>
             </div>
             <section id = "sec_vol2">
-                <div onclick="temporizadorActivadoDesactivado(0);" class = "SmallButton">
+                <div onclick="temporizadorActivadoDesactivado(0), pantallaiddlejaja();" class = "SmallButton">
                     <p>Cancelar</p>
                 </div>
                 <div onclick="temporizadorActivadoDesactivado(1), cuentaRegresiva(), pantallaiddlejaja();" class = "SmallButton">
@@ -546,7 +550,7 @@ function pantallaCambioTemperatura() {
         document.body.innerHTML = `
         <div id = "temperatura">
             <section id = "sec_sonda" onclick = "activarDesactivarSonda(), sondaActivadaDesactivada();">
-            <p class = "sonda" id = "sonda" >` + sonda + `</p>
+            <p class = "sonda" id = "sonda" >` + localStorage.getItem("sonda") + `</p>
             </section>
             <section>
                 <div id = "temperatura_div">
@@ -559,7 +563,7 @@ function pantallaCambioTemperatura() {
                 <p id = "ptempmas" class = "p_temperatura" onclick = "establecerTemperatura(1);" >+</p>
             </div>
             <section id = "sec_vol2">
-                <div onclick=" temperaturaActivadaDesactivada(0);" class = "SmallButton">
+                <div onclick=" temperaturaActivadaDesactivada(0), pantallaiddlejaja();" class = "SmallButton">
                     <p>Cancelar</p>
                 </div>
                 <div onclick="temperaturaActivadaDesactivada(1), pantallaiddlejaja();" class = "SmallButton">
@@ -622,7 +626,7 @@ function muestraReloj() {
         if (temperaturaActivada == 'true')
             auxc += '<div class="owl-item"><p>Temperatura a conseguir: </p><span>' + temperatura + '</span></div>';
 
-        if (sondaActivada == 'true')
+        if (localStorage.getItem("sondaActivada") == 'true')
             auxc += '<div class="owl-item">Sonda Activada</div>';
 
         if (temporizadorActivado == 'true') {
@@ -760,7 +764,7 @@ function activarDesactivarSonda() {
     let des = "Desactivar Sonda";
     let act = "Activar Sonda";
 
-    son = document.getElementById("sonda").innerHTML;
+    let son = document.getElementById("sonda").innerHTML;
     if (son == act) {
         document.getElementById("sonda").innerHTML = des;
         localStorage.setItem("sonda", des);
@@ -768,7 +772,26 @@ function activarDesactivarSonda() {
         document.getElementById("sonda").innerHTML = act;
         localStorage.setItem("sonda", act);
     }
-    sonda = localStorage.getItem("sonda");
+     localStorage.getItem("sonda");
+}
+
+function sondaActivadaDesactivada(){
+
+    let des = "Desactivar Sonda";
+    let act = "Activar Sonda";
+
+    let son = document.getElementById("sonda").innerHTML;
+    if (son == act) {
+        sondaActivada = false;
+        localStorage.setItem("sondaActivada", sondaActivada);
+
+    }else if (son == des){
+        sondaActivada = true;
+        localStorage.setItem("sondaActivada", sondaActivada);
+
+    }
+
+     localStorage.getItem("sondaActivada");
 }
 
 function temperaturaActivadaDesactivada(entrada) {
@@ -785,21 +808,6 @@ function temperaturaActivadaDesactivada(entrada) {
     temperatura = localStorage.getItem("temperatura");
     temperaturaActivada = localStorage.getItem("temperaturaActivada");
 
-}
-
-function sondaActivadaDesactivada() {
-
-    let des = "Desactivar Sonda";
-    let act = "Activar Sonda";
-    son = document.getElementById("sonda").innerHTML;
-    if (son == act) {
-        sondaActivada = false;
-        localStorage.setItem("sondaActivada", sondaActivada);
-    } else if (son == des) {
-        sondaActivada = true;
-        localStorage.setItem("sondaActivada", sondaActivada);
-    }
-    sondaActivada = localStorage.getItem("sondaActivada");
 }
 
 function resistenciaSuperiorActivadaDesactivada() {
