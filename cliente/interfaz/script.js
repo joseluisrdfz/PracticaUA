@@ -32,7 +32,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
         // Cocinar
         cocinar.addEventListener("click", function() {
-            console.log("Comienzo a cocinar. Tiempo:", horas + "(minutos) " + minutos + "(segundos)");
+            console.log("Comienzo a cocinar. Tiempo:", horas_reloj + "(minutos) " + minutos_reloj + "(segundos)");
             // Bloquear controles
             console.log("yep");
             cocinar.disabled = true;
@@ -66,11 +66,11 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 // Desbloquear los controles
                 cocinar.disabled = false;
                 opcioneshabilitadas = true;
-                (parseInt(horas) * 60 * 1000) + (parseInt(minutos) * 1000);
+                (parseInt(horas_reloj) * 60 * 1000) + (parseInt(minutos_reloj) * 1000);
 
                 // Apagar elementos
                 electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
-            }, /* (parseInt(horas) * 60 * 1000) + (parseInt(minutos) * 1000)*/ 5000); // Tiempo de cocinado establecido (cambiar)
+            }, ((parseInt(horas_reloj) * 60 * 1000) + (parseInt(minutos_reloj) * 1000))); // Tiempo de cocinado establecido (cambiar)
         });
     }, 1000);
 });
@@ -99,8 +99,8 @@ var horastemp = 0;
 var minutostemp = 0;
 var temperatura = "0" + "º";
 var sonda = "Activar Sonda";
-var minutos = 0;
-var horas = 0;
+var minutos_reloj = 0;
+var horas_reloj = 0;
 
 //Variables de comprobacion de activaciones del horno
 var temperaturaActivada = false;
@@ -237,7 +237,7 @@ function pantallaAjustes() {
                 <p>CONTROLES</p>
                 <span class="icon-mano"></span>
             </div>
-            <div onclick = "pantallaiddle()" id="width100" class="SmallButton"><span>VOLVER</span></div>
+            <div onclick = "pantallaiddlejaja()" id="width100" class="SmallButton"><span>VOLVER</span></div>
             </div> 
          `;
     }
@@ -439,7 +439,9 @@ function cambiardown(element, idcirculo) {
 function pantallaiddle() {
     una_ves_hecho_cambio = false;
     //añadir un funcion que recoja todas lasvariables del horno true, luz puerta y tal y añadir a una variable, quiza array que construya el carousel
+    caracteristicasAlCargar_unavegada();
 
+    console.log('pantalla iddle' + horas_reloj + ';' + minutos_reloj);
 
     document.body.innerHTML = `<section class="hornoiddle">
     <section class="lateral">
@@ -472,6 +474,11 @@ function pantallaiddle() {
         <article onclick="cambiardown(this,'circulo-gratinar'), gratinadorActivadoDesactivado();" class="buttonhorno"><span class="icon-hola"></article>
     </section>
 </section>`;
+
+}
+
+function pantallaiddlejaja() {
+    location.reload();
 
 }
 
@@ -524,7 +531,7 @@ function pantallaCambioHora() {
                 <div onclick="temporizadorActivadoDesactivado(0);" class = "SmallButton">
                     <p>Cancelar</p>
                 </div>
-                <div onclick="temporizadorActivadoDesactivado(1), cuentaRegresiva(), pantallaiddle();" class = "SmallButton">
+                <div onclick="temporizadorActivadoDesactivado(1), cuentaRegresiva(), pantallaiddlejaja();" class = "SmallButton">
                     <p>Aceptar</p>
                 </div>
             </section>    
@@ -534,7 +541,7 @@ function pantallaCambioHora() {
 }
 
 function pantallaCambioTemperatura() {
-    if(opcioneshabilitadas == true){
+    if (opcioneshabilitadas == true) {
 
         document.body.innerHTML = `
         <div id = "temperatura">
@@ -555,7 +562,7 @@ function pantallaCambioTemperatura() {
                 <div onclick=" temperaturaActivadaDesactivada(0);" class = "SmallButton">
                     <p>Cancelar</p>
                 </div>
-                <div onclick="temperaturaActivadaDesactivada(1), pantallaiddle();" class = "SmallButton">
+                <div onclick="temperaturaActivadaDesactivada(1), pantallaiddlejaja();" class = "SmallButton">
                     <p>Aceptar</p>
                 </div>
             </section>    
@@ -609,32 +616,37 @@ function muestraReloj() {
 
     if (document.getElementById('carsousel') && !una_ves_hecho_cambio) {
 
+
         var auxc = `<div class="owl-carousel owl-theme owl-loaded"><div class="owl-stage-outer"><div class="owl-stage">`;
 
         if (temperaturaActivada == 'true')
-            auxc += '<div class="owl-item">Temperatura: ' + temperatura + '</div>';
+            auxc += '<div class="owl-item"><p>Temperatura a conseguir: </p><span>' + temperatura + '</span></div>';
 
         if (sondaActivada == 'true')
-            auxc += '<div class="owl-item">sondaActivada</div>';
+            auxc += '<div class="owl-item">Sonda Activada</div>';
 
-        if (temporizadorActivado == 'true')
-            auxc += '<div class="owl-item">temporizadorActivado</div>';
+        if (temporizadorActivado == 'true') {
+
+            console.log(horas_reloj + ':' + minutos_reloj);
+            auxc += '<div class="owl-item"><p>Temporizador Activado: </p><span> ' + horas_reloj + ':' + minutos_reloj + ' </span></div>';
+        }
+
 
         if (ventiladorActivado == 'true')
-            auxc += '<div class="owl-item" ><span class="icon-ventilador"></span></div>';
+            auxc += '<div class="owl-item" ><span class="icon-ventilador"></span><p>Ventilador activado</p></div>';
 
         if (resistenciaSuperiorActivada == 'true')
-            auxc += '<div class="owl-item" id="resisAbajo"><span class="icon-menos"></div>';
+            auxc += '<div class="owl-item" id="resisAlto"><span class="icon-menos"></span><p>Resistencia superior activada</p></div>';
 
         if (resistenciaInferiorActivada == 'true')
-            auxc += '<div class="owl-item" id="resisAlto"><span class="icon-menos"></div>';
+            auxc += '<div class="owl-item" id="resisAbajo"><span class="icon-menos"></span><p>Resistencia inferior activada</p></div>';
 
         if (luzInteriorActivada == 'true')
-            auxc += '<div class="owl-item"><span class="icon-bombilla"></span></div>';
+            auxc += '<div class="owl-item"><span class="icon-bombilla"></span><p>Luz activada</p></div>';
 
 
         if (gratinadorActivado == 'true')
-            auxc += `<div class="owl-item" id='grat'><span class="icon-hola"></div>`;
+            auxc += `<div class="owl-item" id='grat'><span class="icon-hola"></span><p>Gratinador activado</p></div>`;
 
 
 
@@ -713,9 +725,9 @@ function temporizadorActivadoDesactivado(entrada) {
         localStorage.setItem("temporizadorActivado", temporizadorActivado);
 
         localStorage.setItem("minutos", minutostemp);
-        localStorage.setItem("horas",horastemp);
-        minutos = localStorage.getItem("minutos");
-        horas = localStorage.getItem("horas");
+        localStorage.setItem("horas", horastemp);
+        minutos_reloj = localStorage.getItem("minutos");
+        horas_reloj = localStorage.getItem("horas");
     }
 
 
@@ -874,6 +886,13 @@ function ventiladorActivadoDesactivado() {
 
 function caracteristicasAlCargar() {
 
+    if (document.getElementById('circulo-grados') != null) {
+        if (localStorage.getItem("temperaturaActivada") == "true") {
+            document.getElementById('circulo-grados').style.background = 'green';
+        } else {
+            document.getElementById('circulo-grados').style.background = 'white';
+        }
+    }
 
     if (document.getElementById('circulo-supres') != null) {
         if (localStorage.getItem("resistenciaSuperiorActivada") == "true") {
@@ -915,4 +934,63 @@ function caracteristicasAlCargar() {
             document.getElementById('circulo-gratinar').style.background = 'white';
         }
     }
+}
+
+function caracteristicasAlCargar_unavegada() {
+
+    if (localStorage.getItem("temporizadorActivado") == "true") {
+        temporizadorActivado = "true";
+        minutos_reloj = localStorage.getItem("minutos");
+        horas_reloj = localStorage.getItem("horas");
+        console.log(horas_reloj + '::' + minutos_reloj)
+    } else {
+        temporizadorActivado = "false";
+    }
+
+    if (localStorage.getItem("temperaturaActivada") == "true") {
+        temperaturaActivada = "true";
+        temperatura = localStorage.getItem("temperatura");
+    } else {
+        temperaturaActivada = "false";
+    }
+
+    if (localStorage.getItem("resistenciaSuperiorActivada") == "true") {
+        resistenciaSuperiorActivada = "true";
+    } else {
+        resistenciaSuperiorActivada = "false";
+    }
+
+
+
+    if (localStorage.getItem("resistenciaInferiorActivada") == "true") {
+        resistenciaInferiorActivada = "true";
+    } else {
+        resistenciaInferiorActivada = "false";
+    }
+
+
+
+    if (localStorage.getItem("luzInteriorActivada") == "true") {
+        luzInteriorActivada = "true";
+    } else {
+        luzInteriorActivada = "false";
+    }
+
+
+
+
+    if (localStorage.getItem("gratinadorActivado") == "true") {
+        gratinadorActivado = "true";
+
+    } else {
+        gratinadorActivado = "false";
+    }
+
+
+    if (localStorage.getItem("ventiladorActivado") == "true") {
+        ventiladorActivado = "true";
+    } else {
+        ventiladorActivado = "false";
+    }
+
 }

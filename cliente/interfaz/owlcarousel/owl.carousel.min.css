@@ -5,21 +5,35 @@
  */
 
 .owl-item {
-    font-size: 4em;
+    font-size: 1em;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.owl-item#resisAbajo {
+.owl-item>span {
     font-size: 4em;
-    align-items: flex-start;
+}
+
+.owl-item#resisAbajo {
+    font-size: 1em;
 }
 
 .owl-item#resisAlto {
+    font-size: 1em;
+}
+
+.owl-item#resisAbajo>span {
     font-size: 4em;
-    line-height: 20%;
-    align-items: flex-end;
+    position: relative;
+    top: 20px;
+}
+
+.owl-item#resisAlto>span {
+    font-size: 4em;
+    position: relative;
+    top: -18px;
 }
 
 .owl-carousel,
@@ -70,7 +84,7 @@
     border-radius: 40px;
     background-color: rgb(96, 209, 212);
     text-align: center;
-    height: 100px;
+    height: 140px;
     min-height: 1px;
     float: left;
     -webkit-backface-visibility: hidden;
