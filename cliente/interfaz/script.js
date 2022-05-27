@@ -28,6 +28,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             if (document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
                 document.getElementById("sonda").innerHTML = "Activar Sonda";
         }
+        
 
     });
 
@@ -84,6 +85,18 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 // Desbloquear los controles
                 cocinar.disabled = false;
                 opcioneshabilitadas = true;
+                //Reinicia valores
+                localStorage.setItem("luzInteriorActivada","false");
+                localStorage.setItem("ventiladorActivado","false");
+                localStorage.setItem("resistenciaSuperiorActivada","false");
+                localStorage.setItem("resistenciaInferiorActivada","false");
+                localStorage.setItem("gratinadorActivado","false");
+                localStorage.setItem("temperaturaActivada","false");
+                localStorage.setItem("temperatura","0º");
+                localStorage.setItem("horas","0");
+                localStorage.setItem("minutos","0");
+                temperatura = localStorage.getItem("temperatura");
+                electro.luz = false; 
 
                 // Apagar elementos
                 electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
@@ -548,7 +561,7 @@ function pantallaCambioHora() {
                 <div onclick="temporizadorActivadoDesactivado(0), pantallaiddlejaja();" class = "SmallButton">
                     <p>Cancelar</p>
                 </div>
-                <div onclick="temporizadorActivadoDesactivado(1), cuentaRegresiva(), pantallaiddlejaja();" class = "SmallButton">
+                <div onclick="temporizadorActivadoDesactivado(1), pantallaiddlejaja();" class = "SmallButton">
                     <p>Aceptar</p>
                 </div>
             </section>    
@@ -739,7 +752,6 @@ function establecerTemporizador(entrada) {
             document.getElementById("temp_valor").innerHTML = horastemp + ':' + minutostemp;
         }
     }
-
 }
 
 function temporizadorActivadoDesactivado(entrada) {
@@ -753,18 +765,19 @@ function temporizadorActivadoDesactivado(entrada) {
 
         localStorage.setItem("minutos", minutostemp);
         localStorage.setItem("horas", horastemp);
+
+        horastemp = localStorage.getItem("horas");
+        minutostemp = localStorage.getItem("minutos");
+
         minutos_reloj = localStorage.getItem("minutos");
         horas_reloj = localStorage.getItem("horas");
     }
 
 
+
     temporizadorActivado = localStorage.getItem("temporizadorActivado");
 }
 
-//FALTA POR HACER!!!
-function cuentaRegresiva() {
-    let aux = document.getElementById("temp_valor").innerHTML;
-}
 
 function establecerTemperatura(entrada) {
 
