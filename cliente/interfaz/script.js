@@ -107,11 +107,11 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
 
 
-// Creacion de arrays y variables globales a medida para la seleccion de distintos idiomas
+// Creacion de arrays y variables globales a medida para la seleccion de distintos idiomas, funcionales(ingles y espanyol)
 
 var chino = [];
-var espanyol = [];
-var ingles = [];
+var espanyol = ["Cancelar","Aceptar","VOLVER","WIFI","VOLUMEN","MICRÓFONO","ACERCA","IDIOMA","CONTROLES","Escanea el código QR y sigue los pasos en la Aplicación","Fabricante:","Hornos PACO SL","Modelo:","Paco5000","Origen:","Alicante, España","Etiquetado energético:","A","Fecha de fabricación:","La función seleccionada activa la resistencia superior del horno.","La función seleccionada activa la resistencia inferior del horno.","La función seleccionada activa el modo para gratinar del horno.","La función seleccionada permite acceder a las opciones de configuración del horno.","La función seleccionada permite escoger la temperatura de horneado deseada.","La función seleccionada permite encender o apagar la luz del electrodoméstico.","La función seleccionada activa el ventilador interior del horno.","La función seleccionada permite establecer temporizadores para hornear.","Red_Wifi_1","Conexión establecida","Iniciar cocinado","Temperatura a conseguir: ","Sonda Activada","Temporizador Activado: ","Ventilador Activado","Resistencia Superior Activada","Resistencia Inferior Activada","Luz Activada","Gratinador Activado"];
+var ingles = ["Cancel","To accept","RETURN","WIFI","VOLUME","MICROPHONE","ABOUT","LANGUAGE","CONTROLS","Scan the QR code and follow the steps in the App","Manufacturer","Ovens PACO SL","Model:","Paco5000","Origin:","Alicante, Spain","Energy labeling:","A","Manufacturing date:","The selected function activates the upper resistance of the oven.","The selected function activates the lower resistance of the oven.","The selected function activates the gratin mode of the oven.","The selected function allows access to the oven configuration options.","The selected function allows you to choose the desired baking temperature.","The selected function allows you to turn on or turn off the light of the appliance.","The selected function activates the internal fan of the oven.","The selected function allows you to set timers for baking.","Net_Wifi_1","Established connection","Start cooking","Temperature to achieve: ","Activated Probe","Timer Activated: ","Fan Activated","Upper Resistance Activated","Lower Resistance Activated","Light Activated","Grill Activated"];
 var hindi = [];
 var arabe = [];
 var portugues = [];
@@ -158,13 +158,13 @@ function vaciarCuerpo() {
 }
 
 function pantallaAusente() {
-    document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo" alt="logo"></img></div>';
+    document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo"></img></div>';
 }
 
 function main(x) {
     //document.cookie = "visitado=si" ;
     if (x == 0) {
-        document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo" alt="logo"></img></div>';
+        document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo"></img></div>';
         setTimeout(() => {
             vaciarCuerpo();
         }, 3000);
@@ -175,7 +175,7 @@ function main(x) {
 
     } else if (x == 1) {
         //el usuario ya ha utilizado el horno anteriormente
-        document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo" alt="logo"></img></div>';
+        document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo"></img></div>';
         setTimeout(() => {
             vaciarCuerpo();
         }, 3000);
@@ -192,6 +192,14 @@ function main(x) {
 function idiomaSeleccionado(idiomaSeleccionado) {
     idioma = idiomaSeleccionado;
     console.log(idioma);
+    if(idioma != 2){
+        localStorage.setItem("idioma", "español");
+        localStorage.setItem("idiomaArray",espanyol);
+    }else if(idioma == 2){
+        localStorage.setItem("idioma","ingles");
+        localStorage.setItem("idiomaArray",ingles);
+    }
+    
 }
 
 
@@ -200,40 +208,65 @@ function pantallaIdiomas() {
     <div id="divIdiomas">
         <span class="icon-abajo arrowdown"></span>
         <div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(0)' class ="idiomas" id ="chino"><p>普通话</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(1)' class = "idiomas" id ="espanyol"><p>Español</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(2)' class = "idiomas" id ="ingles"><p>English</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(3)' class = "idiomas" id ="hindi"><p>भारतीय</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(4)' class = "idiomas" id ="arabe"><p>عرب</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(5)' class = "idiomas" id ="portugues"><p>Português</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(6)' class = "idiomas" id ="ruso"><p>pyccкий</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(7)' class = "idiomas" id ="urdu"><p>اردو</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(8)' class = "idiomas" id ="bengali"><p>বাংলা</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(9)' class = "idiomas" id ="frances"><p>Français</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(10)' class = "idiomas" id ="aleman"><p>Deutsch</p></div>
-            <div onclick = 'pantallaiddle(), idiomaSeleccionado(11)' class = "idiomas" id ="italiano"><p>Italiano</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(0)' class ="idiomas" id ="chino"><p>普通话</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(1)' class = "idiomas" id ="espanyol"><p>Español</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(2)' class = "idiomas" id ="ingles"><p>English</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(3)' class = "idiomas" id ="hindi"><p>भारतीय</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(4)' class = "idiomas" id ="arabe"><p>عرب</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(5)' class = "idiomas" id ="portugues"><p>Português</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(6)' class = "idiomas" id ="ruso"><p>pyccкий</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(7)' class = "idiomas" id ="urdu"><p>اردو</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(8)' class = "idiomas" id ="bengali"><p>বাংলা</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(9)' class = "idiomas" id ="frances"><p>Français</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(10)' class = "idiomas" id ="aleman"><p>Deutsch</p></div>
+            <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(11)' class = "idiomas" id ="italiano"><p>Italiano</p></div>
         </div>
         <span class="icon-arriba arrowup"></span>
     </div>`;
 }
 
 function pantallaEscanearQr() {
-    document.body.innerHTML = `
-    <div id="wifi">
-    <div>
-    <p>Escanea el código QR y sigue los pasos en la App</p>
-    <span onclick = "pantallaConexionEstablecida();" class="icon-qr"></span>
-    </div>
-    
-    <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>VOLVER</span></div>
-    </div>`;
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        console.log(idiarr);
+
+        document.body.innerHTML = `
+        <div id="wifi">
+        <div>
+        <p>`+ idiarr[9] + `</p>
+        <span onclick = "pantallaConexionEstablecida();" class="icon-qr"></span>
+        </div>
+        
+        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>`+ idiarr[2] +`</span></div>
+        </div>`;
+    }else{
+        document.body.innerHTML = `
+        <div id="wifi">
+        <div>
+        <p>Escanea el código QR y sigue los pasos en la Aplicación</p>
+        <span onclick = "pantallaConexionEstablecida();" class="icon-qr"></span>
+        </div>
+        
+        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>VOLVER</span></div>
+        </div>`;
+    }
 }
 
 function pantallaConexionEstablecida() {
 
-    document.body.innerHTML = ` <div id="wifi2"><h1>Red_Wifi_1</h1>
-    <span><h2>Conexión establecida</h2>
-    <span class="icon-correcto"></span></span></div>`;
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = ` <div id="wifi2"><h1>`+ idiarr[28] +`</h1>
+        <span><h2>`+ idiarr[29] +`</h2>
+        <span class="icon-correcto"></span></span></div>`;
+    }else{
+        document.body.innerHTML = ` <div id="wifi2"><h1>Red_Wifi_1</h1>
+        <span><h2>Conexión establecida</h2>
+        <span class="icon-correcto"></span></span></div>`;
+    }
+    
     setTimeout(() => {
         pantallaAjustes();
     }, 3500);
@@ -241,7 +274,40 @@ function pantallaConexionEstablecida() {
 
 function pantallaAjustes() {
     if (opcioneshabilitadas == true) {
-        document.body.innerHTML = `
+        if(localStorage.getItem("idiomaArray")){
+            let idi = localStorage.getItem("idiomaArray").toString();
+            let idiarr = idi.split(",");
+            document.body.innerHTML = `
+            <div id="divajustes">
+            <div onclick = "pantallaEscanearQr();" class="opcion">
+                <p>`+idiarr[3]+`</p>
+                <span class="icon-wifi"></span>
+            </div>
+            <div onclick = "pantalla_definir_volumen();" class="opcion">
+                <p>`+idiarr[4]+`</p>
+                <span class="icon-convolumen"></span>
+            </div>
+            <div onclick = "microfonoActivadoDesactivado(this);" class="opcion micro">
+                <p>`+idiarr[5]+`</p>
+                <span id = "mic" class="` + microfono + `"></span>
+            </div>
+            <div onclick = "pantallaDatosHorno()"  class="opcion">
+                <p>`+idiarr[6]+`</p>
+                <span class="icon-informacion"></span>
+            </div>
+            <div onclick = "pantallaIdiomas();" class="opcion">
+                <p>`+idiarr[7]+`</p>
+                <span class="icon-idioma"></span>
+            </div>
+            <div onclick = "pantallaControles();" class="opcion">
+                <p>`+idiarr[8]+`</p>
+                <span class="icon-mano"></span>
+            </div>
+            <div onclick = "pantallaiddlejaja()" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+            </div> 
+         `;
+        }else{
+            document.body.innerHTML = `
             <div id="divajustes">
             <div onclick = "pantallaEscanearQr();" class="opcion">
                 <p>WIFI</p>
@@ -260,7 +326,7 @@ function pantallaAjustes() {
                 <span class="icon-informacion"></span>
             </div>
             <div onclick = "pantallaIdiomas();" class="opcion">
-                <p>IDOMA</p>
+                <p>IDIOMA</p>
                 <span class="icon-idioma"></span>
             </div>
             <div onclick = "pantallaControles();" class="opcion">
@@ -270,12 +336,48 @@ function pantallaAjustes() {
             <div onclick = "pantallaiddlejaja()" id="width100" class="SmallButton"><span>VOLVER</span></div>
             </div> 
          `;
+        }
+        
     }
 
 }
 
 function pantallaControles() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div id = "divcontroles">
+        <div onclick = "pantallaInformacionResistenciaSuperior();" class="opcioncontroles">
+            <span id = "res_sup" class="icon-menos"></span>
+        </div>
+        <div onclick = "pantallaInformacionResistenciaInferior();" class="opcioncontroles">
+            <span id = "res_inf" class="icon-menos"></span>
+        </div>
+        <div onclick = "pantallaInformacionGratinar();" class="opcioncontroles">
+            <span class="icon-hola"></span>
+        </div>
+        <div onclick = "pantallaInformacionAjustes();" class="opcioncontroles">
+            <span class="icon-ajustes"></span>
+        </div>
+        <div onclick = "pantallaInformacionTemperatura();" class="opcioncontroles">
+            <span class="icon-grados"></span>
+        </div>
+        <div onclick = "pantallaInformacionLuz();" class="opcioncontroles">
+            <span class="icon-bombilla"></span>
+        </div>
+        <div onclick = "pantallaInformacionVentilador();" class="opcioncontroles">
+            <span class="icon-ventilador"></span>
+        </div>
+        <div onclick = "pantallaInformacionReloj();" class="opcioncontroles">
+        <span class="icon-reloj"></span>
+        </div>
+        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+   
+        `;
+    }else{
+        document.body.innerHTML = `
     <div id = "divcontroles">
         <div onclick = "pantallaInformacionResistenciaSuperior();" class="opcioncontroles">
             <span id = "res_sup" class="icon-menos"></span>
@@ -305,10 +407,27 @@ function pantallaControles() {
     </div>
    
         `;
+    }
+    
 }
 
 function pantallaInformacionLuz() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div class="info">
+        <div>
+        <span class="icon-bombilla"></span>
+        <p>`+idiarr[25]+`</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+    
+    `;
+    
+    }else{
+        document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-bombilla"></span>
@@ -318,10 +437,27 @@ function pantallaInformacionLuz() {
     </div>
     
     `;
+    }
+
+    
 }
 
 function pantallaInformacionTemperatura() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div class="info">
+        <div>
+        <span class="icon-grados"></span>
+        <p>`+idiarr[24]+`</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+    
+    `;
+    }else{
+        document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-grados"></span>
@@ -331,10 +467,26 @@ function pantallaInformacionTemperatura() {
     </div>
     
     `;
+    }
+    
 }
 
 function pantallaInformacionResistenciaInferior() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div class="info">
+       <div>
+       <span class="icon-menos"></span>
+       <p>`+idiarr[21]+`</p>
+       </div>
+       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+    
+    `;
+    }else{
+        document.body.innerHTML = `
     <div class="info">
        <div>
        <span class="icon-menos"></span>
@@ -344,23 +496,55 @@ function pantallaInformacionResistenciaInferior() {
     </div>
     
     `;
+    }   
+    
 }
 
 function pantallaInformacionResistenciaSuperior() {
-    document.body.innerHTML = `
-    <div class="info">
-       <div>
-       <span class="icon-menos"></span>
-       <p>La función seleccionada activa la resistencia superior del horno.</p>
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+        <div class="info">
+           <div>
+           <span class="icon-menos"></span>
+           <p>`+idiarr[20]+`</p>
+            </div>
+            <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
         </div>
-        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
-    </div>
+       
+        `;
+    }else{
+        document.body.innerHTML = `
+        <div class="info">
+           <div>
+           <span class="icon-menos"></span>
+           <p>La función seleccionada activa la resistencia superior del horno.</p>
+            </div>
+            <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
+        </div>
+       
+        `;
+    }
    
-    `;
 }
 
 function pantallaInformacionGratinar() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div class="info">
+        <div>
+        <span class="icon-hola"></span>
+        <p>`+idiarr[22]+`</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+   
+    `;
+    }else{
+        document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-hola"></span>
@@ -370,10 +554,26 @@ function pantallaInformacionGratinar() {
     </div>
    
     `;
+    }
+    
 }
 
 function pantallaInformacionVentilador() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div class="info">
+       <div>
+       <span class="icon-ventilador"></span>
+       <p>`+idiarr[26]+`</p>
+       </div>
+       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+   
+    `;
+    }else{
+        document.body.innerHTML = `
     <div class="info">
        <div>
        <span class="icon-ventilador"></span>
@@ -383,10 +583,25 @@ function pantallaInformacionVentilador() {
     </div>
    
     `;
+    }
+    
 }
 
 function pantallaInformacionAjustes() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div class="info">
+        <div>
+        <span class="icon-ajustes"></span>
+        <p>`+idiarr[23]+`</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+    `;
+    }else{
+        document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-ajustes"></span>
@@ -395,10 +610,26 @@ function pantallaInformacionAjustes() {
         <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>VOLVER</span></div>
     </div>
     `;
+    }
+    
 }
 
 function pantallaInformacionReloj() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div class="info">
+        <div>
+        <span class="icon-reloj"></span>
+        <p>`+idiarr[27]+`</p>
+        </div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+    </div>
+   
+    `;
+    }else{
+        document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-reloj"></span>
@@ -408,15 +639,49 @@ function pantallaInformacionReloj() {
     </div>
    
     `;
+    }
+    
 }
 
 function pantallaDatosHorno() {
-    document.body.innerHTML = `
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        document.body.innerHTML = `
+    <div id="datoshorno"> 
+    <ul class="datoshorno">
+        <li>
+            <b>`+idiarr[10]+`</b>
+            <p>`+idiarr[11]+`</p>
+        </li>
+        <li>
+            <b>`+idiarr[12]+`</b>
+            <p>`+idiarr[13]+`</p>
+        </li>
+        <li>
+            <b>`+idiarr[14]+`</b>
+            <p>`+idiarr[15]+","+idiarr[16]+`</p>
+        </li>
+        <li>
+            <b>`+idiarr[17]+`</b>
+            <p>`+idiarr[18]+`</p>
+        </li>
+        <li>
+            <b>`+idiarr[19]+`</b>
+            <p>2022</p>
+        </li>
+    </ul>
+    <div onclick = "pantallaAjustes()" id="width100" class="SmallButton">
+        <span>`+idiarr[2]+`</span>
+    </div>
+    </div>`;
+    }else{
+        document.body.innerHTML = `
     <div id="datoshorno"> 
     <ul class="datoshorno">
         <li>
             <b>Fabricante:</b>
-            <p>Hornos Paco Sl</p>
+            <p>Hornos Paco SL</p>
         </li>
         <li>
             <b>Modelo:</b>
@@ -439,6 +704,9 @@ function pantallaDatosHorno() {
         <span>VOLVER</span>
     </div>
     </div>`;
+    }
+    
+    
 }
 
 function cambiardown(element, idcirculo) {
@@ -470,6 +738,13 @@ function pantallaiddle() {
     una_ves_hecho_cambio = false;
     //añadir un funcion que recoja todas lasvariables del horno true, luz puerta y tal y añadir a una variable, quiza array que construya el carousel
     caracteristicasAlCargar_unavegada();
+    let cadena = "Iniciar cocinado";
+
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        cadena = idiarr[30];
+    }
 
     console.log('pantalla iddle' + horas_reloj + ';' + minutos_reloj);
 
@@ -489,7 +764,7 @@ function pantallaiddle() {
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
-        <button id = "cocinar" > Iniciar cocinado </button>
+        <button id = "cocinar" > `+cadena+` </button>
         <div id="carsousel">
         </div>
            
@@ -514,6 +789,16 @@ function pantallaiddlejaja() {
 
 function pantalla_definir_volumen() {
 
+    let cadena = "";
+
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        cadena = idiarr[2];
+    }else{
+        cadena = "VOLVER";
+    }
+
     document.body.innerHTML = `
     <div id="volumen_d">
     <section id="sec_vol1">
@@ -531,7 +816,7 @@ function pantalla_definir_volumen() {
     </section>
     <section id="sec_vol2">
         <div onclick="pantallaAjustes();" class="SmallButton">
-            <p>Volver</p>
+            <p>`+cadena+`</p>
         </div>
     </section>
     </div>
@@ -540,7 +825,17 @@ function pantalla_definir_volumen() {
 
 function pantallaCambioHora() {
     if (opcioneshabilitadas == true) {
-
+        let cadena1 = "";
+        let cadena2 = "";
+        if(localStorage.getItem("idiomaArray")){
+            let idi = localStorage.getItem("idiomaArray").toString();
+            let idiarr = idi.split(",");
+            cadena1 = idiarr[0];
+            cadena2 = idiarr[1];
+        }else{
+            cadena1 = "Cancelar";
+            cadena2 = "Aceptar";
+        }
 
         document.body.innerHTML = `
         <div id = "temporizador">
@@ -559,10 +854,10 @@ function pantallaCambioHora() {
             </div>
             <section id = "sec_vol2">
                 <div onclick="temporizadorActivadoDesactivado(0), pantallaiddlejaja();" class = "SmallButton">
-                    <p>Cancelar</p>
+                    <p>`+cadena1+`</p>
                 </div>
                 <div onclick="temporizadorActivadoDesactivado(1), pantallaiddlejaja();" class = "SmallButton">
-                    <p>Aceptar</p>
+                    <p>`+cadena2+`</p>
                 </div>
             </section>    
         </div>
@@ -572,6 +867,17 @@ function pantallaCambioHora() {
 
 function pantallaCambioTemperatura() {
     if (opcioneshabilitadas == true) {
+        let cadena1 = "";
+        let cadena2 = "";
+        if(localStorage.getItem("idiomaArray")){
+            let idi = localStorage.getItem("idiomaArray").toString();
+            let idiarr = idi.split(",");
+            cadena1 = idiarr[0];
+            cadena2 = idiarr[1];
+        }else{
+            cadena1 = "Cancelar";
+            cadena2 = "Aceptar";
+        }
 
         document.body.innerHTML = `
         <div id = "temperatura">
@@ -590,10 +896,10 @@ function pantallaCambioTemperatura() {
             </div>
             <section id = "sec_vol2">
                 <div onclick=" temperaturaActivadaDesactivada(0), pantallaiddlejaja();" class = "SmallButton">
-                    <p>Cancelar</p>
+                    <p>`+cadena1+`</p>
                 </div>
                 <div onclick="temperaturaActivadaDesactivada(1), pantallaiddlejaja();" class = "SmallButton">
-                    <p>Aceptar</p>
+                    <p>`+cadena2+`</p>
                 </div>
             </section>    
         </div>
@@ -646,37 +952,60 @@ function muestraReloj() {
 
     if (document.getElementById('carsousel') && !una_ves_hecho_cambio) {
 
+        let cadena1 = "Temperatura a conseguir: ";
+        let cadena2 = "Sonda Activada";
+        let cadena3 = "Temporizador Activado: ";
+        let cadena4 = "Ventilador Activado";
+        let cadena5 = "Resistencia Superior Activada";
+        let cadena6 = "Resistencia Inferior Activada";
+        let cadena7 = "Luz Activada";
+        let cadena8 = "Gratinador Activado";
+
+
+        if(localStorage.getItem("idiomaArray")){
+            let idi = localStorage.getItem("idiomaArray").toString();
+            let idiarr = idi.split(",");
+            cadena1 = idiarr[31];
+            cadena2 = idiarr[32];
+            cadena3 = idiarr[33];
+            cadena4 = idiarr[34];
+            cadena5 = idiarr[35];
+            cadena6 = idiarr[36];
+            cadena7 = idiarr[37];
+            cadena8 = idiarr[38];
+        }
+
 
         var auxc = `<div class="owl-carousel owl-theme owl-loaded"><div class="owl-stage-outer"><div class="owl-stage">`;
 
         if (temperaturaActivada == 'true')
-            auxc += '<div class="owl-item"><p>Temperatura a conseguir: </p><span>' + temperatura + '</span></div>';
-
+            auxc += '<div class="owl-item"><p>'+cadena1+'</p><span>' + temperatura + '</span></div>';
+    
         if (localStorage.getItem("sondaActivada") == 'true')
-            auxc += '<div class="owl-item">Sonda Activada</div>';
+            auxc += '<div class="owl-item">'+cadena2+'</div>';
 
         if (temporizadorActivado == 'true') {
 
             console.log(horas_reloj + ':' + minutos_reloj);
-            auxc += '<div class="owl-item"><p>Temporizador Activado: </p><span> ' + horas_reloj + ':' + minutos_reloj + ' </span></div>';
+            auxc += '<div class="owl-item"><p>'+cadena3+'</p><span> ' + horas_reloj + ':' + minutos_reloj + ' </span></div>';
         }
 
 
         if (ventiladorActivado == 'true')
-            auxc += '<div class="owl-item" ><span class="icon-ventilador"></span><p>Ventilador activado</p></div>';
+            auxc += '<div class="owl-item" ><span class="icon-ventilador"></span><p>'+cadena4+'</p></div>';
 
         if (resistenciaSuperiorActivada == 'true')
-            auxc += '<div class="owl-item" id="resisAlto"><span class="icon-menos"></span><p>Resistencia superior activada</p></div>';
+            auxc += '<div class="owl-item" id="resisAlto"><span class="icon-menos"></span><p>'+cadena5+'</p></div>';
 
         if (resistenciaInferiorActivada == 'true')
-            auxc += '<div class="owl-item" id="resisAbajo"><span class="icon-menos"></span><p>Resistencia inferior activada</p></div>';
+            auxc += '<div class="owl-item" id="resisAbajo"><span class="icon-menos"></span><p>'+cadena6+'</p></div>';
 
         if (luzInteriorActivada == 'true')
-            auxc += '<div class="owl-item"><span class="icon-bombilla"></span><p>Luz activada</p></div>';
+            auxc += '<div class="owl-item"><span class="icon-bombilla"></span><p>'+cadena7+'</p></div>';
 
 
         if (gratinadorActivado == 'true')
-            auxc += `<div class="owl-item" id='grat'><span class="icon-hola"></span><p>Gratinador activado</p></div>`;
+            auxc += `<div class="owl-item" id='grat'><span class="icon-hola"></span><p>`+cadena8+`</p></div>`;
 
 
 
