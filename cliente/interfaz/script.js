@@ -18,15 +18,15 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
         }
     });
 
-    electro.on("sondaConectada", function(lasonda){
-        if(lasonda){
-            localStorage.setItem("sonda","Desactivar Sonda");
-            if(document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
-            document.getElementById("sonda").innerHTML = "Desactivar Sonda";
-        }else{
+    electro.on("sondaConectada", function(lasonda) {
+        if (lasonda) {
+            localStorage.setItem("sonda", "Desactivar Sonda");
+            if (document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
+                document.getElementById("sonda").innerHTML = "Desactivar Sonda";
+        } else {
             localStorage.setItem("sonda", "Activar Sonda");
-            if(document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
-            document.getElementById("sonda").innerHTML = "Activar Sonda";
+            if (document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
+                document.getElementById("sonda").innerHTML = "Activar Sonda";
         }
 
     });
@@ -37,7 +37,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
 
         //var tiempo = document.getElementById("tiempo");
-  
+
 
 
         electro.on("puertaAbierta", function(abierta) {
@@ -57,7 +57,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             if (luzInteriorActivada == "true") electro.luz = true;
 
             //Sonda
-            if(localStorage.getItem("sondaActivada") == "true") electro.sondaConectada = true;
+            if (localStorage.getItem("sondaActivada") == "true") electro.sondaConectada = true;
 
             // Termostato del horno
             function termostato(t) {
@@ -673,13 +673,23 @@ function muestraReloj() {
 
         $(".owl-carousel").owlCarousel({
             stagePadding: 20,
-            items: 1,
             loop: true,
             margin: 50,
             autoplay: true,
             autoplayTimeout: 2300,
             autoplayHoverPause: true,
             nav: true,
+            responsive: {
+                0: {
+                    items: 1,
+
+                },
+                1000: {
+                    items: 2,
+
+                },
+
+            }
         });
 
         una_ves_hecho_cambio = true;
@@ -785,10 +795,10 @@ function activarDesactivarSonda() {
         document.getElementById("sonda").innerHTML = act;
         localStorage.setItem("sonda", act);
     }
-     localStorage.getItem("sonda");
+    localStorage.getItem("sonda");
 }
 
-function sondaActivadaDesactivada(){
+function sondaActivadaDesactivada() {
 
     let des = "Desactivar Sonda";
     let act = "Activar Sonda";
@@ -798,13 +808,13 @@ function sondaActivadaDesactivada(){
         sondaActivada = false;
         localStorage.setItem("sondaActivada", sondaActivada);
 
-    }else if (son == des){
+    } else if (son == des) {
         sondaActivada = true;
         localStorage.setItem("sondaActivada", sondaActivada);
 
     }
 
-     localStorage.getItem("sondaActivada");
+    localStorage.getItem("sondaActivada");
 }
 
 function temperaturaActivadaDesactivada(entrada) {
