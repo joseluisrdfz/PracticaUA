@@ -21,7 +21,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
     electro.on("sondaConectada", function(lasonda) {
         let activado = "Activar Sonda";
         let desactivado = "Desactivar Sonda";
-        if(localStorage.getItem("idiomaArray")){
+        if (localStorage.getItem("idiomaArray")) {
             let idi = localStorage.getItem("idiomaArray").toString();
             let idiarr = idi.split(",");
             activado = idiarr[39];
@@ -36,7 +36,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             if (document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
                 document.getElementById("sonda").innerHTML = activado;
         }
-        
+
     });
 
     //var cocinar = document.getElementById("cocinar");
@@ -91,18 +91,20 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 cocinar.disabled = false;
                 opcioneshabilitadas = true;
                 //Reinicia valores
-                localStorage.setItem("luzInteriorActivada","false");
-                localStorage.setItem("ventiladorActivado","false");
-                localStorage.setItem("resistenciaSuperiorActivada","false");
-                localStorage.setItem("resistenciaInferiorActivada","false");
-                localStorage.setItem("gratinadorActivado","false");
-                localStorage.setItem("temperaturaActivada","false");
-                localStorage.setItem("temperatura","0º");
-                localStorage.setItem("horas","0");
-                localStorage.setItem("minutos","0");
-                localStorage.setItem("temporizadorActivado","false");
+                localStorage.setItem("luzInteriorActivada", "false");
+                localStorage.setItem("ventiladorActivado", "false");
+                localStorage.setItem("resistenciaSuperiorActivada", "false");
+                localStorage.setItem("resistenciaInferiorActivada", "false");
+                localStorage.setItem("gratinadorActivado", "false");
+                localStorage.setItem("temperaturaActivada", "false");
+                localStorage.setItem("temperatura", "0º");
+                localStorage.setItem("horas", "0");
+                localStorage.setItem("minutos", "0");
+                localStorage.setItem("temporizadorActivado", "false");
                 temperatura = localStorage.getItem("temperatura");
-                electro.luz = false; 
+                electro.luz = false;
+                location.reload();
+
 
                 // Apagar elementos
                 electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
@@ -115,18 +117,18 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
 // Creacion de arrays y variables globales a medida para la seleccion de distintos idiomas, funcionales(ingles y espanyol)
 
-var chino = ["取消","确定","返回","WIFI","音量","麦克风","关于","语言","控制","扫描二维码并按照应用程序中的步骤操作", "制造商:","PACO SL 烤箱","型号:","Paco5000","产地:","西班牙阿利坎特","能源标签:","A","生产日期:","The选定的功能激活烤箱的上电阻。","选定的功能激活烤箱的下电阻。","选定的功能激活烤箱焗模式。","选定的功能允许访问配置选项烤箱。","所选功能允许您选择所需的烘烤温度。","所选功能允许您打开或关闭设备的灯。","所选功能启动烤箱内的风扇。 ","所选功能允许您设置烘焙定时器。","Red_Wifi_1","已建立连接","开始烹饪","要达到的温度:","探针激活","定时器激活:","风扇加热器激活","上电阻激活","下电阻激活","光激活","烤架激活","激活探针","停用探针"];
-var espanyol = ["Cancelar","Aceptar","VOLVER","WIFI","VOLUMEN","MICRÓFONO","ACERCA","IDIOMA","CONTROLES","Escanea el código QR y sigue los pasos en la Aplicación","Fabricante:","Hornos PACO SL","Modelo:","Paco5000","Origen:","Alicante, España","Etiquetado energético:","A","Fecha de fabricación:","La función seleccionada activa la resistencia superior del horno.","La función seleccionada activa la resistencia inferior del horno.","La función seleccionada activa el modo para gratinar del horno.","La función seleccionada permite acceder a las opciones de configuración del horno.","La función seleccionada permite escoger la temperatura de horneado deseada.","La función seleccionada permite encender o apagar la luz del electrodoméstico.","La función seleccionada activa el ventilador interior del horno.","La función seleccionada permite establecer temporizadores para hornear.","Red_Wifi_1","Conexión establecida","Iniciar cocinado","Temperatura a conseguir: ","Sonda Activada","Temporizador Activado: ","Ventilador Activado","Resistencia Superior Activada","Resistencia Inferior Activada","Luz Activada","Gratinador Activado","Activar Sonda","Desactivar Sonda"];
-var ingles = ["Cancel","To accept","RETURN","WIFI","VOLUME","MICROPHONE","ABOUT","LANGUAGE","CONTROLS","Scan the QR code and follow the steps in the App","Manufacturer","Ovens PACO SL","Model:","Paco5000","Origin:","Alicante, Spain","Energy labeling:","A","Manufacturing date:","The selected function activates the upper resistance of the oven.","The selected function activates the lower resistance of the oven.","The selected function activates the gratin mode of the oven.","The selected function allows access to the oven configuration options.","The selected function allows you to choose the desired baking temperature.","The selected function allows you to turn on or turn off the light of the appliance.","The selected function activates the internal fan of the oven.","The selected function allows you to set timers for baking.","Net_Wifi_1","Established connection","Start cooking","Temperature to achieve: ","Activated Probe","Timer Activated: ","Fan Activated","Upper Resistance Activated","Lower Resistance Activated","Light Activated","Grill Activated","Activate Probe","Disable Probe"];
-var hindi = ["रद्द करें", "ठीक", "वापसी", "वाईफ़ाई", "वॉल्यूम", "माइक्रोफ़ोन", "के बारे में", "भाषा", "नियंत्रण", "क्यूआर कोड को स्कैन करें और ऐप में चरणों का पालन करें", "निर्माता:", "PACO SL ओवन", "मॉडल:", "Paco5000", "उत्पत्ति:", "एलिकेंट, स्पेन", "ऊर्जा लेबलिंग:", "ए", "निर्माण की तिथि:", "द चयनित फ़ंक्शन ओवन के ऊपरी प्रतिरोध को सक्रिय करता है।", "चयनित फ़ंक्शन ओवन के निचले प्रतिरोध को सक्रिय करता है।" ,"चयनित फ़ंक्शन ओवन ग्रैटिन मोड को सक्रिय करता है।" ,"चयनित फ़ंक्शन के कॉन्फ़िगरेशन विकल्पों तक पहुंच की अनुमति देता है ओवन।", "चयनित फ़ंक्शन आपको वांछित बेकिंग तापमान चुनने की अनुमति देता है।", "चयनित फ़ंक्शन आपको उपकरण की रोशनी को चालू या बंद करने की अनुमति देता है।", "चयनित फ़ंक्शन ओवन के अंदर पंखे को सक्रिय करता है। "," चयनित फ़ंक्शन आपको बेकिंग के लिए टाइमर सेट करने की अनुमति देता है।","Red_Wifi_1", "कनेक्शन स्थापित", "खाना पकाना शुरू करें", "पहुंच तक तापमान:", "जांच सक्रिय", "टाइमर सक्रिय:", "पंखा हीटर सक्रिय", "ऊपरी प्रतिरोधी सक्रिय", "लोअर प्रतिरोधी सक्रिय", "प्रकाश सक्रिय", "ग्रिल सक्रिय", "जांच सक्रिय करें", "जांच निष्क्रिय करें"];
-var arabe = ["إلغاء", "موافق" ,"RETURN" , "WIFI" , "VOLUME" , "MICROPHONE" , "ABOUT" , "LANGUAGE" , "CONTROLS" , "امسح رمز الاستجابة السريعة واتبع الخطوات في التطبيق" , "الشركة المصنعة:", "PACO SL ovens", "Model:", "Paco5000", "Origin:", "Alicante, Spain", "Energy labeling:", "A", "تاريخ التصنيع:", "The تعمل الوظيفة المحددة على تنشيط المقاومة العليا للفرن. "," تعمل الوظيفة المحددة على تنشيط المقاومة المنخفضة للفرن. "," تعمل الوظيفة المحددة على تنشيط وضع فرن الفرن. "," تتيح الوظيفة المحددة الوصول إلى خيارات التكوين الخاصة بـ الفرن. "," تتيح لك الوظيفة المحددة اختيار درجة حرارة الخبز المطلوبة. "," تتيح لك الوظيفة المحددة تشغيل أو إيقاف تشغيل ضوء الجهاز. "," تعمل الوظيفة المحددة على تنشيط المروحة داخل الفرن. "," الوظيفة المحددة تتيح لك ضبط مؤقتات للخبز. "," Red_Wifi_1 "," تم تأسيس الاتصال "," بدء الطهي "," درجة الحرارة للوصول: "," تنشيط المسبار "," تم تنشيط المؤقت: "," مروحة تنشيط السخان "," تنشيط المقاومة العلوية" , "تنشيط المقاومة السفلية" , "تنشيط الضوء" , "تنشيط الشواية" , "تنشيط المسبار" , "إلغاء تنشيط المسبار"];
-var portugues = ["Cancelar","OK","RETURN","WIFI","VOLUME","MICROPHONE","SOBRE","IDIOMA","CONTROLES","Digitalize o código QR e siga os passos no App", "Fabricante:","Fornos PACO SL","Modelo:","Paco5000","Origem:","Alicante, Espanha","Rotulagem energética:","A","Data de fabricação:","A A função selecionada ativa a resistência superior do forno.","A função selecionada ativa a resistência inferior do forno.","A função selecionada ativa o modo gratinado do forno.","A função selecionada permite o acesso às opções de configuração do o forno.","A função selecionada permite que você escolha a temperatura de cozimento desejada.","A função selecionada permite que você ligue ou desligue a luz do aparelho.","A função selecionada ativa o ventilador dentro do forno. ","A função selecionada permite que você defina temporizadores para assar.","Red_Wifi_1","Conexão estabelecida","Começar a cozinhar","Temperatura para atingir:","Sonda ativada","Temporizador ativado:","Ventilador Aquecedor Ativado","Resistor Superior Ativado","Resistor Inferior Ativado","Luz Ativada","Grill Ativado","Ativar Sonda","Desativar Sonda"];
-var ruso = ["Отмена", "ОК", "ВОЗВРАТ", "WIFI", "ГРОМКОСТЬ", "МИКРОФОН", "ОБ ИНФОРМАЦИИ", "ЯЗЫК", "УПРАВЛЕНИЕ", "Отсканируйте QR-код и следуйте инструкциям в приложении", "Производитель:","Печи PACO SL","Модель:","Paco5000","Происхождение:","Аликанте, Испания","Маркировка энергоэффективности:","A","Дата изготовления:","The Выбранная функция активирует верхнее сопротивление духовки.","Выбранная функция активирует нижнее сопротивление духовки.","Выбранная функция активирует режим запекания в духовке.","Выбранная функция позволяет получить доступ к параметрам конфигурации духовке.","Выбранная функция позволяет выбрать желаемую температуру выпечки.","Выбранная функция позволяет включать или выключать свет прибора.","Выбранная функция включает вентилятор внутри духовки. ","Выбранная функция позволяет установить таймеры для выпечки.","Red_Wifi_1","Соединение установлено","Начать приготовление","Достигаемая температура:","Активирован датчик","Таймер активирован:","Вентилятор Активирован нагреватель", "Активирован верхний резистор", "Активирован нижний резистор", "Активирован свет", "Активирован гриль", "Активировать зонд", "Деактивировать зонд"];
-var urdu = ["إلغاء", "موافق" ,"RETURN" , "WIFI" , "VOLUME" , "MICROPHONE" , "ABOUT" , "LANGUAGE" , "CONTROLS" , "امسح رمز الاستجابة السريعة واتبع الخطوات في التطبيق" , "الشركة المصنعة:", "PACO SL ovens", "Model:", "Paco5000", "Origin:", "Alicante, Spain", "Energy labeling:", "A", "تاريخ التصنيع:", "The تعمل الوظيفة المحددة على تنشيط المقاومة العليا للفرن. "," تعمل الوظيفة المحددة على تنشيط المقاومة المنخفضة للفرن. "," تعمل الوظيفة المحددة على تنشيط وضع فرن الفرن. "," تتيح الوظيفة المحددة الوصول إلى خيارات التكوين الخاصة بـ الفرن. "," تتيح لك الوظيفة المحددة اختيار درجة حرارة الخبز المطلوبة. "," تتيح لك الوظيفة المحددة تشغيل أو إيقاف تشغيل ضوء الجهاز. "," تعمل الوظيفة المحددة على تنشيط المروحة داخل الفرن. "," الوظيفة المحددة تتيح لك ضبط مؤقتات للخبز. "," Red_Wifi_1 "," تم تأسيس الاتصال "," بدء الطهي "," درجة الحرارة للوصول: "," تنشيط المسبار "," تم تنشيط المؤقت: "," مروحة تنشيط السخان "," تنشيط المقاومة العلوية" , "تنشيط المقاومة السفلية" , "تنشيط الضوء" , "تنشيط الشواية" , "تنشيط المسبار" , "إلغاء تنشيط المسبار"];
-var bengali = ["বাতিল করুন","ঠিক আছে","রিটার্ন","ওয়াইফাই","ভলিউম","মাইক্রোফোন","সম্পর্কে","ভাষা","নিয়ন্ত্রণ","QR কোড স্ক্যান করুন এবং অ্যাপের ধাপগুলি অনুসরণ করুন", "প্রস্তুতকারক:","PACO SL ওভেন","মডেল:","Paco5000","অরিজিন:","Alicante, Spain","এনার্জি লেবেলিং:","A","উৎপাদনের তারিখ:","The নির্বাচিত ফাংশনটি ওভেনের উপরের প্রতিরোধকে সক্রিয় করে৷","নির্বাচিত ফাংশনটি ওভেনের নিম্ন প্রতিরোধকে সক্রিয় করে৷","নির্বাচিত ফাংশনটি ওভেন গ্র্যাটিন মোড সক্রিয় করে৷","নির্বাচিত ফাংশনটি এর কনফিগারেশন বিকল্পগুলিতে অ্যাক্সেসের অনুমতি দেয়৷ ওভেন।","নির্বাচিত ফাংশনটি আপনাকে পছন্দসই বেকিং তাপমাত্রা চয়ন করতে দেয়।","নির্বাচিত ফাংশনটি আপনাকে অ্যাপ্লায়েন্সের আলো চালু বা বন্ধ করতে দেয়।","নির্বাচিত ফাংশনটি ওভেনের ভিতরে ফ্যানটিকে সক্রিয় করে। ","নির্বাচিত ফাংশন আপনাকে বেকিংয়ের জন্য টাইমার সেট করতে দেয়।","Red_Wifi_1","সংযোগ প্রতিষ্ঠিত হয়েছে","রান্না শুরু করুন","তাপমাত্রা পৌঁছানোর জন্য:","প্রোব সক্রিয় করা হয়েছে","টাইমার সক্রিয় করা হয়েছে:","ফ্যান হিটার সক্রিয়","উপরের প্রতিরোধক সক্রিয়","লোয়ার রোধ সক্রিয়","হালকা সক্রিয়","গ্রিল সক্রিয়","প্রোব সক্রিয় করুন","প্রোব নিষ্ক্রিয় করুন"];
-var frances = ["Annuler", "OK", "RETOUR", "WIFI", "VOLUME", "MICROPHONE", "À PROPOS", "LANGUE", "COMMANDES", "Scannez le code QR et suivez les étapes dans l'application", "Fabricant :","Fours PACO SL","Modèle :","Paco5000","Origine :","Alicante, Espagne","Étiquetage énergétique :","A","Date de fabrication :","Le La fonction sélectionnée active la résistance supérieure du four.","La fonction sélectionnée active la résistance inférieure du four.","La fonction sélectionnée active le mode gratin du four.","La fonction sélectionnée permet d'accéder aux options de configuration de four.","La fonction sélectionnée permet de choisir la température de cuisson souhaitée.","La fonction sélectionnée permet d'allumer ou d'éteindre la lumière de l'appareil.","La fonction sélectionnée active le ventilateur à l'intérieur du four. ","La fonction sélectionnée permet de régler des minuteries pour la cuisson.","Red_Wifi_1","Connexion établie","Démarrer la cuisson","Température à atteindre :","Sonde activée","Minuterie activée :","Ventilateur Chauffage activé","Résistance supérieure activée","Résistance inférieure activée","Lumière activée","Gril activé","Activer la sonde","Désactiver la sonde"];
-var aleman = ["Abbrechen", "OK", "ZURÜCK", "WIFI", "LAUTSTÄRKE", "MIKROFON", "ÜBER", "SPRACHE", "STEUERUNG", "Scannen Sie den QR-Code und folgen Sie den Schritten in der App", "Hersteller:", "PACO SL Backöfen", "Modell:", "Paco5000", "Herkunft:", "Alicante, Spanien", "Energiekennzeichnung:", "A", "Herstellungsdatum:", "The Die ausgewählte Funktion aktiviert den oberen Widerstand des Ofens.","Die ausgewählte Funktion aktiviert den unteren Widerstand des Ofens.","Die ausgewählte Funktion aktiviert den Ofen-Gratin-Modus.","Die ausgewählte Funktion ermöglicht den Zugriff auf die Konfigurationsoptionen von des Ofens.","Mit der ausgewählten Funktion können Sie die gewünschte Backtemperatur wählen.","Mit der ausgewählten Funktion können Sie das Licht des Geräts ein- oder ausschalten.","Die ausgewählte Funktion aktiviert den Lüfter im Ofen. ","Mit der ausgewählten Funktion können Sie Timer zum Backen einstellen.","Red_Wifi_1","Verbindung hergestellt","Kochen starten","Zu erreichende Temperatur:","Sonde aktiviert","Timer aktiviert:","Lüfter Heizung aktiviert", "Oberer Widerstand aktiviert", "Unterer Widerstand aktiviert", "Licht aktiviert", "Grill aktiviert", "Sonde aktivieren", "Sonde deaktivieren"];
-var italiano = ["Annulla", "OK", "RETURN", "WIFI", "VOLUME", "MICROFONO", "INFO", "LINGUA", "CONTROLLI", "Scansiona il codice QR e segui i passaggi nell'app", "Produttore:","Forni PACO SL","Modello:","Paco5000","Origine:","Alicante, Spagna","Etichettatura energetica:","A","Data di produzione:","Il La funzione selezionata attiva la resistenza superiore del forno.","La funzione selezionata attiva la resistenza inferiore del forno.","La funzione selezionata attiva la modalità forno gratinato.","La funzione selezionata consente di accedere alle opzioni di configurazione di forno.","La funzione selezionata consente di scegliere la temperatura di cottura desiderata.","La funzione selezionata consente di accendere o spegnere la luce dell'apparecchio.","La funzione selezionata attiva la ventola all'interno del forno. ","La funzione selezionata consente di impostare i timer per la cottura.","Red_Wifi_1","Connessione stabilita","Inizio cottura","Temperatura da raggiungere:","Sonda attivata","Timer attivato:","Ventilatore Riscaldatore attivato", "Resistore superiore attivato", "Resistore inferiore attivato", "Luce attivata", "Griglia attivata", "Attiva sonda", "Disattiva sonda"];
+var chino = ["取消", "确定", "返回", "WIFI", "音量", "麦克风", "关于", "语言", "控制", "扫描二维码并按照应用程序中的步骤操作", "制造商:", "PACO SL 烤箱", "型号:", "Paco5000", "产地:", "西班牙阿利坎特", "能源标签:", "A", "生产日期:", "The选定的功能激活烤箱的上电阻。", "选定的功能激活烤箱的下电阻。", "选定的功能激活烤箱焗模式。", "选定的功能允许访问配置选项烤箱。", "所选功能允许您选择所需的烘烤温度。", "所选功能允许您打开或关闭设备的灯。", "所选功能启动烤箱内的风扇。 ", "所选功能允许您设置烘焙定时器。", "Red_Wifi_1", "已建立连接", "开始烹饪", "要达到的温度:", "探针激活", "定时器激活:", "风扇加热器激活", "上电阻激活", "下电阻激活", "光激活", "烤架激活", "激活探针", "停用探针"];
+var espanyol = ["Cancelar", "Aceptar", "VOLVER", "WIFI", "VOLUMEN", "MICRÓFONO", "ACERCA", "IDIOMA", "CONTROLES", "Escanea el código QR y sigue los pasos en la Aplicación", "Fabricante:", "Hornos PACO SL", "Modelo:", "Paco5000", "Origen:", "Alicante, España", "Etiquetado energético:", "A", "Fecha de fabricación:", "La función seleccionada activa la resistencia superior del horno.", "La función seleccionada activa la resistencia inferior del horno.", "La función seleccionada activa el modo para gratinar del horno.", "La función seleccionada permite acceder a las opciones de configuración del horno.", "La función seleccionada permite escoger la temperatura de horneado deseada.", "La función seleccionada permite encender o apagar la luz del electrodoméstico.", "La función seleccionada activa el ventilador interior del horno.", "La función seleccionada permite establecer temporizadores para hornear.", "Red_Wifi_1", "Conexión establecida", "Iniciar cocinado", "Temperatura a conseguir: ", "Sonda Activada", "Temporizador Activado: ", "Ventilador Activado", "Resistencia Superior Activada", "Resistencia Inferior Activada", "Luz Activada", "Gratinador Activado", "Activar Sonda", "Desactivar Sonda"];
+var ingles = ["Cancel", "To accept", "RETURN", "WIFI", "VOLUME", "MICROPHONE", "ABOUT", "LANGUAGE", "CONTROLS", "Scan the QR code and follow the steps in the App", "Manufacturer", "Ovens PACO SL", "Model:", "Paco5000", "Origin:", "Alicante, Spain", "Energy labeling:", "A", "Manufacturing date:", "The selected function activates the upper resistance of the oven.", "The selected function activates the lower resistance of the oven.", "The selected function activates the gratin mode of the oven.", "The selected function allows access to the oven configuration options.", "The selected function allows you to choose the desired baking temperature.", "The selected function allows you to turn on or turn off the light of the appliance.", "The selected function activates the internal fan of the oven.", "The selected function allows you to set timers for baking.", "Net_Wifi_1", "Established connection", "Start cooking", "Temperature to achieve: ", "Activated Probe", "Timer Activated: ", "Fan Activated", "Upper Resistance Activated", "Lower Resistance Activated", "Light Activated", "Grill Activated", "Activate Probe", "Disable Probe"];
+var hindi = ["रद्द करें", "ठीक", "वापसी", "वाईफ़ाई", "वॉल्यूम", "माइक्रोफ़ोन", "के बारे में", "भाषा", "नियंत्रण", "क्यूआर कोड को स्कैन करें और ऐप में चरणों का पालन करें", "निर्माता:", "PACO SL ओवन", "मॉडल:", "Paco5000", "उत्पत्ति:", "एलिकेंट, स्पेन", "ऊर्जा लेबलिंग:", "ए", "निर्माण की तिथि:", "द चयनित फ़ंक्शन ओवन के ऊपरी प्रतिरोध को सक्रिय करता है।", "चयनित फ़ंक्शन ओवन के निचले प्रतिरोध को सक्रिय करता है।", "चयनित फ़ंक्शन ओवन ग्रैटिन मोड को सक्रिय करता है।", "चयनित फ़ंक्शन के कॉन्फ़िगरेशन विकल्पों तक पहुंच की अनुमति देता है ओवन।", "चयनित फ़ंक्शन आपको वांछित बेकिंग तापमान चुनने की अनुमति देता है।", "चयनित फ़ंक्शन आपको उपकरण की रोशनी को चालू या बंद करने की अनुमति देता है।", "चयनित फ़ंक्शन ओवन के अंदर पंखे को सक्रिय करता है। ", " चयनित फ़ंक्शन आपको बेकिंग के लिए टाइमर सेट करने की अनुमति देता है।", "Red_Wifi_1", "कनेक्शन स्थापित", "खाना पकाना शुरू करें", "पहुंच तक तापमान:", "जांच सक्रिय", "टाइमर सक्रिय:", "पंखा हीटर सक्रिय", "ऊपरी प्रतिरोधी सक्रिय", "लोअर प्रतिरोधी सक्रिय", "प्रकाश सक्रिय", "ग्रिल सक्रिय", "जांच सक्रिय करें", "जांच निष्क्रिय करें"];
+var arabe = ["إلغاء", "موافق", "RETURN", "WIFI", "VOLUME", "MICROPHONE", "ABOUT", "LANGUAGE", "CONTROLS", "امسح رمز الاستجابة السريعة واتبع الخطوات في التطبيق", "الشركة المصنعة:", "PACO SL ovens", "Model:", "Paco5000", "Origin:", "Alicante, Spain", "Energy labeling:", "A", "تاريخ التصنيع:", "The تعمل الوظيفة المحددة على تنشيط المقاومة العليا للفرن. ", " تعمل الوظيفة المحددة على تنشيط المقاومة المنخفضة للفرن. ", " تعمل الوظيفة المحددة على تنشيط وضع فرن الفرن. ", " تتيح الوظيفة المحددة الوصول إلى خيارات التكوين الخاصة بـ الفرن. ", " تتيح لك الوظيفة المحددة اختيار درجة حرارة الخبز المطلوبة. ", " تتيح لك الوظيفة المحددة تشغيل أو إيقاف تشغيل ضوء الجهاز. ", " تعمل الوظيفة المحددة على تنشيط المروحة داخل الفرن. ", " الوظيفة المحددة تتيح لك ضبط مؤقتات للخبز. ", " Red_Wifi_1 ", " تم تأسيس الاتصال ", " بدء الطهي ", " درجة الحرارة للوصول: ", " تنشيط المسبار ", " تم تنشيط المؤقت: ", " مروحة تنشيط السخان ", " تنشيط المقاومة العلوية", "تنشيط المقاومة السفلية", "تنشيط الضوء", "تنشيط الشواية", "تنشيط المسبار", "إلغاء تنشيط المسبار"];
+var portugues = ["Cancelar", "OK", "RETURN", "WIFI", "VOLUME", "MICROPHONE", "SOBRE", "IDIOMA", "CONTROLES", "Digitalize o código QR e siga os passos no App", "Fabricante:", "Fornos PACO SL", "Modelo:", "Paco5000", "Origem:", "Alicante, Espanha", "Rotulagem energética:", "A", "Data de fabricação:", "A A função selecionada ativa a resistência superior do forno.", "A função selecionada ativa a resistência inferior do forno.", "A função selecionada ativa o modo gratinado do forno.", "A função selecionada permite o acesso às opções de configuração do o forno.", "A função selecionada permite que você escolha a temperatura de cozimento desejada.", "A função selecionada permite que você ligue ou desligue a luz do aparelho.", "A função selecionada ativa o ventilador dentro do forno. ", "A função selecionada permite que você defina temporizadores para assar.", "Red_Wifi_1", "Conexão estabelecida", "Começar a cozinhar", "Temperatura para atingir:", "Sonda ativada", "Temporizador ativado:", "Ventilador Aquecedor Ativado", "Resistor Superior Ativado", "Resistor Inferior Ativado", "Luz Ativada", "Grill Ativado", "Ativar Sonda", "Desativar Sonda"];
+var ruso = ["Отмена", "ОК", "ВОЗВРАТ", "WIFI", "ГРОМКОСТЬ", "МИКРОФОН", "ОБ ИНФОРМАЦИИ", "ЯЗЫК", "УПРАВЛЕНИЕ", "Отсканируйте QR-код и следуйте инструкциям в приложении", "Производитель:", "Печи PACO SL", "Модель:", "Paco5000", "Происхождение:", "Аликанте, Испания", "Маркировка энергоэффективности:", "A", "Дата изготовления:", "The Выбранная функция активирует верхнее сопротивление духовки.", "Выбранная функция активирует нижнее сопротивление духовки.", "Выбранная функция активирует режим запекания в духовке.", "Выбранная функция позволяет получить доступ к параметрам конфигурации духовке.", "Выбранная функция позволяет выбрать желаемую температуру выпечки.", "Выбранная функция позволяет включать или выключать свет прибора.", "Выбранная функция включает вентилятор внутри духовки. ", "Выбранная функция позволяет установить таймеры для выпечки.", "Red_Wifi_1", "Соединение установлено", "Начать приготовление", "Достигаемая температура:", "Активирован датчик", "Таймер активирован:", "Вентилятор Активирован нагреватель", "Активирован верхний резистор", "Активирован нижний резистор", "Активирован свет", "Активирован гриль", "Активировать зонд", "Деактивировать зонд"];
+var urdu = ["إلغاء", "موافق", "RETURN", "WIFI", "VOLUME", "MICROPHONE", "ABOUT", "LANGUAGE", "CONTROLS", "امسح رمز الاستجابة السريعة واتبع الخطوات في التطبيق", "الشركة المصنعة:", "PACO SL ovens", "Model:", "Paco5000", "Origin:", "Alicante, Spain", "Energy labeling:", "A", "تاريخ التصنيع:", "The تعمل الوظيفة المحددة على تنشيط المقاومة العليا للفرن. ", " تعمل الوظيفة المحددة على تنشيط المقاومة المنخفضة للفرن. ", " تعمل الوظيفة المحددة على تنشيط وضع فرن الفرن. ", " تتيح الوظيفة المحددة الوصول إلى خيارات التكوين الخاصة بـ الفرن. ", " تتيح لك الوظيفة المحددة اختيار درجة حرارة الخبز المطلوبة. ", " تتيح لك الوظيفة المحددة تشغيل أو إيقاف تشغيل ضوء الجهاز. ", " تعمل الوظيفة المحددة على تنشيط المروحة داخل الفرن. ", " الوظيفة المحددة تتيح لك ضبط مؤقتات للخبز. ", " Red_Wifi_1 ", " تم تأسيس الاتصال ", " بدء الطهي ", " درجة الحرارة للوصول: ", " تنشيط المسبار ", " تم تنشيط المؤقت: ", " مروحة تنشيط السخان ", " تنشيط المقاومة العلوية", "تنشيط المقاومة السفلية", "تنشيط الضوء", "تنشيط الشواية", "تنشيط المسبار", "إلغاء تنشيط المسبار"];
+var bengali = ["বাতিল করুন", "ঠিক আছে", "রিটার্ন", "ওয়াইফাই", "ভলিউম", "মাইক্রোফোন", "সম্পর্কে", "ভাষা", "নিয়ন্ত্রণ", "QR কোড স্ক্যান করুন এবং অ্যাপের ধাপগুলি অনুসরণ করুন", "প্রস্তুতকারক:", "PACO SL ওভেন", "মডেল:", "Paco5000", "অরিজিন:", "Alicante, Spain", "এনার্জি লেবেলিং:", "A", "উৎপাদনের তারিখ:", "The নির্বাচিত ফাংশনটি ওভেনের উপরের প্রতিরোধকে সক্রিয় করে৷", "নির্বাচিত ফাংশনটি ওভেনের নিম্ন প্রতিরোধকে সক্রিয় করে৷", "নির্বাচিত ফাংশনটি ওভেন গ্র্যাটিন মোড সক্রিয় করে৷", "নির্বাচিত ফাংশনটি এর কনফিগারেশন বিকল্পগুলিতে অ্যাক্সেসের অনুমতি দেয়৷ ওভেন।", "নির্বাচিত ফাংশনটি আপনাকে পছন্দসই বেকিং তাপমাত্রা চয়ন করতে দেয়।", "নির্বাচিত ফাংশনটি আপনাকে অ্যাপ্লায়েন্সের আলো চালু বা বন্ধ করতে দেয়।", "নির্বাচিত ফাংশনটি ওভেনের ভিতরে ফ্যানটিকে সক্রিয় করে। ", "নির্বাচিত ফাংশন আপনাকে বেকিংয়ের জন্য টাইমার সেট করতে দেয়।", "Red_Wifi_1", "সংযোগ প্রতিষ্ঠিত হয়েছে", "রান্না শুরু করুন", "তাপমাত্রা পৌঁছানোর জন্য:", "প্রোব সক্রিয় করা হয়েছে", "টাইমার সক্রিয় করা হয়েছে:", "ফ্যান হিটার সক্রিয়", "উপরের প্রতিরোধক সক্রিয়", "লোয়ার রোধ সক্রিয়", "হালকা সক্রিয়", "গ্রিল সক্রিয়", "প্রোব সক্রিয় করুন", "প্রোব নিষ্ক্রিয় করুন"];
+var frances = ["Annuler", "OK", "RETOUR", "WIFI", "VOLUME", "MICROPHONE", "À PROPOS", "LANGUE", "COMMANDES", "Scannez le code QR et suivez les étapes dans l'application", "Fabricant :", "Fours PACO SL", "Modèle :", "Paco5000", "Origine :", "Alicante, Espagne", "Étiquetage énergétique :", "A", "Date de fabrication :", "Le La fonction sélectionnée active la résistance supérieure du four.", "La fonction sélectionnée active la résistance inférieure du four.", "La fonction sélectionnée active le mode gratin du four.", "La fonction sélectionnée permet d'accéder aux options de configuration de four.", "La fonction sélectionnée permet de choisir la température de cuisson souhaitée.", "La fonction sélectionnée permet d'allumer ou d'éteindre la lumière de l'appareil.", "La fonction sélectionnée active le ventilateur à l'intérieur du four. ", "La fonction sélectionnée permet de régler des minuteries pour la cuisson.", "Red_Wifi_1", "Connexion établie", "Démarrer la cuisson", "Température à atteindre :", "Sonde activée", "Minuterie activée :", "Ventilateur Chauffage activé", "Résistance supérieure activée", "Résistance inférieure activée", "Lumière activée", "Gril activé", "Activer la sonde", "Désactiver la sonde"];
+var aleman = ["Abbrechen", "OK", "ZURÜCK", "WIFI", "LAUTSTÄRKE", "MIKROFON", "ÜBER", "SPRACHE", "STEUERUNG", "Scannen Sie den QR-Code und folgen Sie den Schritten in der App", "Hersteller:", "PACO SL Backöfen", "Modell:", "Paco5000", "Herkunft:", "Alicante, Spanien", "Energiekennzeichnung:", "A", "Herstellungsdatum:", "The Die ausgewählte Funktion aktiviert den oberen Widerstand des Ofens.", "Die ausgewählte Funktion aktiviert den unteren Widerstand des Ofens.", "Die ausgewählte Funktion aktiviert den Ofen-Gratin-Modus.", "Die ausgewählte Funktion ermöglicht den Zugriff auf die Konfigurationsoptionen von des Ofens.", "Mit der ausgewählten Funktion können Sie die gewünschte Backtemperatur wählen.", "Mit der ausgewählten Funktion können Sie das Licht des Geräts ein- oder ausschalten.", "Die ausgewählte Funktion aktiviert den Lüfter im Ofen. ", "Mit der ausgewählten Funktion können Sie Timer zum Backen einstellen.", "Red_Wifi_1", "Verbindung hergestellt", "Kochen starten", "Zu erreichende Temperatur:", "Sonde aktiviert", "Timer aktiviert:", "Lüfter Heizung aktiviert", "Oberer Widerstand aktiviert", "Unterer Widerstand aktiviert", "Licht aktiviert", "Grill aktiviert", "Sonde aktivieren", "Sonde deaktivieren"];
+var italiano = ["Annulla", "OK", "RETURN", "WIFI", "VOLUME", "MICROFONO", "INFO", "LINGUA", "CONTROLLI", "Scansiona il codice QR e segui i passaggi nell'app", "Produttore:", "Forni PACO SL", "Modello:", "Paco5000", "Origine:", "Alicante, Spagna", "Etichettatura energetica:", "A", "Data di produzione:", "Il La funzione selezionata attiva la resistenza superiore del forno.", "La funzione selezionata attiva la resistenza inferiore del forno.", "La funzione selezionata attiva la modalità forno gratinato.", "La funzione selezionata consente di accedere alle opzioni di configurazione di forno.", "La funzione selezionata consente di scegliere la temperatura di cottura desiderata.", "La funzione selezionata consente di accendere o spegnere la luce dell'apparecchio.", "La funzione selezionata attiva la ventola all'interno del forno. ", "La funzione selezionata consente di impostare i timer per la cottura.", "Red_Wifi_1", "Connessione stabilita", "Inizio cottura", "Temperatura da raggiungere:", "Sonda attivata", "Timer attivato:", "Ventilatore Riscaldatore attivato", "Resistore superiore attivato", "Resistore inferiore attivato", "Luce attivata", "Griglia attivata", "Attiva sonda", "Disattiva sonda"];
 //comprobar si es la primera vez que el usuario usa el horno usando cookies y localstorage
 var idioma;
 var microfono = "icon-desmuteado";
@@ -198,64 +200,64 @@ function main(x) {
 function idiomaSeleccionado(idiomaSeleccionado) {
     idioma = idiomaSeleccionado;
     console.log(idioma);
-    if(idioma == 0){
+    if (idioma == 0) {
         localStorage.setItem("idioma", "chino");
-        localStorage.setItem("idiomaArray",chino);
-    }else if(idioma == 1){
+        localStorage.setItem("idiomaArray", chino);
+    } else if (idioma == 1) {
         localStorage.setItem("idioma", "español");
-        localStorage.setItem("idiomaArray",espanyol);
-    
-    }else if(idioma == 2){
-        localStorage.setItem("idioma","ingles");
-        localStorage.setItem("idiomaArray",ingles);
+        localStorage.setItem("idiomaArray", espanyol);
 
-    }else if(idioma == 3){
-        localStorage.setItem("idioma","hindi");
-        localStorage.setItem("idiomaArray",hindi);
+    } else if (idioma == 2) {
+        localStorage.setItem("idioma", "ingles");
+        localStorage.setItem("idiomaArray", ingles);
 
-    }else if(idioma == 4){
-        localStorage.setItem("idioma","arabe");
-        localStorage.setItem("idiomaArray",arabe);
+    } else if (idioma == 3) {
+        localStorage.setItem("idioma", "hindi");
+        localStorage.setItem("idiomaArray", hindi);
 
-    }else if(idioma == 5){
-        localStorage.setItem("idioma","portugues");
-        localStorage.setItem("idiomaArray",portugues);
+    } else if (idioma == 4) {
+        localStorage.setItem("idioma", "arabe");
+        localStorage.setItem("idiomaArray", arabe);
 
-    }else if(idioma == 6){
-        localStorage.setItem("idioma","ruso");
-        localStorage.setItem("idiomaArray",ruso);
+    } else if (idioma == 5) {
+        localStorage.setItem("idioma", "portugues");
+        localStorage.setItem("idiomaArray", portugues);
 
-    }else if(idioma == 7){
-        localStorage.setItem("idioma","urdu");
-        localStorage.setItem("idiomaArray",urdu);
+    } else if (idioma == 6) {
+        localStorage.setItem("idioma", "ruso");
+        localStorage.setItem("idiomaArray", ruso);
 
-    }else if(idioma == 8){
-        localStorage.setItem("idioma","bengali");
-        localStorage.setItem("idiomaArray",bengali);
+    } else if (idioma == 7) {
+        localStorage.setItem("idioma", "urdu");
+        localStorage.setItem("idiomaArray", urdu);
 
-    }else if(idioma == 9){
-        localStorage.setItem("idioma","frances");
-        localStorage.setItem("idiomaArray",frances);
+    } else if (idioma == 8) {
+        localStorage.setItem("idioma", "bengali");
+        localStorage.setItem("idiomaArray", bengali);
 
-    }else if(idioma == 10){
-        localStorage.setItem("idioma","aleman");
-        localStorage.setItem("idiomaArray",aleman);
+    } else if (idioma == 9) {
+        localStorage.setItem("idioma", "frances");
+        localStorage.setItem("idiomaArray", frances);
 
-    }else if(idioma == 11){
-        localStorage.setItem("idioma","italiano");
-        localStorage.setItem("idiomaArray",italiano);
+    } else if (idioma == 10) {
+        localStorage.setItem("idioma", "aleman");
+        localStorage.setItem("idiomaArray", aleman);
+
+    } else if (idioma == 11) {
+        localStorage.setItem("idioma", "italiano");
+        localStorage.setItem("idiomaArray", italiano);
     }
-    
+
     let idi = localStorage.getItem("idiomaArray").toString();
     let idiarr = idi.split(",");
-    localStorage.setItem("sonda",idiarr[39]);
+    localStorage.setItem("sonda", idiarr[39]);
 }
 
 
 function pantallaIdiomas() {
     document.body.innerHTML = `
     <div id="divIdiomas">
-        <span class="icon-abajo arrowdown"></span>
+        <a href="#italiano"><span class="icon-abajo arrowdown"></span></a>
         <div>
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(0)' class ="idiomas" id ="chino"><p>普通话</p></div>
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(1)' class = "idiomas" id ="espanyol"><p>Español</p></div>
@@ -270,12 +272,12 @@ function pantallaIdiomas() {
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(10)' class = "idiomas" id ="aleman"><p>Deutsch</p></div>
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(11)' class = "idiomas" id ="italiano"><p>Italiano</p></div>
         </div>
-        <span class="icon-arriba arrowup"></span>
+        <a href="#chino"><span class="icon-arriba arrowup"></span></a>
     </div>`;
 }
 
 function pantallaEscanearQr() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         console.log(idiarr);
@@ -283,13 +285,13 @@ function pantallaEscanearQr() {
         document.body.innerHTML = `
         <div id="wifi">
         <div>
-        <p>`+ idiarr[9] + `</p>
+        <p>` + idiarr[9] + `</p>
         <span onclick = "pantallaConexionEstablecida();" class="icon-qr"></span>
         </div>
         
-        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>`+ idiarr[2] +`</span></div>
+        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
         </div>`;
-    }else{
+    } else {
         document.body.innerHTML = `
         <div id="wifi">
         <div>
@@ -304,18 +306,18 @@ function pantallaEscanearQr() {
 
 function pantallaConexionEstablecida() {
 
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
-        document.body.innerHTML = ` <div id="wifi2"><h1>`+ idiarr[28] +`</h1>
-        <span><h2>`+ idiarr[29] +`</h2>
+        document.body.innerHTML = ` <div id="wifi2"><h1>` + idiarr[28] + `</h1>
+        <span><h2>` + idiarr[29] + `</h2>
         <span class="icon-correcto"></span></span></div>`;
-    }else{
+    } else {
         document.body.innerHTML = ` <div id="wifi2"><h1>Red_Wifi_1</h1>
         <span><h2>Conexión establecida</h2>
         <span class="icon-correcto"></span></span></div>`;
     }
-    
+
     setTimeout(() => {
         pantallaAjustes();
     }, 3500);
@@ -323,39 +325,39 @@ function pantallaConexionEstablecida() {
 
 function pantallaAjustes() {
     if (opcioneshabilitadas == true) {
-        if(localStorage.getItem("idiomaArray")){
+        if (localStorage.getItem("idiomaArray")) {
             let idi = localStorage.getItem("idiomaArray").toString();
             let idiarr = idi.split(",");
             document.body.innerHTML = `
             <div id="divajustes">
             <div onclick = "pantallaEscanearQr();" class="opcion">
-                <p>`+idiarr[3]+`</p>
+                <p>` + idiarr[3] + `</p>
                 <span class="icon-wifi"></span>
             </div>
             <div onclick = "pantalla_definir_volumen();" class="opcion">
-                <p>`+idiarr[4]+`</p>
+                <p>` + idiarr[4] + `</p>
                 <span class="icon-convolumen"></span>
             </div>
             <div onclick = "microfonoActivadoDesactivado(this);" class="opcion micro">
-                <p>`+idiarr[5]+`</p>
+                <p>` + idiarr[5] + `</p>
                 <span id = "mic" class="` + microfono + `"></span>
             </div>
             <div onclick = "pantallaDatosHorno()"  class="opcion">
-                <p>`+idiarr[6]+`</p>
+                <p>` + idiarr[6] + `</p>
                 <span class="icon-informacion"></span>
             </div>
             <div onclick = "pantallaIdiomas();" class="opcion">
-                <p>`+idiarr[7]+`</p>
+                <p>` + idiarr[7] + `</p>
                 <span class="icon-idioma"></span>
             </div>
             <div onclick = "pantallaControles();" class="opcion">
-                <p>`+idiarr[8]+`</p>
+                <p>` + idiarr[8] + `</p>
                 <span class="icon-mano"></span>
             </div>
-            <div onclick = "pantallaiddlejaja()" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+            <div onclick = "pantallaiddlejaja()" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
             </div> 
          `;
-        }else{
+        } else {
             document.body.innerHTML = `
             <div id="divajustes">
             <div onclick = "pantallaEscanearQr();" class="opcion">
@@ -386,13 +388,13 @@ function pantallaAjustes() {
             </div> 
          `;
         }
-        
+
     }
 
 }
 
 function pantallaControles() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
@@ -421,11 +423,11 @@ function pantallaControles() {
         <div onclick = "pantallaInformacionReloj();" class="opcioncontroles">
         <span class="icon-reloj"></span>
         </div>
-        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+        <div onclick = "pantallaAjustes();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
    
         `;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div id = "divcontroles">
         <div onclick = "pantallaInformacionResistenciaSuperior();" class="opcioncontroles">
@@ -457,25 +459,25 @@ function pantallaControles() {
    
         `;
     }
-    
+
 }
 
 function pantallaInformacionLuz() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-bombilla"></span>
-        <p>`+idiarr[25]+`</p>
+        <p>` + idiarr[25] + `</p>
         </div>
-        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
     
     `;
-    
-    }else{
+
+    } else {
         document.body.innerHTML = `
     <div class="info">
         <div>
@@ -488,24 +490,24 @@ function pantallaInformacionLuz() {
     `;
     }
 
-    
+
 }
 
 function pantallaInformacionTemperatura() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-grados"></span>
-        <p>`+idiarr[24]+`</p>
+        <p>` + idiarr[24] + `</p>
         </div>
-        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
     
     `;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div class="info">
         <div>
@@ -517,24 +519,24 @@ function pantallaInformacionTemperatura() {
     
     `;
     }
-    
+
 }
 
 function pantallaInformacionResistenciaInferior() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div class="info">
        <div>
        <span class="icon-menos"></span>
-       <p>`+idiarr[21]+`</p>
+       <p>` + idiarr[21] + `</p>
        </div>
-       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
     
     `;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div class="info">
        <div>
@@ -545,25 +547,25 @@ function pantallaInformacionResistenciaInferior() {
     </div>
     
     `;
-    }   
-    
+    }
+
 }
 
 function pantallaInformacionResistenciaSuperior() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
         <div class="info">
            <div>
            <span class="icon-menos"></span>
-           <p>`+idiarr[20]+`</p>
+           <p>` + idiarr[20] + `</p>
             </div>
-            <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+            <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
         </div>
        
         `;
-    }else{
+    } else {
         document.body.innerHTML = `
         <div class="info">
            <div>
@@ -575,24 +577,24 @@ function pantallaInformacionResistenciaSuperior() {
        
         `;
     }
-   
+
 }
 
 function pantallaInformacionGratinar() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-hola"></span>
-        <p>`+idiarr[22]+`</p>
+        <p>` + idiarr[22] + `</p>
         </div>
-        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
    
     `;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div class="info">
         <div>
@@ -604,24 +606,24 @@ function pantallaInformacionGratinar() {
    
     `;
     }
-    
+
 }
 
 function pantallaInformacionVentilador() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div class="info">
        <div>
        <span class="icon-ventilador"></span>
-       <p>`+idiarr[26]+`</p>
+       <p>` + idiarr[26] + `</p>
        </div>
-       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+       <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
    
     `;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div class="info">
        <div>
@@ -633,23 +635,23 @@ function pantallaInformacionVentilador() {
    
     `;
     }
-    
+
 }
 
 function pantallaInformacionAjustes() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-ajustes"></span>
-        <p>`+idiarr[23]+`</p>
+        <p>` + idiarr[23] + `</p>
         </div>
-        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
     `;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div class="info">
         <div>
@@ -660,24 +662,24 @@ function pantallaInformacionAjustes() {
     </div>
     `;
     }
-    
+
 }
 
 function pantallaInformacionReloj() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div class="info">
         <div>
         <span class="icon-reloj"></span>
-        <p>`+idiarr[27]+`</p>
+        <p>` + idiarr[27] + `</p>
         </div>
-        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>`+idiarr[2]+`</span></div>
+        <div onclick = "pantallaControles();" id="width100" class="SmallButton"><span>` + idiarr[2] + `</span></div>
     </div>
    
     `;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div class="info">
         <div>
@@ -689,42 +691,42 @@ function pantallaInformacionReloj() {
    
     `;
     }
-    
+
 }
 
 function pantallaDatosHorno() {
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         document.body.innerHTML = `
     <div id="datoshorno"> 
     <ul class="datoshorno">
         <li>
-            <b>`+idiarr[10]+`</b>
-            <p>`+idiarr[11]+`</p>
+            <b>` + idiarr[10] + `</b>
+            <p>` + idiarr[11] + `</p>
         </li>
         <li>
-            <b>`+idiarr[12]+`</b>
-            <p>`+idiarr[13]+`</p>
+            <b>` + idiarr[12] + `</b>
+            <p>` + idiarr[13] + `</p>
         </li>
         <li>
-            <b>`+idiarr[14]+`</b>
-            <p>`+idiarr[15]+","+idiarr[16]+`</p>
+            <b>` + idiarr[14] + `</b>
+            <p>` + idiarr[15] + "," + idiarr[16] + `</p>
         </li>
         <li>
-            <b>`+idiarr[17]+`</b>
-            <p>`+idiarr[18]+`</p>
+            <b>` + idiarr[17] + `</b>
+            <p>` + idiarr[18] + `</p>
         </li>
         <li>
-            <b>`+idiarr[19]+`</b>
+            <b>` + idiarr[19] + `</b>
             <p>2022</p>
         </li>
     </ul>
     <div onclick = "pantallaAjustes()" id="width100" class="SmallButton">
-        <span>`+idiarr[2]+`</span>
+        <span>` + idiarr[2] + `</span>
     </div>
     </div>`;
-    }else{
+    } else {
         document.body.innerHTML = `
     <div id="datoshorno"> 
     <ul class="datoshorno">
@@ -754,8 +756,8 @@ function pantallaDatosHorno() {
     </div>
     </div>`;
     }
-    
-    
+
+
 }
 
 function cambiardown(element, idcirculo) {
@@ -789,7 +791,7 @@ function pantallaiddle() {
     caracteristicasAlCargar_unavegada();
     let cadena = "Iniciar cocinado";
 
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         cadena = idiarr[30];
@@ -813,7 +815,7 @@ function pantallaiddle() {
             <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
-        <button id = "cocinar" > `+cadena+` </button>
+        <button id = "cocinar" > ` + cadena + ` </button>
         <div id="carsousel">
         </div>
            
@@ -840,11 +842,11 @@ function pantalla_definir_volumen() {
 
     let cadena = "";
 
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         cadena = idiarr[2];
-    }else{
+    } else {
         cadena = "VOLVER";
     }
 
@@ -865,7 +867,7 @@ function pantalla_definir_volumen() {
     </section>
     <section id="sec_vol2">
         <div onclick="pantallaAjustes();" class="SmallButton">
-            <p>`+cadena+`</p>
+            <p>` + cadena + `</p>
         </div>
     </section>
     </div>
@@ -876,12 +878,12 @@ function pantallaCambioHora() {
     if (opcioneshabilitadas == true) {
         let cadena1 = "";
         let cadena2 = "";
-        if(localStorage.getItem("idiomaArray")){
+        if (localStorage.getItem("idiomaArray")) {
             let idi = localStorage.getItem("idiomaArray").toString();
             let idiarr = idi.split(",");
             cadena1 = idiarr[0];
             cadena2 = idiarr[1];
-        }else{
+        } else {
             cadena1 = "Cancelar";
             cadena2 = "Aceptar";
         }
@@ -903,10 +905,10 @@ function pantallaCambioHora() {
             </div>
             <section id = "sec_vol2">
                 <div onclick="temporizadorActivadoDesactivado(0), pantallaiddlejaja();" class = "SmallButton">
-                    <p>`+cadena1+`</p>
+                    <p>` + cadena1 + `</p>
                 </div>
                 <div onclick="temporizadorActivadoDesactivado(1), pantallaiddlejaja();" class = "SmallButton">
-                    <p>`+cadena2+`</p>
+                    <p>` + cadena2 + `</p>
                 </div>
             </section>    
         </div>
@@ -919,16 +921,16 @@ function pantallaCambioTemperatura() {
         let cadena1 = "";
         let cadena2 = "";
         let sondaval = "Activar Sonda";
-        if(localStorage.getItem("idiomaArray")){
+        if (localStorage.getItem("idiomaArray")) {
             let idi = localStorage.getItem("idiomaArray").toString();
             let idiarr = idi.split(",");
             cadena1 = idiarr[0];
             cadena2 = idiarr[1];
-        }else{
+        } else {
             cadena1 = "Cancelar";
             cadena2 = "Aceptar";
         }
-        if(localStorage.getItem("sonda")){
+        if (localStorage.getItem("sonda")) {
             sondaval = localStorage.getItem("sonda");
         }
 
@@ -949,10 +951,10 @@ function pantallaCambioTemperatura() {
             </div>
             <section id = "sec_vol2">
                 <div onclick=" temperaturaActivadaDesactivada(0), pantallaiddlejaja();" class = "SmallButton">
-                    <p>`+cadena1+`</p>
+                    <p>` + cadena1 + `</p>
                 </div>
                 <div onclick="temperaturaActivadaDesactivada(1), pantallaiddlejaja();" class = "SmallButton">
-                    <p>`+cadena2+`</p>
+                    <p>` + cadena2 + `</p>
                 </div>
             </section>    
         </div>
@@ -1015,7 +1017,7 @@ function muestraReloj() {
         let cadena8 = "Gratinador Activado";
 
 
-        if(localStorage.getItem("idiomaArray")){
+        if (localStorage.getItem("idiomaArray")) {
             let idi = localStorage.getItem("idiomaArray").toString();
             let idiarr = idi.split(",");
             cadena1 = idiarr[31];
@@ -1032,33 +1034,33 @@ function muestraReloj() {
         var auxc = `<div class="owl-carousel owl-theme owl-loaded"><div class="owl-stage-outer"><div class="owl-stage">`;
 
         if (temperaturaActivada == 'true')
-            auxc += '<div class="owl-item"><p>'+cadena1+'</p><span>' + temperatura + '</span></div>';
-    
+            auxc += '<div class="owl-item"><p>' + cadena1 + '</p><span>' + temperatura + '</span></div>';
+
         if (localStorage.getItem("sondaActivada") == 'true')
-            auxc += '<div class="owl-item">'+cadena2+'</div>';
+            auxc += '<div class="owl-item">' + cadena2 + '</div>';
 
         if (temporizadorActivado == 'true') {
 
             console.log(horas_reloj + ':' + minutos_reloj);
-            auxc += '<div class="owl-item"><p>'+cadena3+'</p><span> ' + horas_reloj + ':' + minutos_reloj + ' </span></div>';
+            auxc += '<div class="owl-item"><p>' + cadena3 + '</p><span> ' + horas_reloj + ':' + minutos_reloj + ' </span></div>';
         }
 
 
         if (ventiladorActivado == 'true')
-            auxc += '<div class="owl-item" ><span class="icon-ventilador"></span><p>'+cadena4+'</p></div>';
+            auxc += '<div class="owl-item" ><span class="icon-ventilador"></span><p>' + cadena4 + '</p></div>';
 
         if (resistenciaSuperiorActivada == 'true')
-            auxc += '<div class="owl-item" id="resisAlto"><span class="icon-menos"></span><p>'+cadena5+'</p></div>';
+            auxc += '<div class="owl-item" id="resisAlto"><span class="icon-menos"></span><p>' + cadena5 + '</p></div>';
 
         if (resistenciaInferiorActivada == 'true')
-            auxc += '<div class="owl-item" id="resisAbajo"><span class="icon-menos"></span><p>'+cadena6+'</p></div>';
+            auxc += '<div class="owl-item" id="resisAbajo"><span class="icon-menos"></span><p>' + cadena6 + '</p></div>';
 
         if (luzInteriorActivada == 'true')
-            auxc += '<div class="owl-item"><span class="icon-bombilla"></span><p>'+cadena7+'</p></div>';
+            auxc += '<div class="owl-item"><span class="icon-bombilla"></span><p>' + cadena7 + '</p></div>';
 
 
         if (gratinadorActivado == 'true')
-            auxc += `<div class="owl-item" id='grat'><span class="icon-hola"></span><p>`+cadena8+`</p></div>`;
+            auxc += `<div class="owl-item" id='grat'><span class="icon-hola"></span><p>` + cadena8 + `</p></div>`;
 
 
 
@@ -1180,14 +1182,14 @@ function establecerTemperatura(entrada) {
 function activarDesactivarSonda() {
     let des = "Desactivar Sonda";
     let act = "Activar Sonda";
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         des = idiarr[40];
         act = idiarr[39];
     }
 
-   
+
 
     let son = document.getElementById("sonda").innerHTML;
     if (son == act) {
@@ -1203,7 +1205,7 @@ function activarDesactivarSonda() {
 function sondaActivadaDesactivada() {
     let des = "Desactivar Sonda";
     let act = "Activar Sonda";
-    if(localStorage.getItem("idiomaArray")){
+    if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         des = idiarr[40];

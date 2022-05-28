@@ -81,7 +81,7 @@ body {
     width: 75%;
 }
 
-#divIdiomas>span {
+#divIdiomas>a>span {
     font-size: 2.5em;
     width: 12.5%;
     text-align: center;
@@ -692,7 +692,6 @@ div#volumen_d {
     }
 }
 
-
 @media (max-width: 785px) {
     ul.datoshorno {
         display: flex;
@@ -703,6 +702,7 @@ div#volumen_d {
         margin: 2em
     }
 }
+
 @media (max-height: 500px) {
     ul.datoshorno {
         display: flex;
@@ -721,18 +721,20 @@ div#volumen_d {
     #divIdiomas {
         overflow: scroll;
     }
+    #divIdiomas>a {
+        position: absolute;
+        top: 50vh;
+    }
+    #divIdiomas>a:nth-of-type(1) {
+        left: 3.6%;
+    }
+    #divIdiomas>a:nth-of-type(2) {
+        left: 90%;
+    }
 }
 
 @media (max-width: 1389px) {
-   .opcioncontroles {
-        height: fit-content;
-        width: 7em;
-        margin: 3%;
-        font-size: 1.2em;
-    }
-}
-@media (max-height: 700px) {
-   .opcioncontroles {
+    .opcioncontroles {
         height: fit-content;
         width: 7em;
         margin: 3%;
@@ -741,108 +743,117 @@ div#volumen_d {
 }
 
 @media (max-height: 700px) {
-   #wifi>div:first-child {
+    .opcioncontroles {
+        height: fit-content;
+        width: 7em;
+        margin: 3%;
+        font-size: 1.2em;
+    }
+}
+
+@media (max-height: 700px) {
+    #wifi>div:first-child {
         font-size: 0.7em;
     }
 }
 
 @media (max-height: 900px) {
-     .info{
+    .info {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
     }
-    .info>div:first-child{
-        font-size:1.4em; 
+    .info>div:first-child {
+        font-size: 1.4em;
         height: fit-content;
     }
-    #temporizador>:nth-child(2)>div{
+    #temporizador>:nth-child(2)>div {
         font-size: 0.7em;
-        height:20em;
+        height: 20em;
     }
-    #temporizador>:nth-child(3){
+    #temporizador>:nth-child(3) {
         font-size: 0.7em;
     }
 }
 
 @media (max-height: 670px) {
-    #temporizador>:nth-child(1){
+    #temporizador>:nth-child(1) {
         font-size: 0.7em;
     }
-    #temporizador>:nth-child(2)>div{
+    #temporizador>:nth-child(2)>div {
         font-size: 0.5em;
-        height:17em;
+        height: 17em;
     }
-    #temporizador>:nth-child(3){
+    #temporizador>:nth-child(3) {
         font-size: 0.7em;
     }
 }
 
 @media (max-height: 520px) {
-    #temporizador>:nth-child(1){
+    #temporizador>:nth-child(1) {
         font-size: 0.7em;
     }
-    #temporizador>:nth-child(2)>div{
+    #temporizador>:nth-child(2)>div {
         font-size: 0.4em;
-        height:17em;
+        height: 17em;
     }
-    #temporizador>:nth-child(3){
+    #temporizador>:nth-child(3) {
         font-size: 0.6em;
     }
-    #temporizador>:nth-child(4){
+    #temporizador>:nth-child(4) {
         font-size: 0.9em;
     }
 }
 
-@media(max-width: 600px){
-    #temperatura>:nth-child(1){
+@media(max-width: 600px) {
+    #temperatura>:nth-child(1) {
         font-size: 0.8em;
     }
-     #temperatura>:nth-child(2){
-         font-size: 0.7em;
+    #temperatura>:nth-child(2) {
+        font-size: 0.7em;
     }
-     #temperatura>:nth-child(3){
-         font-size: 0.8em;
+    #temperatura>:nth-child(3) {
+        font-size: 0.8em;
     }
-    #temperatura>:nth-child(4){
-         font-size: 0.7em;
+    #temperatura>:nth-child(4) {
+        font-size: 0.7em;
     }
 }
 
-@media(max-height: 900px){
-    #temperatura>:nth-child(1){
+@media(max-height: 900px) {
+    #temperatura>:nth-child(1) {
         font-size: 0.8em;
     }
-     #temperatura>:nth-child(2){
-         font-size: 0.7em;
-    }
-     #temperatura>:nth-child(3){
-         font-size: 0.8em;
-    }
-    #temperatura>:nth-child(4){
-         font-size: 0.7em;
-    }
-}
-@media(max-height: 680px){
-    #temperatura>:nth-child(1){
+    #temperatura>:nth-child(2) {
         font-size: 0.7em;
     }
-    #temperatura>:nth-child(2)>div{
+    #temperatura>:nth-child(3) {
+        font-size: 0.8em;
+    }
+    #temperatura>:nth-child(4) {
+        font-size: 0.7em;
+    }
+}
+
+@media(max-height: 680px) {
+    #temperatura>:nth-child(1) {
+        font-size: 0.7em;
+    }
+    #temperatura>:nth-child(2)>div {
         height: fit-content;
     }
-     #temperatura>:nth-child(2){
-         font-size: 0.53em;
+    #temperatura>:nth-child(2) {
+        font-size: 0.53em;
     }
-     #temperatura>:nth-child(3){
-         font-size: 0.5em;
-         display: flex;
-         justify-content: space-evenly;
+    #temperatura>:nth-child(3) {
+        font-size: 0.5em;
+        display: flex;
+        justify-content: space-evenly;
     }
-    
-    #temperatura>:nth-child(3)>p{
-        margin:0;
+    #temperatura>:nth-child(3)>p {
+        margin: 0;
     }
-    #temperatura>:nth-child(4){
-         font-size: 0.7em;
+    #temperatura>:nth-child(4) {
+        font-size: 0.7em;
     }
 }
