@@ -104,7 +104,8 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 temperatura = localStorage.getItem("temperatura");
                 electro.luz = false;
                 location.reload();
-
+                final.play();
+                
 
                 // Apagar elementos
                 electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
@@ -153,6 +154,7 @@ var opcioneshabilitadas = true;
 
 //Variable de audio
 const sonido = new Audio("./recursos/sonido.wav");
+const final = new Audio("./recursos/finalhorno.wav");
 
 
 //Variables para distribución y conexión con el emulador
