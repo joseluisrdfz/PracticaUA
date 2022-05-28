@@ -1,3 +1,7 @@
+//Variable de audio
+const sonido = new Audio("./recursos/sonido.wav");
+const final = new Audio("./recursos/finalhorno.wav");
+
 var electro = new Electro();
 electro.on("connect", function() { // Esparar a que la librería se conecte con la horno
     console.log("Ya estoy conectado con la horno!!");
@@ -103,9 +107,11 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 localStorage.setItem("temporizadorActivado", "false");
                 temperatura = localStorage.getItem("temperatura");
                 electro.luz = false;
-                location.reload();
                 final.play();
-                
+                setTimeout(function() { location.reload(); }, 700);
+
+
+
 
                 // Apagar elementos
                 electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
@@ -152,9 +158,7 @@ var luzInteriorActivada = false;
 var gratinadorActivado = false;
 var opcioneshabilitadas = true;
 
-//Variable de audio
-const sonido = new Audio("./recursos/sonido.wav");
-const final = new Audio("./recursos/finalhorno.wav");
+
 
 
 //Variables para distribución y conexión con el emulador
@@ -979,7 +983,7 @@ function menosvol() {
     }
     volumen = localStorage.getItem("vol");
     let auxvol = parseInt(volumen.replace(/%/g, ''));
-    sonido.volume = auxvol/100;
+    sonido.volume = auxvol / 100;
 }
 
 function masvol() {
@@ -990,10 +994,10 @@ function masvol() {
         document.getElementById("volumen_int").style.width = valorvol + "%";
         localStorage.setItem("vol", valorvol + "%");
     }
-    
+
     volumen = localStorage.getItem("vol");
     let auxvol = parseInt(volumen.replace(/%/g, ''));
-    sonido.volume = auxvol/100;
+    sonido.volume = auxvol / 100;
 }
 
 function microfonoActivadoDesactivado() {
@@ -1447,9 +1451,9 @@ function caracteristicasAlCargar_unavegada() {
 
 }
 
-function emitirSonido(){
-    if(opcioneshabilitadas == true){
+function emitirSonido() {
+    if (opcioneshabilitadas == true) {
         sonido.play();
     }
-   
+
 }
