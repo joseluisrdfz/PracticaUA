@@ -484,8 +484,8 @@ div#temperatura_div {
 
 div#temperatura_masmenos {
     margin: auto;
-    margin-top: 4em;
-    margin-bottom: 3em;
+    /*! margin-top: 4em; */
+    /*! margin-bottom: 3em; */
     display: flex;
 }
 
@@ -747,7 +747,7 @@ div#volumen_d {
 }
 
 @media (max-height: 900px) {
-    .info{
+     .info{
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -756,9 +756,6 @@ div#volumen_d {
         font-size:1.4em; 
         height: fit-content;
     }
-}
-
-@media (max-height: 900px) {
     #temporizador>:nth-child(2)>div{
         font-size: 0.7em;
         height:20em;
@@ -794,5 +791,58 @@ div#volumen_d {
     }
     #temporizador>:nth-child(4){
         font-size: 0.9em;
+    }
+}
+
+@media(max-width: 600px){
+    #temperatura>:nth-child(1){
+        font-size: 0.8em;
+    }
+     #temperatura>:nth-child(2){
+         font-size: 0.7em;
+    }
+     #temperatura>:nth-child(3){
+         font-size: 0.8em;
+    }
+    #temperatura>:nth-child(4){
+         font-size: 0.7em;
+    }
+}
+
+@media(max-height: 900px){
+    #temperatura>:nth-child(1){
+        font-size: 0.8em;
+    }
+     #temperatura>:nth-child(2){
+         font-size: 0.7em;
+    }
+     #temperatura>:nth-child(3){
+         font-size: 0.8em;
+    }
+    #temperatura>:nth-child(4){
+         font-size: 0.7em;
+    }
+}
+@media(max-height: 680px){
+    #temperatura>:nth-child(1){
+        font-size: 0.7em;
+    }
+    #temperatura>:nth-child(2)>div{
+        height: fit-content;
+    }
+     #temperatura>:nth-child(2){
+         font-size: 0.53em;
+    }
+     #temperatura>:nth-child(3){
+         font-size: 0.5em;
+         display: flex;
+         justify-content: space-evenly;
+    }
+    
+    #temperatura>:nth-child(3)>p{
+        margin:0;
+    }
+    #temperatura>:nth-child(4){
+         font-size: 0.7em;
     }
 }
