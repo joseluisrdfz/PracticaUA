@@ -19,17 +19,24 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
     });
 
     electro.on("sondaConectada", function(lasonda) {
+        let activado = "Activar Sonda";
+        let desactivado = "Desactivar Sonda";
+        if(localStorage.getItem("idiomaArray")){
+            let idi = localStorage.getItem("idiomaArray").toString();
+            let idiarr = idi.split(",");
+            activado = idiarr[39];
+            desactivado = idiarr[40];
+        }
         if (lasonda) {
-            localStorage.setItem("sonda", "Desactivar Sonda");
+            localStorage.setItem("sonda", desactivado);
             if (document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
-                document.getElementById("sonda").innerHTML = "Desactivar Sonda";
+                document.getElementById("sonda").innerHTML = desactivado;
         } else {
-            localStorage.setItem("sonda", "Activar Sonda");
+            localStorage.setItem("sonda", activado);
             if (document.getElementById("sonda") != null || document.getElementById("sonda") != undefined)
-                document.getElementById("sonda").innerHTML = "Activar Sonda";
+                document.getElementById("sonda").innerHTML = activado;
         }
         
-
     });
 
     //var cocinar = document.getElementById("cocinar");
@@ -57,8 +64,6 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             if (ventiladorActivado == "true") electro.ventilador = true;
             if (luzInteriorActivada == "true") electro.luz = true;
 
-            //Sonda
-            if (localStorage.getItem("sondaActivada") == "true") electro.sondaConectada = true;
 
             // Termostato del horno
             function termostato(t) {
@@ -95,6 +100,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 localStorage.setItem("temperatura","0º");
                 localStorage.setItem("horas","0");
                 localStorage.setItem("minutos","0");
+                localStorage.setItem("temporizadorActivado","false");
                 temperatura = localStorage.getItem("temperatura");
                 electro.luz = false; 
 
@@ -109,18 +115,18 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
 
 // Creacion de arrays y variables globales a medida para la seleccion de distintos idiomas, funcionales(ingles y espanyol)
 
-var chino = [];
-var espanyol = ["Cancelar","Aceptar","VOLVER","WIFI","VOLUMEN","MICRÓFONO","ACERCA","IDIOMA","CONTROLES","Escanea el código QR y sigue los pasos en la Aplicación","Fabricante:","Hornos PACO SL","Modelo:","Paco5000","Origen:","Alicante, España","Etiquetado energético:","A","Fecha de fabricación:","La función seleccionada activa la resistencia superior del horno.","La función seleccionada activa la resistencia inferior del horno.","La función seleccionada activa el modo para gratinar del horno.","La función seleccionada permite acceder a las opciones de configuración del horno.","La función seleccionada permite escoger la temperatura de horneado deseada.","La función seleccionada permite encender o apagar la luz del electrodoméstico.","La función seleccionada activa el ventilador interior del horno.","La función seleccionada permite establecer temporizadores para hornear.","Red_Wifi_1","Conexión establecida","Iniciar cocinado","Temperatura a conseguir: ","Sonda Activada","Temporizador Activado: ","Ventilador Activado","Resistencia Superior Activada","Resistencia Inferior Activada","Luz Activada","Gratinador Activado"];
-var ingles = ["Cancel","To accept","RETURN","WIFI","VOLUME","MICROPHONE","ABOUT","LANGUAGE","CONTROLS","Scan the QR code and follow the steps in the App","Manufacturer","Ovens PACO SL","Model:","Paco5000","Origin:","Alicante, Spain","Energy labeling:","A","Manufacturing date:","The selected function activates the upper resistance of the oven.","The selected function activates the lower resistance of the oven.","The selected function activates the gratin mode of the oven.","The selected function allows access to the oven configuration options.","The selected function allows you to choose the desired baking temperature.","The selected function allows you to turn on or turn off the light of the appliance.","The selected function activates the internal fan of the oven.","The selected function allows you to set timers for baking.","Net_Wifi_1","Established connection","Start cooking","Temperature to achieve: ","Activated Probe","Timer Activated: ","Fan Activated","Upper Resistance Activated","Lower Resistance Activated","Light Activated","Grill Activated"];
-var hindi = [];
-var arabe = [];
-var portugues = [];
-var ruso = [];
-var urdu = [];
-var bengali = [];
-var frances = [];
-var aleman = [];
-var italiano = [];
+var chino = ["取消","确定","返回","WIFI","音量","麦克风","关于","语言","控制","扫描二维码并按照应用程序中的步骤操作", "制造商:","PACO SL 烤箱","型号:","Paco5000","产地:","西班牙阿利坎特","能源标签:","A","生产日期:","The选定的功能激活烤箱的上电阻。","选定的功能激活烤箱的下电阻。","选定的功能激活烤箱焗模式。","选定的功能允许访问配置选项烤箱。","所选功能允许您选择所需的烘烤温度。","所选功能允许您打开或关闭设备的灯。","所选功能启动烤箱内的风扇。 ","所选功能允许您设置烘焙定时器。","Red_Wifi_1","已建立连接","开始烹饪","要达到的温度:","探针激活","定时器激活:","风扇加热器激活","上电阻激活","下电阻激活","光激活","烤架激活","激活探针","停用探针"];
+var espanyol = ["Cancelar","Aceptar","VOLVER","WIFI","VOLUMEN","MICRÓFONO","ACERCA","IDIOMA","CONTROLES","Escanea el código QR y sigue los pasos en la Aplicación","Fabricante:","Hornos PACO SL","Modelo:","Paco5000","Origen:","Alicante, España","Etiquetado energético:","A","Fecha de fabricación:","La función seleccionada activa la resistencia superior del horno.","La función seleccionada activa la resistencia inferior del horno.","La función seleccionada activa el modo para gratinar del horno.","La función seleccionada permite acceder a las opciones de configuración del horno.","La función seleccionada permite escoger la temperatura de horneado deseada.","La función seleccionada permite encender o apagar la luz del electrodoméstico.","La función seleccionada activa el ventilador interior del horno.","La función seleccionada permite establecer temporizadores para hornear.","Red_Wifi_1","Conexión establecida","Iniciar cocinado","Temperatura a conseguir: ","Sonda Activada","Temporizador Activado: ","Ventilador Activado","Resistencia Superior Activada","Resistencia Inferior Activada","Luz Activada","Gratinador Activado","Activar Sonda","Desactivar Sonda"];
+var ingles = ["Cancel","To accept","RETURN","WIFI","VOLUME","MICROPHONE","ABOUT","LANGUAGE","CONTROLS","Scan the QR code and follow the steps in the App","Manufacturer","Ovens PACO SL","Model:","Paco5000","Origin:","Alicante, Spain","Energy labeling:","A","Manufacturing date:","The selected function activates the upper resistance of the oven.","The selected function activates the lower resistance of the oven.","The selected function activates the gratin mode of the oven.","The selected function allows access to the oven configuration options.","The selected function allows you to choose the desired baking temperature.","The selected function allows you to turn on or turn off the light of the appliance.","The selected function activates the internal fan of the oven.","The selected function allows you to set timers for baking.","Net_Wifi_1","Established connection","Start cooking","Temperature to achieve: ","Activated Probe","Timer Activated: ","Fan Activated","Upper Resistance Activated","Lower Resistance Activated","Light Activated","Grill Activated","Activate Probe","Disable Probe"];
+var hindi = ["रद्द करें", "ठीक", "वापसी", "वाईफ़ाई", "वॉल्यूम", "माइक्रोफ़ोन", "के बारे में", "भाषा", "नियंत्रण", "क्यूआर कोड को स्कैन करें और ऐप में चरणों का पालन करें", "निर्माता:", "PACO SL ओवन", "मॉडल:", "Paco5000", "उत्पत्ति:", "एलिकेंट, स्पेन", "ऊर्जा लेबलिंग:", "ए", "निर्माण की तिथि:", "द चयनित फ़ंक्शन ओवन के ऊपरी प्रतिरोध को सक्रिय करता है।", "चयनित फ़ंक्शन ओवन के निचले प्रतिरोध को सक्रिय करता है।" ,"चयनित फ़ंक्शन ओवन ग्रैटिन मोड को सक्रिय करता है।" ,"चयनित फ़ंक्शन के कॉन्फ़िगरेशन विकल्पों तक पहुंच की अनुमति देता है ओवन।", "चयनित फ़ंक्शन आपको वांछित बेकिंग तापमान चुनने की अनुमति देता है।", "चयनित फ़ंक्शन आपको उपकरण की रोशनी को चालू या बंद करने की अनुमति देता है।", "चयनित फ़ंक्शन ओवन के अंदर पंखे को सक्रिय करता है। "," चयनित फ़ंक्शन आपको बेकिंग के लिए टाइमर सेट करने की अनुमति देता है।","Red_Wifi_1", "कनेक्शन स्थापित", "खाना पकाना शुरू करें", "पहुंच तक तापमान:", "जांच सक्रिय", "टाइमर सक्रिय:", "पंखा हीटर सक्रिय", "ऊपरी प्रतिरोधी सक्रिय", "लोअर प्रतिरोधी सक्रिय", "प्रकाश सक्रिय", "ग्रिल सक्रिय", "जांच सक्रिय करें", "जांच निष्क्रिय करें"];
+var arabe = ["إلغاء", "موافق" ,"RETURN" , "WIFI" , "VOLUME" , "MICROPHONE" , "ABOUT" , "LANGUAGE" , "CONTROLS" , "امسح رمز الاستجابة السريعة واتبع الخطوات في التطبيق" , "الشركة المصنعة:", "PACO SL ovens", "Model:", "Paco5000", "Origin:", "Alicante, Spain", "Energy labeling:", "A", "تاريخ التصنيع:", "The تعمل الوظيفة المحددة على تنشيط المقاومة العليا للفرن. "," تعمل الوظيفة المحددة على تنشيط المقاومة المنخفضة للفرن. "," تعمل الوظيفة المحددة على تنشيط وضع فرن الفرن. "," تتيح الوظيفة المحددة الوصول إلى خيارات التكوين الخاصة بـ الفرن. "," تتيح لك الوظيفة المحددة اختيار درجة حرارة الخبز المطلوبة. "," تتيح لك الوظيفة المحددة تشغيل أو إيقاف تشغيل ضوء الجهاز. "," تعمل الوظيفة المحددة على تنشيط المروحة داخل الفرن. "," الوظيفة المحددة تتيح لك ضبط مؤقتات للخبز. "," Red_Wifi_1 "," تم تأسيس الاتصال "," بدء الطهي "," درجة الحرارة للوصول: "," تنشيط المسبار "," تم تنشيط المؤقت: "," مروحة تنشيط السخان "," تنشيط المقاومة العلوية" , "تنشيط المقاومة السفلية" , "تنشيط الضوء" , "تنشيط الشواية" , "تنشيط المسبار" , "إلغاء تنشيط المسبار"];
+var portugues = ["Cancelar","OK","RETURN","WIFI","VOLUME","MICROPHONE","SOBRE","IDIOMA","CONTROLES","Digitalize o código QR e siga os passos no App", "Fabricante:","Fornos PACO SL","Modelo:","Paco5000","Origem:","Alicante, Espanha","Rotulagem energética:","A","Data de fabricação:","A A função selecionada ativa a resistência superior do forno.","A função selecionada ativa a resistência inferior do forno.","A função selecionada ativa o modo gratinado do forno.","A função selecionada permite o acesso às opções de configuração do o forno.","A função selecionada permite que você escolha a temperatura de cozimento desejada.","A função selecionada permite que você ligue ou desligue a luz do aparelho.","A função selecionada ativa o ventilador dentro do forno. ","A função selecionada permite que você defina temporizadores para assar.","Red_Wifi_1","Conexão estabelecida","Começar a cozinhar","Temperatura para atingir:","Sonda ativada","Temporizador ativado:","Ventilador Aquecedor Ativado","Resistor Superior Ativado","Resistor Inferior Ativado","Luz Ativada","Grill Ativado","Ativar Sonda","Desativar Sonda"];
+var ruso = ["Отмена", "ОК", "ВОЗВРАТ", "WIFI", "ГРОМКОСТЬ", "МИКРОФОН", "ОБ ИНФОРМАЦИИ", "ЯЗЫК", "УПРАВЛЕНИЕ", "Отсканируйте QR-код и следуйте инструкциям в приложении", "Производитель:","Печи PACO SL","Модель:","Paco5000","Происхождение:","Аликанте, Испания","Маркировка энергоэффективности:","A","Дата изготовления:","The Выбранная функция активирует верхнее сопротивление духовки.","Выбранная функция активирует нижнее сопротивление духовки.","Выбранная функция активирует режим запекания в духовке.","Выбранная функция позволяет получить доступ к параметрам конфигурации духовке.","Выбранная функция позволяет выбрать желаемую температуру выпечки.","Выбранная функция позволяет включать или выключать свет прибора.","Выбранная функция включает вентилятор внутри духовки. ","Выбранная функция позволяет установить таймеры для выпечки.","Red_Wifi_1","Соединение установлено","Начать приготовление","Достигаемая температура:","Активирован датчик","Таймер активирован:","Вентилятор Активирован нагреватель", "Активирован верхний резистор", "Активирован нижний резистор", "Активирован свет", "Активирован гриль", "Активировать зонд", "Деактивировать зонд"];
+var urdu = ["إلغاء", "موافق" ,"RETURN" , "WIFI" , "VOLUME" , "MICROPHONE" , "ABOUT" , "LANGUAGE" , "CONTROLS" , "امسح رمز الاستجابة السريعة واتبع الخطوات في التطبيق" , "الشركة المصنعة:", "PACO SL ovens", "Model:", "Paco5000", "Origin:", "Alicante, Spain", "Energy labeling:", "A", "تاريخ التصنيع:", "The تعمل الوظيفة المحددة على تنشيط المقاومة العليا للفرن. "," تعمل الوظيفة المحددة على تنشيط المقاومة المنخفضة للفرن. "," تعمل الوظيفة المحددة على تنشيط وضع فرن الفرن. "," تتيح الوظيفة المحددة الوصول إلى خيارات التكوين الخاصة بـ الفرن. "," تتيح لك الوظيفة المحددة اختيار درجة حرارة الخبز المطلوبة. "," تتيح لك الوظيفة المحددة تشغيل أو إيقاف تشغيل ضوء الجهاز. "," تعمل الوظيفة المحددة على تنشيط المروحة داخل الفرن. "," الوظيفة المحددة تتيح لك ضبط مؤقتات للخبز. "," Red_Wifi_1 "," تم تأسيس الاتصال "," بدء الطهي "," درجة الحرارة للوصول: "," تنشيط المسبار "," تم تنشيط المؤقت: "," مروحة تنشيط السخان "," تنشيط المقاومة العلوية" , "تنشيط المقاومة السفلية" , "تنشيط الضوء" , "تنشيط الشواية" , "تنشيط المسبار" , "إلغاء تنشيط المسبار"];
+var bengali = ["বাতিল করুন","ঠিক আছে","রিটার্ন","ওয়াইফাই","ভলিউম","মাইক্রোফোন","সম্পর্কে","ভাষা","নিয়ন্ত্রণ","QR কোড স্ক্যান করুন এবং অ্যাপের ধাপগুলি অনুসরণ করুন", "প্রস্তুতকারক:","PACO SL ওভেন","মডেল:","Paco5000","অরিজিন:","Alicante, Spain","এনার্জি লেবেলিং:","A","উৎপাদনের তারিখ:","The নির্বাচিত ফাংশনটি ওভেনের উপরের প্রতিরোধকে সক্রিয় করে৷","নির্বাচিত ফাংশনটি ওভেনের নিম্ন প্রতিরোধকে সক্রিয় করে৷","নির্বাচিত ফাংশনটি ওভেন গ্র্যাটিন মোড সক্রিয় করে৷","নির্বাচিত ফাংশনটি এর কনফিগারেশন বিকল্পগুলিতে অ্যাক্সেসের অনুমতি দেয়৷ ওভেন।","নির্বাচিত ফাংশনটি আপনাকে পছন্দসই বেকিং তাপমাত্রা চয়ন করতে দেয়।","নির্বাচিত ফাংশনটি আপনাকে অ্যাপ্লায়েন্সের আলো চালু বা বন্ধ করতে দেয়।","নির্বাচিত ফাংশনটি ওভেনের ভিতরে ফ্যানটিকে সক্রিয় করে। ","নির্বাচিত ফাংশন আপনাকে বেকিংয়ের জন্য টাইমার সেট করতে দেয়।","Red_Wifi_1","সংযোগ প্রতিষ্ঠিত হয়েছে","রান্না শুরু করুন","তাপমাত্রা পৌঁছানোর জন্য:","প্রোব সক্রিয় করা হয়েছে","টাইমার সক্রিয় করা হয়েছে:","ফ্যান হিটার সক্রিয়","উপরের প্রতিরোধক সক্রিয়","লোয়ার রোধ সক্রিয়","হালকা সক্রিয়","গ্রিল সক্রিয়","প্রোব সক্রিয় করুন","প্রোব নিষ্ক্রিয় করুন"];
+var frances = ["Annuler", "OK", "RETOUR", "WIFI", "VOLUME", "MICROPHONE", "À PROPOS", "LANGUE", "COMMANDES", "Scannez le code QR et suivez les étapes dans l'application", "Fabricant :","Fours PACO SL","Modèle :","Paco5000","Origine :","Alicante, Espagne","Étiquetage énergétique :","A","Date de fabrication :","Le La fonction sélectionnée active la résistance supérieure du four.","La fonction sélectionnée active la résistance inférieure du four.","La fonction sélectionnée active le mode gratin du four.","La fonction sélectionnée permet d'accéder aux options de configuration de four.","La fonction sélectionnée permet de choisir la température de cuisson souhaitée.","La fonction sélectionnée permet d'allumer ou d'éteindre la lumière de l'appareil.","La fonction sélectionnée active le ventilateur à l'intérieur du four. ","La fonction sélectionnée permet de régler des minuteries pour la cuisson.","Red_Wifi_1","Connexion établie","Démarrer la cuisson","Température à atteindre :","Sonde activée","Minuterie activée :","Ventilateur Chauffage activé","Résistance supérieure activée","Résistance inférieure activée","Lumière activée","Gril activé","Activer la sonde","Désactiver la sonde"];
+var aleman = ["Abbrechen", "OK", "ZURÜCK", "WIFI", "LAUTSTÄRKE", "MIKROFON", "ÜBER", "SPRACHE", "STEUERUNG", "Scannen Sie den QR-Code und folgen Sie den Schritten in der App", "Hersteller:", "PACO SL Backöfen", "Modell:", "Paco5000", "Herkunft:", "Alicante, Spanien", "Energiekennzeichnung:", "A", "Herstellungsdatum:", "The Die ausgewählte Funktion aktiviert den oberen Widerstand des Ofens.","Die ausgewählte Funktion aktiviert den unteren Widerstand des Ofens.","Die ausgewählte Funktion aktiviert den Ofen-Gratin-Modus.","Die ausgewählte Funktion ermöglicht den Zugriff auf die Konfigurationsoptionen von des Ofens.","Mit der ausgewählten Funktion können Sie die gewünschte Backtemperatur wählen.","Mit der ausgewählten Funktion können Sie das Licht des Geräts ein- oder ausschalten.","Die ausgewählte Funktion aktiviert den Lüfter im Ofen. ","Mit der ausgewählten Funktion können Sie Timer zum Backen einstellen.","Red_Wifi_1","Verbindung hergestellt","Kochen starten","Zu erreichende Temperatur:","Sonde aktiviert","Timer aktiviert:","Lüfter Heizung aktiviert", "Oberer Widerstand aktiviert", "Unterer Widerstand aktiviert", "Licht aktiviert", "Grill aktiviert", "Sonde aktivieren", "Sonde deaktivieren"];
+var italiano = ["Annulla", "OK", "RETURN", "WIFI", "VOLUME", "MICROFONO", "INFO", "LINGUA", "CONTROLLI", "Scansiona il codice QR e segui i passaggi nell'app", "Produttore:","Forni PACO SL","Modello:","Paco5000","Origine:","Alicante, Spagna","Etichettatura energetica:","A","Data di produzione:","Il La funzione selezionata attiva la resistenza superiore del forno.","La funzione selezionata attiva la resistenza inferiore del forno.","La funzione selezionata attiva la modalità forno gratinato.","La funzione selezionata consente di accedere alle opzioni di configurazione di forno.","La funzione selezionata consente di scegliere la temperatura di cottura desiderata.","La funzione selezionata consente di accendere o spegnere la luce dell'apparecchio.","La funzione selezionata attiva la ventola all'interno del forno. ","La funzione selezionata consente di impostare i timer per la cottura.","Red_Wifi_1","Connessione stabilita","Inizio cottura","Temperatura da raggiungere:","Sonda attivata","Timer attivato:","Ventilatore Riscaldatore attivato", "Resistore superiore attivato", "Resistore inferiore attivato", "Luce attivata", "Griglia attivata", "Attiva sonda", "Disattiva sonda"];
 //comprobar si es la primera vez que el usuario usa el horno usando cookies y localstorage
 var idioma;
 var microfono = "icon-desmuteado";
@@ -128,7 +134,7 @@ var volumen = "50" + "%";
 var horastemp = 0;
 var minutostemp = 0;
 var temperatura = "0" + "º";
-var sonda = "Activar Sonda";
+//var sonda = "Activar Sonda";
 var minutos_reloj = 0;
 var horas_reloj = 0;
 
@@ -192,14 +198,57 @@ function main(x) {
 function idiomaSeleccionado(idiomaSeleccionado) {
     idioma = idiomaSeleccionado;
     console.log(idioma);
-    if(idioma != 2){
+    if(idioma == 0){
+        localStorage.setItem("idioma", "chino");
+        localStorage.setItem("idiomaArray",chino);
+    }else if(idioma == 1){
         localStorage.setItem("idioma", "español");
         localStorage.setItem("idiomaArray",espanyol);
+    
     }else if(idioma == 2){
         localStorage.setItem("idioma","ingles");
         localStorage.setItem("idiomaArray",ingles);
+
+    }else if(idioma == 3){
+        localStorage.setItem("idioma","hindi");
+        localStorage.setItem("idiomaArray",hindi);
+
+    }else if(idioma == 4){
+        localStorage.setItem("idioma","arabe");
+        localStorage.setItem("idiomaArray",arabe);
+
+    }else if(idioma == 5){
+        localStorage.setItem("idioma","portugues");
+        localStorage.setItem("idiomaArray",portugues);
+
+    }else if(idioma == 6){
+        localStorage.setItem("idioma","ruso");
+        localStorage.setItem("idiomaArray",ruso);
+
+    }else if(idioma == 7){
+        localStorage.setItem("idioma","urdu");
+        localStorage.setItem("idiomaArray",urdu);
+
+    }else if(idioma == 8){
+        localStorage.setItem("idioma","bengali");
+        localStorage.setItem("idiomaArray",bengali);
+
+    }else if(idioma == 9){
+        localStorage.setItem("idioma","frances");
+        localStorage.setItem("idiomaArray",frances);
+
+    }else if(idioma == 10){
+        localStorage.setItem("idioma","aleman");
+        localStorage.setItem("idiomaArray",aleman);
+
+    }else if(idioma == 11){
+        localStorage.setItem("idioma","italiano");
+        localStorage.setItem("idiomaArray",italiano);
     }
     
+    let idi = localStorage.getItem("idiomaArray").toString();
+    let idiarr = idi.split(",");
+    localStorage.setItem("sonda",idiarr[39]);
 }
 
 
@@ -869,6 +918,7 @@ function pantallaCambioTemperatura() {
     if (opcioneshabilitadas == true) {
         let cadena1 = "";
         let cadena2 = "";
+        let sondaval = "Activar Sonda";
         if(localStorage.getItem("idiomaArray")){
             let idi = localStorage.getItem("idiomaArray").toString();
             let idiarr = idi.split(",");
@@ -878,11 +928,14 @@ function pantallaCambioTemperatura() {
             cadena1 = "Cancelar";
             cadena2 = "Aceptar";
         }
+        if(localStorage.getItem("sonda")){
+            sondaval = localStorage.getItem("sonda");
+        }
 
         document.body.innerHTML = `
         <div id = "temperatura">
             <section id = "sec_sonda" onclick = "activarDesactivarSonda(), sondaActivadaDesactivada();">
-            <p class = "sonda" id = "sonda" >` + localStorage.getItem("sonda") + `</p>
+            <p class = "sonda" id = "sonda" >` + sondaval + `</p>
             </section>
             <section>
                 <div id = "temperatura_div">
@@ -1125,9 +1178,16 @@ function establecerTemperatura(entrada) {
 }
 
 function activarDesactivarSonda() {
-
     let des = "Desactivar Sonda";
     let act = "Activar Sonda";
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        des = idiarr[40];
+        act = idiarr[39];
+    }
+
+   
 
     let son = document.getElementById("sonda").innerHTML;
     if (son == act) {
@@ -1141,9 +1201,15 @@ function activarDesactivarSonda() {
 }
 
 function sondaActivadaDesactivada() {
-
     let des = "Desactivar Sonda";
     let act = "Activar Sonda";
+    if(localStorage.getItem("idiomaArray")){
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        des = idiarr[40];
+        act = idiarr[39];
+    }
+
 
     let son = document.getElementById("sonda").innerHTML;
     if (son == act) {
