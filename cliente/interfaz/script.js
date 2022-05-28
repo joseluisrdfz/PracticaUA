@@ -152,7 +152,7 @@ var gratinadorActivado = false;
 var opcioneshabilitadas = true;
 
 //Variable de audio
-const sonido = new Audio("./recursos/sonido.mp3");
+const sonido = new Audio("./recursos/sonido.wav");
 
 
 //Variables para distribución y conexión con el emulador
@@ -261,7 +261,7 @@ function idiomaSeleccionado(idiomaSeleccionado) {
 function pantallaIdiomas() {
     document.body.innerHTML = `
     <div id="divIdiomas">
-        <a href="#italiano"><span class="icon-abajo arrowdown"></span></a>
+        <a href="#italiano" onclick="emitirSonido()"><span class="icon-abajo arrowdown"></span></a>
         <div>
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(0)' class ="idiomas" id ="chino"><p>普通话</p></div>
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(1)' class = "idiomas" id ="espanyol"><p>Español</p></div>
@@ -276,7 +276,7 @@ function pantallaIdiomas() {
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(10)' class = "idiomas" id ="aleman"><p>Deutsch</p></div>
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(11)' class = "idiomas" id ="italiano"><p>Italiano</p></div>
         </div>
-        <a href="#chino"><span class="icon-arriba arrowup"></span></a>
+        <a href="#chino" onclick="emitirSonido()"><span class="icon-arriba arrowup"></span></a>
     </div>`;
 }
 
@@ -806,17 +806,17 @@ function pantallaiddle() {
     document.body.innerHTML = `<section class="hornoiddle">
     <section class="lateral">
         <div id="circulo-grados" class="circulo"></div>
-        <article onclick="cambiardown(this,'circulo-grados'), pantallaCambioTemperatura();" class="buttonhorno"><span class="icon-grados"></span></article>
+        <article onclick="cambiardown(this,'circulo-grados'), pantallaCambioTemperatura(),emitirSonido();" class="buttonhorno"><span class="icon-grados"></span></article>
         <div id="circulo-luz" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-luz'), luzInteriorActivadaDesactivada();" class="buttonhorno"><span class="icon-bombilla"></span></article>
+        <article onclick="cambiardown(this,'circulo-luz'), luzInteriorActivadaDesactivada(),emitirSonido();" class="buttonhorno"><span class="icon-bombilla"></span></article>
         <div id="circulo-ventilador" class = "circulo"></div>
-        <article id = "ventilador" onclick="cambiardown(this,'circulo-ventilador'), ventiladorActivadoDesactivado();" class="buttonhorno"><span class="icon-ventilador"></span></article>
+        <article id = "ventilador" onclick="cambiardown(this,'circulo-ventilador'), ventiladorActivadoDesactivado(),emitirSonido();" class="buttonhorno"><span class="icon-ventilador"></span></article>
     </section>
     <section class="centro">
         <div id="up">
-            <article onclick="cambiardown(this,'a'), pantallaCambioHora();" class="buttonhorno"><span class="icon-reloj"></span></article>
+            <article onclick="cambiardown(this,'a'), pantallaCambioHora(),emitirSonido();" class="buttonhorno"><span class="icon-reloj"></span></article>
             <article id = "hora"  onload = "` + setInterval(muestraReloj, 20) + `" class="Relojhorno hora"></article>
-            <article onclick="pantallaAjustes();" class="buttonhorno"><span class="icon-ajustes"></span></article>
+            <article onclick="pantallaAjustes(),emitirSonido();" class="buttonhorno"><span class="icon-ajustes"></span></article>
         </div>
         <div id="down">
         <button id = "cocinar" > ` + cadena + ` </button>
@@ -827,11 +827,11 @@ function pantallaiddle() {
     </section>
     <section class="lateral">
     <div id="circulo-supres" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-supres') , resistenciaSuperiorActivadaDesactivada();" class="buttonhorno" id="calor_arriba"><span class="icon-menos"></article>
+        <article onclick="cambiardown(this,'circulo-supres') , resistenciaSuperiorActivadaDesactivada(),emitirSonido();" class="buttonhorno" id="calor_arriba"><span class="icon-menos"></article>
         <div id="circulo-infres" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-infres'), resistenciaInferiorActivadaDesactivada();" class="buttonhorno" id="calor_abajo"><span class="icon-menos"></article>
+        <article onclick="cambiardown(this,'circulo-infres'), resistenciaInferiorActivadaDesactivada(),emitirSonido();" class="buttonhorno" id="calor_abajo"><span class="icon-menos"></article>
         <div id="circulo-gratinar" class = "circulo"></div>
-        <article onclick="cambiardown(this,'circulo-gratinar'), gratinadorActivadoDesactivado();" class="buttonhorno"><span class="icon-hola"></article>
+        <article onclick="cambiardown(this,'circulo-gratinar'), gratinadorActivadoDesactivado(),emitirSonido();" class="buttonhorno"><span class="icon-hola"></article>
     </section>
 </section>`;
 
@@ -1443,4 +1443,11 @@ function caracteristicasAlCargar_unavegada() {
         ventiladorActivado = "false";
     }
 
+}
+
+function emitirSonido(){
+    if(opcioneshabilitadas == true){
+        sonido.play();
+    }
+   
 }
