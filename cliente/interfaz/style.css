@@ -599,6 +599,10 @@ div#volumen_d {
 }
 
 #cocinar {
+    border-color: rgb(128, 255, 208);
+    background-color: rgb(128, 255, 208);
+    border-radius: 30px;
+    height: 3em;
     margin-bottom: 2em;
     font-size: 1.2em;
 }
