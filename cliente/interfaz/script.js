@@ -151,6 +151,10 @@ var luzInteriorActivada = false;
 var gratinadorActivado = false;
 var opcioneshabilitadas = true;
 
+//Variable de audio
+const sonido = new Audio("./recursos/sonido.mp3");
+
+
 //Variables para distribución y conexión con el emulador
 var controliddle = 0;
 
@@ -972,6 +976,8 @@ function menosvol() {
         localStorage.setItem("vol", valorvol + "%");
     }
     volumen = localStorage.getItem("vol");
+    let auxvol = parseInt(volumen.replace(/%/g, ''));
+    sonido.volume = auxvol/100;
 }
 
 function masvol() {
@@ -982,7 +988,10 @@ function masvol() {
         document.getElementById("volumen_int").style.width = valorvol + "%";
         localStorage.setItem("vol", valorvol + "%");
     }
+    
     volumen = localStorage.getItem("vol");
+    let auxvol = parseInt(volumen.replace(/%/g, ''));
+    sonido.volume = auxvol/100;
 }
 
 function microfonoActivadoDesactivado() {
