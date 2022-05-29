@@ -415,6 +415,9 @@ div#temporizador {
     height: 98%;
     background-color: var(--color_general);
     border: 2px solid black;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
 }
 
 div#borde_temp {
@@ -428,10 +431,11 @@ div#borde_temp {
 }
 
 div#temp_masmenos {
-    margin: auto;
-    margin-top: 4em;
-    margin-bottom: 3em;
+    /*! margin: auto; */
+    /*! margin-top: 4em; */
+    /*! margin-bottom: 3em; */
     display: flex;
+    justify-content: space-between;
 }
 
 p.hora {
@@ -472,6 +476,9 @@ div#temperatura {
     height: 98%;
     background-color: var(--color_general);
     border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 div#temperatura_div {
@@ -483,20 +490,16 @@ div#temperatura_div {
 }
 
 div#temperatura_masmenos {
-    margin: auto;
-    /*! margin-top: 4em; */
-    /*! margin-bottom: 3em; */
+    margin: 0.7em;
     display: flex;
 }
 
 section#sec_sonda {
-    margin: auto;
-    margin-top: 2em;
     display: inline-block;
     border: 2px solid black;
     border-radius: 15px;
-    margin-left: 8em;
-    margin-top: 1.5em;
+    margin-left: 10vw;
+    width: fit-content;
 }
 
 p.sonda {
@@ -567,15 +570,17 @@ div#volumen_d {
 }
 
 #sec_vol2 {
-    margin-top: 20px;
+    /*! margin-top: 20px; */
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
-
+div#volumen_d>#sec_vol2 {
+     justify-content: space-between;
+    margin-left: 20px;
+}
 #sec_vol2>.SmallButton {
     font-size: 2em;
-    margin: 0 2.5em;
     background: var(--color_secundario)
 }
 
@@ -665,14 +670,14 @@ div#volumen_d {
         width: 1.4em;
         font-size: 2em;
     }
-    #volumen_d>#sec_vol1{
+    #volumen_d>#sec_vol1 {
         font-size: 0.8em;
         height: 70%;
         display: flex;
         flex-direction: column;
         justify-content: end;
     }
-     #volumen_d>#sec_vol2{
+    #volumen_d>#sec_vol2 {
         font-size: 0.8em;
     }
 }
@@ -815,7 +820,7 @@ div#volumen_d {
         font-size: 0.6em;
     }
     #temporizador>:nth-child(4) {
-        font-size: 0.9em;
+        font-size: 0.8em;
     }
 }
 
