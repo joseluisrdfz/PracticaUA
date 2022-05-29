@@ -17,6 +17,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             //document.getElementById("controles").style.display = "block";
             pantallaiddle();
         } else {
+            pantalla = 0;
             //document.getElementById("controles").style.display = "none";
             pantallaAusente();
         }
@@ -56,67 +57,74 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             cocinar.disabled = abierta;
         });
 
-        // Cocinar
-        cocinar.addEventListener("click", function() {
-            console.log("Comienzo a cocinar. Tiempo:", horas_reloj + "(minutos) " + minutos_reloj + "(segundos)");
-            // Bloquear controles
-            console.log("yep");
-            cocinar.disabled = true;
-            opcioneshabilitadas = false;
+        try {
+            cocinar.addEventListener("click", function() {
+                console.log("Comienzo a cocinar. Tiempo:", horas_reloj + "(minutos) " + minutos_reloj + "(segundos)");
+                // Bloquear controles
+                console.log("yep");
+                cocinar.disabled = true;
+                opcioneshabilitadas = false;
 
-            // Ventilador?
-            if (ventiladorActivado == "true") electro.ventilador = true;
-            if (luzInteriorActivada == "true") electro.luz = true;
-            
+                // Ventilador?
+                if (ventiladorActivado == "true") electro.ventilador = true;
+                if (luzInteriorActivada == "true") electro.luz = true;
 
 
-            // Termostato del horno
-            function termostato(t) {
-                var auxtemp = temperatura.replace(/º/g, '');
-                var intemp = parseInt(auxtemp);
-                if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
-                    if (resistenciaSuperiorActivada == "true") electro.resistenciaSuperior = true;
-                    if (resistenciaInferiorActivada == "true") electro.resistenciaInferior = true;
-                    if (gratinadorActivado == "true") electro.gratinador = true;
-                } else { // si ya tengo la temperatura objetivo apagar las resistencias
-                    electro.resistenciaSuperior = false;
-                    electro.resistenciaInferior = false;
-                    electro.gratinador = false;
+                // Termostato del horno
+                function termostato(t) {
+                    var auxtemp = temperatura.replace(/º/g, '');
+                    var intemp = parseInt(auxtemp);
+
+                    if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
+                        if (resistenciaSuperiorActivada == "true") electro.resistenciaSuperior = true;
+                        if (resistenciaInferiorActivada == "true") electro.resistenciaInferior = true;
+                        if (gratinadorActivado == "true") electro.gratinador = true;
+                    } else { // si ya tengo la temperatura objetivo apagar las resistencias
+                        electro.resistenciaSuperior = false;
+                        electro.resistenciaInferior = false;
+                        electro.gratinador = false;
+                    }
                 }
-            }
-            electro.on("temperaturaInterior", termostato);
+                electro.on("temperaturaInterior", termostato);
 
-            setTimeout(function() {
-                console.log("Fin del cocinado (tiempo cumplido)")
+                setTimeout(function() {
+                    console.log("Fin del cocinado (tiempo cumplido)")
 
-                electro.off("temperaturaInterior", termostato);
+                    electro.off("temperaturaInterior", termostato);
 
-                // Desbloquear los controles
-                cocinar.disabled = false;
-                opcioneshabilitadas = true;
-                //Reinicia valores
-                localStorage.setItem("luzInteriorActivada", "false");
-                localStorage.setItem("ventiladorActivado", "false");
-                localStorage.setItem("resistenciaSuperiorActivada", "false");
-                localStorage.setItem("resistenciaInferiorActivada", "false");
-                localStorage.setItem("gratinadorActivado", "false");
-                localStorage.setItem("temperaturaActivada", "false");
-                localStorage.setItem("temperatura", "0º");
-                localStorage.setItem("horas", "0");
-                localStorage.setItem("minutos", "0");
-                localStorage.setItem("temporizadorActivado", "false");
-                temperatura = localStorage.getItem("temperatura");
-                electro.luz = false;
-                final.play();
-                setTimeout(function() { location.reload(); }, 700);
-
+                    // Desbloquear los controles
+                    cocinar.disabled = false;
+                    opcioneshabilitadas = true;
+                    //Reinicia valores
+                    localStorage.setItem("luzInteriorActivada", "false");
+                    localStorage.setItem("ventiladorActivado", "false");
+                    localStorage.setItem("resistenciaSuperiorActivada", "false");
+                    localStorage.setItem("resistenciaInferiorActivada", "false");
+                    localStorage.setItem("gratinadorActivado", "false");
+                    localStorage.setItem("temperaturaActivada", "false");
+                    localStorage.setItem("temperatura", "0º");
+                    localStorage.setItem("horas", "0");
+                    localStorage.setItem("minutos", "0");
+                    localStorage.setItem("temporizadorActivado", "false");
+                    temperatura = localStorage.getItem("temperatura");
+                    electro.luz = false;
+                    final.play();
+                    setTimeout(function() { location.reload(); }, 700);
 
 
 
-                // Apagar elementos
-                electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
-            }, ((parseInt(horas_reloj) * 60 * 1000) + (parseInt(minutos_reloj) * 1000))); // Tiempo de cocinado establecido (cambiar)
-        });
+
+                    // Apagar elementos
+                    electro.resistenciaSuperior = electro.resistenciaInferior = electro.gratinador = electro.ventilador = false;
+                }, ((parseInt(horas_reloj) * 60 * 1000) + (parseInt(minutos_reloj) * 1000))); // Tiempo de cocinado establecido (cambiar)
+            });
+        } catch (error) {
+            console.error(error);
+
+        }
+
+        // Cocinar
+
     }, 1000);
 });
 
@@ -158,7 +166,7 @@ var luzInteriorActivada = false;
 var gratinadorActivado = false;
 var opcioneshabilitadas = true;
 
-
+var pantalla = 0;
 
 
 //Variables para distribución y conexión con el emulador
@@ -177,6 +185,12 @@ function vaciarCuerpo() {
 
 function pantallaAusente() {
     document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo"></img></div>';
+    setTimeout(function() {
+        if ((electro.presencia == true || electro.presencia == 'true') && pantalla == 0) {
+            console.log('tupu la infanteria');
+            location.reload();
+        }
+    }, 1400);
 }
 
 function main(x) {
@@ -796,6 +810,7 @@ function cambiardown(element, idcirculo) {
 
 
 function pantallaiddle() {
+    pantalla = 1;
     una_ves_hecho_cambio = false;
     //añadir un funcion que recoja todas lasvariables del horno true, luz puerta y tal y añadir a una variable, quiza array que construya el carousel
     caracteristicasAlCargar_unavegada();
