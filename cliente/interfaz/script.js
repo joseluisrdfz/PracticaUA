@@ -67,13 +67,13 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             // Ventilador?
             if (ventiladorActivado == "true") electro.ventilador = true;
             if (luzInteriorActivada == "true") electro.luz = true;
+            
 
 
             // Termostato del horno
             function termostato(t) {
                 var auxtemp = temperatura.replace(/º/g, '');
                 var intemp = parseInt(auxtemp);
-
                 if (t < intemp) { // si no he alcanzado la temperatura objetivo mantener las resistencias activadas
                     if (resistenciaSuperiorActivada == "true") electro.resistenciaSuperior = true;
                     if (resistenciaInferiorActivada == "true") electro.resistenciaInferior = true;
@@ -851,13 +851,16 @@ function pantallaiddlejaja() {
 function pantalla_definir_volumen() {
 
     let cadena = "";
-
+    let cadena2 = volumen;
     if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         cadena = idiarr[2];
     } else {
         cadena = "VOLVER";
+    }
+    if(localStorage.getItem("vol")){
+        cadena2 = localStorage.getItem("vol");
     }
 
     document.body.innerHTML = `
@@ -866,13 +869,13 @@ function pantalla_definir_volumen() {
         <div>
             <span onclick = "menosvol();" class = "control_vol icon-sinvolumen"></span>
             <div id="volumen_ext">
-                <div id="volumen_int" style = "width : ` + volumen + `;">
+                <div id="volumen_int" style = "width : ` + cadena2 + `;">
                 </div>
             </div>
             <span onclick = "masvol();" class = "control_vol icon-convolumen"></span>
         </div>
         <div>
-            <p id="volumen">` + volumen + `</p>
+            <p id="volumen">` + cadena2 + `</p>
         </div>
     </section>
     <section id="sec_vol2">
