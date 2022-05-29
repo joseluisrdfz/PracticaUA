@@ -191,6 +191,10 @@ function pantallaAusente() {
             location.reload();
         }
     }, 1400);
+    if (pantalla == 1) {
+        console.log('tuputamadre la berniinfanteria');
+        pantallaiddle();
+    }
 }
 
 function main(x) {
