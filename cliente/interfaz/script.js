@@ -187,12 +187,12 @@ function pantallaAusente() {
     document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo"></img></div>';
     setTimeout(function() {
         if ((electro.presencia == true || electro.presencia == 'true') && pantalla == 0) {
-            console.log('tupu la infanteria');
+            console.log('a');
             location.reload();
         }
     }, 1400);
     if ((electro.presencia == true || electro.presencia == 'true') && pantalla == 1) {
-        console.log('tuputamadre la berniinfanteria');
+        console.log('b');
         pantallaiddle();
     }
 }
