@@ -665,6 +665,16 @@ div#volumen_d {
         width: 1.4em;
         font-size: 2em;
     }
+    #volumen_d>#sec_vol1{
+        font-size: 0.8em;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+     #volumen_d>#sec_vol2{
+        font-size: 0.8em;
+    }
 }
 
 @media (max-width: 980px) {
