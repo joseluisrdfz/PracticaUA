@@ -191,7 +191,7 @@ function pantallaAusente() {
             location.reload();
         }
     }, 1400);
-    if (pantalla == 1) {
+    if ((electro.presencia == true || electro.presencia == 'true') && pantalla == 1) {
         console.log('tuputamadre la berniinfanteria');
         pantallaiddle();
     }
