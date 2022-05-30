@@ -283,6 +283,12 @@ function idiomaSeleccionado(idiomaSeleccionado) {
 
 
 function pantallaIdiomas() {
+    var volvertxt = 'Volver';
+    if (localStorage.getItem("idiomaArray")) {
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        volvertxt = idiarr[2];
+    }
     document.body.innerHTML = `
     <div id="divIdiomas">
         <a href="#italiano" onclick="emitirSonido()"><span class="icon-abajo arrowdown"></span></a>
@@ -301,7 +307,8 @@ function pantallaIdiomas() {
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(11)' class = "idiomas" id ="italiano"><p>Italiano</p></div>
         </div>
         <a href="#chino" onclick="emitirSonido()"><span class="icon-arriba arrowup"></span></a>
-    </div>`;
+    </div>
+    <div onclick = "pantallaAjustes();" id="volver_idiomas" class="SmallButton"><span>` + volvertxt + `</span></div>`;
 }
 
 function pantallaEscanearQr() {

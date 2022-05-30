@@ -575,10 +575,12 @@ div#volumen_d {
     flex-direction: row;
     justify-content: space-around;
 }
+
 div#volumen_d>#sec_vol2 {
-     justify-content: space-between;
+    justify-content: space-between;
     margin-left: 20px;
 }
+
 #sec_vol2>.SmallButton {
     font-size: 2em;
     background: var(--color_secundario)
@@ -875,4 +877,11 @@ div#volumen_d>#sec_vol2 {
     #temperatura>:nth-child(4) {
         font-size: 0.7em;
     }
+}
+
+#volver_idiomas {
+    position: absolute;
+    background: var(--color_secundario);
+    top: 80vh;
+    font-size: larger;
 }
