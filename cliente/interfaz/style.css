@@ -878,3 +878,10 @@ div#volumen_d>#sec_vol2 {
         font-size: 0.7em;
     }
 }
+
+#volver_idiomas {
+    position: absolute;
+    background: var(--color_secundario);
+    top: 80vh;
+    font-size: larger;
+}

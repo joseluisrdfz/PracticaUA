@@ -195,12 +195,12 @@ function pantallaAusente() {
     document.body.innerHTML = '<div id="logo_div"><img src="./recursos/logo.png" id="logo"></img></div>';
     setTimeout(function() {
         if ((electro.presencia == true || electro.presencia == 'true') && pantalla == 0) {
-            console.log('tupu la infanteria');
+            console.log('a');
             location.reload();
         }
     }, 1400);
     if ((electro.presencia == true || electro.presencia == 'true') && pantalla == 1) {
-        console.log('tuputamadre la berniinfanteria');
+        console.log('b');
         pantallaiddle();
     }
 }
@@ -291,6 +291,12 @@ function idiomaSeleccionado(idiomaSeleccionado) {
 
 
 function pantallaIdiomas() {
+    var volvertxt = 'Volver';
+    if (localStorage.getItem("idiomaArray")) {
+        let idi = localStorage.getItem("idiomaArray").toString();
+        let idiarr = idi.split(",");
+        volvertxt = idiarr[2];
+    }
     document.body.innerHTML = `
     <div id="divIdiomas">
         <a href="#italiano" onclick="emitirSonido()"><span class="icon-abajo arrowdown"></span></a>
@@ -309,7 +315,8 @@ function pantallaIdiomas() {
             <div onclick = 'pantallaiddlejaja(),pantallaiddle(), idiomaSeleccionado(11)' class = "idiomas" id ="italiano"><p>Italiano</p></div>
         </div>
         <a href="#chino" onclick="emitirSonido()"><span class="icon-arriba arrowup"></span></a>
-    </div>`;
+    </div>
+    <div onclick = "pantallaAjustes();" id="volver_idiomas" class="SmallButton"><span>` + volvertxt + `</span></div>`;
 }
 
 function pantallaEscanearQr() {
@@ -878,13 +885,16 @@ function pantallaiddlejaja() {
 function pantalla_definir_volumen() {
 
     let cadena = "";
-
+    let cadena2 = volumen;
     if (localStorage.getItem("idiomaArray")) {
         let idi = localStorage.getItem("idiomaArray").toString();
         let idiarr = idi.split(",");
         cadena = idiarr[2];
     } else {
         cadena = "VOLVER";
+    }
+    if(localStorage.getItem("vol")){
+        cadena2 = localStorage.getItem("vol");
     }
 
     document.body.innerHTML = `
@@ -893,13 +903,13 @@ function pantalla_definir_volumen() {
         <div>
             <span onclick = "menosvol();" class = "control_vol icon-sinvolumen"></span>
             <div id="volumen_ext">
-                <div id="volumen_int" style = "width : ` + volumen + `;">
+                <div id="volumen_int" style = "width : ` + cadena2 + `;">
                 </div>
             </div>
             <span onclick = "masvol();" class = "control_vol icon-convolumen"></span>
         </div>
         <div>
-            <p id="volumen">` + volumen + `</p>
+            <p id="volumen">` + cadena2 + `</p>
         </div>
     </section>
     <section id="sec_vol2">
