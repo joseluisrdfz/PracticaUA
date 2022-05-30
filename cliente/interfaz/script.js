@@ -1,7 +1,10 @@
 //Variable de audio
 const sonido = new Audio("./recursos/sonido.wav");
 const final = new Audio("./recursos/finalhorno.wav");
-
+var tempint_var;
+var tempint_anterior = 0;
+var tempint_mostrar;
+var tempint_mostrar_anterior = false;
 var electro = new Electro();
 electro.on("connect", function() { // Esparar a que la librería se conecte con la horno
     console.log("Ya estoy conectado con la horno!!");
@@ -22,7 +25,9 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
             pantallaAusente();
         }
     });
-
+    electro.on("temperaturaInterior", function(tempint) {
+        tempint_var = tempint;
+    });
     electro.on("sondaConectada", function(lasonda) {
         let activado = "Activar Sonda";
         let desactivado = "Desactivar Sonda";
@@ -60,6 +65,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
         try {
             cocinar.addEventListener("click", function() {
                 console.log("Comienzo a cocinar. Tiempo:", horas_reloj + "(minutos) " + minutos_reloj + "(segundos)");
+                tempint_mostrar = true;
                 // Bloquear controles
                 console.log("yep");
                 cocinar.disabled = true;
@@ -90,6 +96,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                 setTimeout(function() {
                     console.log("Fin del cocinado (tiempo cumplido)")
 
+
                     electro.off("temperaturaInterior", termostato);
 
                     // Desbloquear los controles
@@ -109,6 +116,7 @@ electro.on("connect", function() { // Esparar a que la librería se conecte con 
                     temperatura = localStorage.getItem("temperatura");
                     electro.luz = false;
                     final.play();
+                    tempint_mostrar = false;
                     setTimeout(function() { location.reload(); }, 700);
 
 
@@ -1038,6 +1046,15 @@ function microfonoActivadoDesactivado() {
 
 function muestraReloj() {
     caracteristicasAlCargar();
+    if (tempint_mostrar != tempint_mostrar_anterior) {
+        una_ves_hecho_cambio = false;
+    }
+
+    if (tempint_var != tempint_anterior) {
+        if (document.getElementById('temp_var')) {
+            document.getElementById('temp_var').innerHTML = '<p>Temperatura Interior:</p><p style="font-size:1.4em; font-weight:bold; margin:0;">' + tempint_var + 'º</p>';
+        }
+    }
 
     if (document.getElementById('carsousel') && !una_ves_hecho_cambio) {
 
@@ -1070,6 +1087,11 @@ function muestraReloj() {
         if (temperaturaActivada == 'true')
             auxc += '<div class="owl-item"><p>' + cadena1 + '</p><span>' + temperatura + '</span></div>';
 
+
+        if (tempint_mostrar) {
+            auxc += '<div id = "temp_var"; style="font-size:1.4em;display:flex;flex-direction:column; justify-content:space-evenly;" class="owl-item"><p>Temperatura Interior:</p><p style="font-size:1.4em; font-weight:bold; margin:0;">' + tempint_var + 'º</p>' + '</div>';
+        }
+
         if (localStorage.getItem("sondaActivada") == 'true')
             auxc += '<div class="owl-item">' + cadena2 + '</div>';
 
@@ -1078,6 +1100,7 @@ function muestraReloj() {
             console.log(horas_reloj + ':' + minutos_reloj);
             auxc += '<div class="owl-item"><p>' + cadena3 + '</p><span> ' + horas_reloj + ':' + minutos_reloj + ' </span></div>';
         }
+
 
 
         if (ventiladorActivado == 'true')
@@ -1106,9 +1129,9 @@ function muestraReloj() {
             stagePadding: 20,
             loop: true,
             margin: 50,
-            autoplay: true,
+            /* autoplay: false,
             autoplayTimeout: 2300,
-            autoplayHoverPause: true,
+            autoplayHoverPause: true, */
             nav: true,
             responsive: {
                 0: {
@@ -1136,6 +1159,9 @@ function muestraReloj() {
     if (minutos < 10) { minutos = '0' + minutos; }
     if (document.getElementById("hora"))
         document.getElementById("hora").innerHTML = horas + ':' + minutos;
+
+    tempint_anterior = tempint_var;
+    tempint_mostrar = tempint_mostrar_anterior;
 }
 
 function establecerTemporizador(entrada) {
